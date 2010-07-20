@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CLUpload : NSObject {
-
+@interface CLUpload : NSObject<NSCopying> {
+	NSString *name;
 }
 
-//This method should be implemented by subclasses
-- (NSURLRequest *)requestForURL:(NSURL *)theURL;
+@property (copy, readwrite) NSString *name;
+
+- (id)initWithName:(NSString *)theName;
+
+- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL;
+- (NSMutableURLRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict;
+- (BOOL)isValid;
+- (NSUInteger)size; //The size in bytes
+- (BOOL)usesS3;
 
 @end

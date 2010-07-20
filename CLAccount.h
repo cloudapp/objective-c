@@ -18,7 +18,6 @@ typedef enum _CLAccountType {
 	NSUInteger uploadBytesLimit;
 	BOOL uploadsArePrivate;
 	NSString *emailAddress;
-	NSString *password;
 	CLAccountType type;
 }
 
@@ -26,7 +25,6 @@ typedef enum _CLAccountType {
 @property (assign, readwrite) NSUInteger uploadBytesLimit;
 @property (assign, readwrite) BOOL uploadsArePrivate;
 @property (copy, readwrite) NSString *emailAddress;
-@property (copy, readwrite) NSString *password;
 @property (assign, readwrite) CLAccountType type;
 
 - (id)initWithEmailAddress:(NSString *)anEmail;

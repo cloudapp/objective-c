@@ -10,7 +10,12 @@
 #import "CLUpload.h"
 
 @interface CLRedirectUpload : CLUpload {
-
+	NSURL *URL;
 }
+
+@property (copy, readwrite) NSURL *URL;
+
+- (id)initWithName:(NSString *)theName URL:(NSURL *)theURL;
++ (CLRedirectUpload *)redirectUploadWithName:(NSString *)theName URL:(NSURL *)theURL;
 
 @end

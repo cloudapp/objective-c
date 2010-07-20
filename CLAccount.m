@@ -15,7 +15,7 @@ static NSString * const CLAccountEmailAddressKey = @"CLAccountEmailAddressKey";
 static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 
 @implementation CLAccount
-@synthesize uploadCountLimit, uploadBytesLimit, uploadsArePrivate, emailAddress, password, type;
+@synthesize uploadCountLimit, uploadBytesLimit, uploadsArePrivate, emailAddress, type;
 
 - (id)init {
 	return [self initWithEmailAddress:nil];

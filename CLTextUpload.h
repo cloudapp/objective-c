@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CLUpload.h"
+#import "CLFileUpload.h"
 
-@interface CLTextUpload : CLUpload {
+@interface CLTextUpload : CLFileUpload {
 
 }
+
+@property (copy, readwrite) NSString *text;
+
+- (id)initWithName:(NSString *)theName text:(NSString *)theText;
++ (CLTextUpload *)textUploadWithName:(NSString *)theName text:(NSString *)theText;
 
 @end

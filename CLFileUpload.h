@@ -10,7 +10,12 @@
 #import "CLUpload.h"
 
 @interface CLFileUpload : CLUpload {
-
+	NSData *data;
 }
+
+@property (copy, readwrite) NSData *data;
+
+- (id)initWithName:(NSString *)theName data:(NSData *)theData;
++ (CLFileUpload *)fileUploadWithName:(NSString *)theName data:(NSData *)theData;
 
 @end
