@@ -11,4 +11,8 @@
 
 @implementation CLUpload
 
+- (NSURLRequest *)requestForURL:(NSURL *)theURL {
+	return nil;
+}
+
 @end

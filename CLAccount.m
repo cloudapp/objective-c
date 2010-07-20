@@ -12,9 +12,10 @@ static NSString * const CLAccountUploadCountLimitKey = @"CLAccountUploadCountLim
 static NSString * const CLAccountUploadBytesLimitKey = @"CLAccountUploadBytesLimitKey";
 static NSString * const CLAccountUploadsArePrivateKey = @"CLAccountUploadsArePrivateKey";
 static NSString * const CLAccountEmailAddressKey = @"CLAccountEmailAddressKey";
+static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 
 @implementation CLAccount
-@synthesize uploadCountLimit, uploadBytesLimit, uploadsArePrivate, emailAddress, password;
+@synthesize uploadCountLimit, uploadBytesLimit, uploadsArePrivate, emailAddress, password, type;
 
 - (id)init {
 	return [self initWithEmailAddress:nil];
@@ -39,6 +40,7 @@ static NSString * const CLAccountEmailAddressKey = @"CLAccountEmailAddressKey";
 	theAccount.uploadBytesLimit = self.uploadBytesLimit;
 	theAccount.uploadCountLimit = self.uploadCountLimit;
 	theAccount.uploadsArePrivate = self.uploadsArePrivate;
+	theAccount.type = self.type;
 	return theAccount;
 }
 
@@ -52,6 +54,7 @@ static NSString * const CLAccountEmailAddressKey = @"CLAccountEmailAddressKey";
 			uploadBytesLimit = [[decoder decodeObjectForKey:CLAccountUploadBytesLimitKey] unsignedIntegerValue];
 			uploadsArePrivate = [decoder decodeBoolForKey:CLAccountUploadsArePrivateKey];
 			emailAddress = [decoder decodeObjectForKey:CLAccountEmailAddressKey];
+			type = [decoder decodeIntegerForKey:CLAccountTypeKey];
 		}
 	}
 	return self;
@@ -63,6 +66,7 @@ static NSString * const CLAccountEmailAddressKey = @"CLAccountEmailAddressKey";
 		[encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.uploadBytesLimit] forKey:CLAccountUploadBytesLimitKey];
 		[encoder encodeBool:self.uploadsArePrivate forKey:CLAccountUploadsArePrivateKey];
 		[encoder encodeObject:self.emailAddress forKey:CLAccountEmailAddressKey];
+		[encoder encodeInteger:self.type forKey:CLAccountTypeKey];
 	}
 }
 

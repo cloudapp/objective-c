@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-enum CLAccountType {
+typedef enum _CLAccountType {
 	CLAccountTypeFree,
 	CLAccountTypePro
-};
+} CLAccountType;
 
 @interface CLAccount : NSObject<NSCopying, NSCoding> {
 	NSInteger uploadCountLimit;
@@ -19,6 +19,7 @@ enum CLAccountType {
 	BOOL uploadsArePrivate;
 	NSString *emailAddress;
 	NSString *password;
+	CLAccountType type;
 }
 
 @property (assign, readwrite) NSInteger uploadCountLimit;
@@ -26,6 +27,7 @@ enum CLAccountType {
 @property (assign, readwrite) BOOL uploadsArePrivate;
 @property (copy, readwrite) NSString *emailAddress;
 @property (copy, readwrite) NSString *password;
+@property (assign, readwrite) CLAccountType type;
 
 - (id)initWithEmailAddress:(NSString *)anEmail;
 + (CLAccount *)accountWithEmailAddress:(NSString *)anEmail;

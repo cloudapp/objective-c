@@ -13,4 +13,7 @@
 
 }
 
+//This method should be implemented by subclasses
+- (NSURLRequest *)requestForURL:(NSURL *)theURL;
+
 @end
