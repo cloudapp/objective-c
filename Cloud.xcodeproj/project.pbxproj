@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B23E53511F5EBEF0055FF80 /* CLWebItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E53311F5EBEF0055FF80 /* CLWebItem.h */; };
+		4B23E53611F5EBEF0055FF80 /* CLWebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E53411F5EBEF0055FF80 /* CLWebItem.m */; };
+		4B23E53911F5EC010055FF80 /* CLAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E53711F5EC010055FF80 /* CLAccount.h */; };
+		4B23E53A11F5EC010055FF80 /* CLAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E53811F5EC010055FF80 /* CLAccount.m */; };
+		4B23E53D11F5EC060055FF80 /* CLUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E53B11F5EC060055FF80 /* CLUpload.h */; };
+		4B23E53E11F5EC060055FF80 /* CLUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E53C11F5EC060055FF80 /* CLUpload.m */; };
+		4B23E54111F5EC0A0055FF80 /* CLFileUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E53F11F5EC0A0055FF80 /* CLFileUpload.h */; };
+		4B23E54211F5EC0A0055FF80 /* CLFileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E54011F5EC0A0055FF80 /* CLFileUpload.m */; };
+		4B23E54511F5EC190055FF80 /* CLRedirectUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E54311F5EC190055FF80 /* CLRedirectUpload.h */; };
+		4B23E54611F5EC190055FF80 /* CLRedirectUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E54411F5EC190055FF80 /* CLRedirectUpload.m */; };
+		4B23E54911F5EC200055FF80 /* CLTextUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E54711F5EC200055FF80 /* CLTextUpload.h */; };
+		4B23E54A11F5EC200055FF80 /* CLTextUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E54811F5EC200055FF80 /* CLTextUpload.m */; };
+		4B23E54F11F5EC6D0055FF80 /* CLAPIEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B23E54D11F5EC6D0055FF80 /* CLAPIEngine.h */; };
+		4B23E55011F5EC6D0055FF80 /* CLAPIEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B23E54E11F5EC6D0055FF80 /* CLAPIEngine.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -17,6 +31,20 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* Cloud_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud_Prefix.pch; sourceTree = "<group>"; };
+		4B23E53311F5EBEF0055FF80 /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLWebItem.h; path = Projects/Linebreak/Cloud/Framework/CLWebItem.h; sourceTree = DEVELOPER_DIR; };
+		4B23E53411F5EBEF0055FF80 /* CLWebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLWebItem.m; path = Projects/Linebreak/Cloud/Framework/CLWebItem.m; sourceTree = DEVELOPER_DIR; };
+		4B23E53711F5EC010055FF80 /* CLAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAccount.h; path = Projects/Linebreak/Cloud/Framework/CLAccount.h; sourceTree = DEVELOPER_DIR; };
+		4B23E53811F5EC010055FF80 /* CLAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLAccount.m; path = Projects/Linebreak/Cloud/Framework/CLAccount.m; sourceTree = DEVELOPER_DIR; };
+		4B23E53B11F5EC060055FF80 /* CLUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpload.h; path = Projects/Linebreak/Cloud/Framework/CLUpload.h; sourceTree = DEVELOPER_DIR; };
+		4B23E53C11F5EC060055FF80 /* CLUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLUpload.m; path = Projects/Linebreak/Cloud/Framework/CLUpload.m; sourceTree = DEVELOPER_DIR; };
+		4B23E53F11F5EC0A0055FF80 /* CLFileUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLFileUpload.h; path = Projects/Linebreak/Cloud/Framework/CLFileUpload.h; sourceTree = DEVELOPER_DIR; };
+		4B23E54011F5EC0A0055FF80 /* CLFileUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLFileUpload.m; path = Projects/Linebreak/Cloud/Framework/CLFileUpload.m; sourceTree = DEVELOPER_DIR; };
+		4B23E54311F5EC190055FF80 /* CLRedirectUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLRedirectUpload.h; path = Projects/Linebreak/Cloud/Framework/CLRedirectUpload.h; sourceTree = DEVELOPER_DIR; };
+		4B23E54411F5EC190055FF80 /* CLRedirectUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLRedirectUpload.m; path = Projects/Linebreak/Cloud/Framework/CLRedirectUpload.m; sourceTree = DEVELOPER_DIR; };
+		4B23E54711F5EC200055FF80 /* CLTextUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLTextUpload.h; path = Projects/Linebreak/Cloud/Framework/CLTextUpload.h; sourceTree = DEVELOPER_DIR; };
+		4B23E54811F5EC200055FF80 /* CLTextUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLTextUpload.m; path = Projects/Linebreak/Cloud/Framework/CLTextUpload.m; sourceTree = DEVELOPER_DIR; };
+		4B23E54D11F5EC6D0055FF80 /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAPIEngine.h; path = Projects/Linebreak/Cloud/Framework/CLAPIEngine.h; sourceTree = DEVELOPER_DIR; };
+		4B23E54E11F5EC6D0055FF80 /* CLAPIEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLAPIEngine.m; path = Projects/Linebreak/Cloud/Framework/CLAPIEngine.m; sourceTree = DEVELOPER_DIR; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -75,6 +103,13 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4B23E54C11F5EC580055FF80 /* Upload Model */,
+				4B23E53311F5EBEF0055FF80 /* CLWebItem.h */,
+				4B23E53411F5EBEF0055FF80 /* CLWebItem.m */,
+				4B23E54D11F5EC6D0055FF80 /* CLAPIEngine.h */,
+				4B23E54E11F5EC6D0055FF80 /* CLAPIEngine.m */,
+				4B23E53711F5EC010055FF80 /* CLAccount.h */,
+				4B23E53811F5EC010055FF80 /* CLAccount.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -105,6 +140,21 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		4B23E54C11F5EC580055FF80 /* Upload Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B23E53B11F5EC060055FF80 /* CLUpload.h */,
+				4B23E53C11F5EC060055FF80 /* CLUpload.m */,
+				4B23E53F11F5EC0A0055FF80 /* CLFileUpload.h */,
+				4B23E54011F5EC0A0055FF80 /* CLFileUpload.m */,
+				4B23E54311F5EC190055FF80 /* CLRedirectUpload.h */,
+				4B23E54411F5EC190055FF80 /* CLRedirectUpload.m */,
+				4B23E54711F5EC200055FF80 /* CLTextUpload.h */,
+				4B23E54811F5EC200055FF80 /* CLTextUpload.m */,
+			);
+			name = "Upload Model";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -112,6 +162,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B23E53511F5EBEF0055FF80 /* CLWebItem.h in Headers */,
+				4B23E53911F5EC010055FF80 /* CLAccount.h in Headers */,
+				4B23E53D11F5EC060055FF80 /* CLUpload.h in Headers */,
+				4B23E54111F5EC0A0055FF80 /* CLFileUpload.h in Headers */,
+				4B23E54511F5EC190055FF80 /* CLRedirectUpload.h in Headers */,
+				4B23E54911F5EC200055FF80 /* CLTextUpload.h in Headers */,
+				4B23E54F11F5EC6D0055FF80 /* CLAPIEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +228,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B23E53611F5EBEF0055FF80 /* CLWebItem.m in Sources */,
+				4B23E53A11F5EC010055FF80 /* CLAccount.m in Sources */,
+				4B23E53E11F5EC060055FF80 /* CLUpload.m in Sources */,
+				4B23E54211F5EC0A0055FF80 /* CLFileUpload.m in Sources */,
+				4B23E54611F5EC190055FF80 /* CLRedirectUpload.m in Sources */,
+				4B23E54A11F5EC200055FF80 /* CLTextUpload.m in Sources */,
+				4B23E55011F5EC6D0055FF80 /* CLAPIEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
