@@ -10,7 +10,7 @@
 #import "CLUpload.h"
 
 @implementation CLAPIEngine
-@synthesize email, password, notificationsEnabled, clearsCookies;
+@synthesize email, password;
 
 - (NSString *)getAccountInformation {
 	
@@ -21,11 +21,11 @@
 }
 
 - (NSString *)getRecentItemsStartingAtPage:(NSInteger)thePage count:(NSInteger)theCount {
-	
+	return [self getRecentItemsStartingAtPage:thePage count:theCount trashedItems:NO];
 }
 
 - (NSString *)getRecentItemsStartingAtPage:(NSInteger)thePage count:(NSInteger)theCount trashedItems:(BOOL)returnTrashedItems {
-	
+	return [self getRecentItemsStartingAtPage:thePage count:theCount type:-1 trashedItem:returnTrashedItems];
 }
 
 - (NSString *)getRecentItemsStartingAtPage:(NSInteger)thePage count:(NSInteger)theCount type:(CLWebItemType)theType trashedItem:(BOOL)returnTrashedItems {
@@ -36,11 +36,7 @@
 	
 }
 
-- (NSString *)updateItem {
-	
-}
-
-- (NSString *)updateAccount {
+- (NSString *)updateItem:(CLWebItem *)theItem {
 	
 }
 
@@ -50,6 +46,15 @@
 
 - (NSString *)deleteItem:(CLWebItem *)theItem {
 	
+}
+
+#pragma mark -
+#pragma mark Cleanup
+
+- (void)dealloc {
+	self.email = nil;
+	self.password = nil;
+	[super dealloc];
 }
 
 @end

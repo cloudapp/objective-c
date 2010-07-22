@@ -19,7 +19,7 @@ static NSString * const CLWebItemIconKey = @"CLWebItemIconKey";
 static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 
 @implementation CLWebItem
-@synthesize name, type, contentURL, mimeType, viewCount, remoteURL, href, icon;
+@synthesize name, type, contentURL, mimeType, viewCount, remoteURL, href, icon, trashed;
 
 - (id)init {
 	return [self initWithName:nil type:CLWebItemTypeOther viewCount:0];
@@ -84,6 +84,19 @@ static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 		[encoder encodeObject:self.icon forKey:CLWebItemIconKey];
 		[encoder encodeBool:self.trashed forKey:CLWebItemTrashedKey];
 	}
+}
+
+#pragma mark -
+#pragma mark Cleanup
+
+- (void)dealloc {
+	self.name = nil;
+	self.contentURL = nil;
+	self.mimeType = nil;
+	self.remoteURL = nil;
+	self.href = nil;
+	self.icon = nil;
+	[super dealloc];
 }
 
 

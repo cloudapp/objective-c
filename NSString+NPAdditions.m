@@ -15,4 +15,8 @@
 	return [[[NSString alloc] initWithData:theData encoding:theEncoding] autorelease];
 }
 
++ (NSString *)uniqueString {
+	return [[NSProcessInfo processInfo] globallyUniqueString];
+}
+
 @end

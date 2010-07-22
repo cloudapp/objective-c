@@ -32,11 +32,11 @@ typedef enum _CLWebItemType {
 
 @property (copy, readwrite) NSString *name;
 @property (assign, readwrite) CLWebItemType type;
-@property (copy, readwrite) NSURL *contentURL;
+@property (retain, readwrite) NSURL *contentURL;
 @property (copy, readwrite) NSString *mimeType;
 @property (assign, readwrite) NSInteger viewCount;
-@property (copy, readwrite) NSURL *remoteURL;
-@property (copy, readwrite) NSURL *href;
+@property (retain, readwrite) NSURL *remoteURL;
+@property (retain, readwrite) NSURL *href;
 @property (retain, readwrite) NSImage *icon;
 @property (assign, readwrite) BOOL trashed;
 

@@ -13,7 +13,7 @@
 	NSURL *URL;
 }
 
-@property (copy, readwrite) NSURL *URL;
+@property (retain, readwrite) NSURL *URL;
 
 - (id)initWithName:(NSString *)theName URL:(NSURL *)theURL;
 + (CLRedirectUpload *)redirectUploadWithName:(NSString *)theName URL:(NSURL *)theURL;

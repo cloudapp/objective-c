@@ -50,4 +50,12 @@
 	return [[[self class] alloc] initWithName:nil];
 }
 
+#pragma mark -
+#pragma mark Cleanup
+
+- (void)dealloc {
+	self.name = nil;
+	[super dealloc];
+}
+
 @end

@@ -70,4 +70,12 @@ static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 	}
 }
 
+#pragma mark -
+#pragma mark Cleanup
+
+- (void)dealloc {
+	
+	[super dealloc];
+}
+
 @end

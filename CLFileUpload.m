@@ -67,4 +67,12 @@
 	return [[[self class] alloc] initWithName:self.name data:self.data];
 }
 
+#pragma mark -
+#pragma mark Cleanup
+
+- (void)dealloc {
+	self.data = nil;
+	[super dealloc];
+}
+
 @end

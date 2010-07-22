@@ -12,5 +12,6 @@
 @interface NSString (NPAdditions)
 
 + (NSString *)stringWithData:(NSData *)theData encoding:(NSStringEncoding)theEncoding;
++ (NSString *)uniqueString;
 
 @end

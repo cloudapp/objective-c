@@ -64,4 +64,12 @@
 	return [[[self class] alloc] initWithName:self.name URL:self.URL];
 }
 
+#pragma mark -
+#pragma mark Cleanup
+
+- (void)dealloc {
+	self.URL = nil;
+	[super dealloc];
+}
+
 @end
