@@ -18,10 +18,14 @@
 @interface CLAPIEngine : NSObject {
 	NSString *email;
 	NSString *password;
+	id<CLAPIEngineDelegate> delegate;
+	
+	NSMutableDictionary *_connectionDictionary;
 }
 
 @property (copy, readwrite) NSString *email;
 @property (copy, readwrite) NSString *password;
+@property (assign, readwrite) id<CLAPIEngineDelegate> delegate;
 
 - (NSString *)getAccountInformation;
 - (NSString *)doUpload:(CLUpload *)theUpload;

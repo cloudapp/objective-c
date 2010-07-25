@@ -10,7 +10,19 @@
 #import "CLUpload.h"
 
 @implementation CLAPIEngine
-@synthesize email, password;
+@synthesize email, password, delegate;
+
+- (id)init {
+	return [self initWithDelegate:nil];
+}
+
+- (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate {
+	if (self = [super init]) {
+		self.delegate = aDelegate;
+		_connectionDictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
+	}
+	return self;
+}
 
 - (NSString *)getAccountInformation {
 	
@@ -54,6 +66,8 @@
 - (void)dealloc {
 	self.email = nil;
 	self.password = nil;
+	self.delegate = nil;
+	[_connectionDictionary release];
 	[super dealloc];
 }
 
