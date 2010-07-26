@@ -28,7 +28,7 @@
 }
 
 - (NSURLRequest *)requestForURL:(NSURL *)theURL {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:theURL];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items"]];
 	[request setHTTPMethod:@"POST"];
 	[request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];

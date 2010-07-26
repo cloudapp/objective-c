@@ -8,7 +8,7 @@
 
 #import "NSMutableURLRequest+NPPOSTBody.h"
 
-static NSString * const NPHTTPBoundary = @"-...-NPRequestBoundary-...-";
+NSString * const NPHTTPBoundary = @"-----NPRequestBoundary-----";
 
 @implementation NSMutableURLRequest (NPPOSTBody)
 
@@ -44,7 +44,7 @@ static NSString * const NPHTTPBoundary = @"-...-NPRequestBoundary-...-";
 }
 
 - (void)finalizeHTTPBody {
-	NSData *smallerData = [[self HTTPBody] subdataWithRange:NSMakeRange([[self HTTPBody] length] - 3, 2)];
+	NSData *smallerData = [[self HTTPBody] subdataWithRange:NSMakeRange([[self HTTPBody] length] - 2, 2)];
 	NSString *stringValue = [[NSString alloc] initWithData:smallerData encoding:NSUTF8StringEncoding];
     if ([stringValue hasSuffix:@"\r\n"]) {
         NSMutableData *tempData = [NSMutableData dataWithData:[[self HTTPBody] subdataWithRange:NSMakeRange(0, [[self HTTPBody] length] - 2)]];

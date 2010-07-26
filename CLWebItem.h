@@ -15,7 +15,8 @@ typedef enum _CLWebItemType {
 	CLWebItemTypeArchive,
 	CLWebItemTypeAudio,
 	CLWebItemTypeVideo,
-	CLWebItemTypeOther
+	CLWebItemTypeOther,
+	CLWebItemTypeNone
 } CLWebItemType;
 
 @interface CLWebItem : NSObject<NSCopying, NSCoding> {
@@ -27,7 +28,9 @@ typedef enum _CLWebItemType {
 	NSURL *remoteURL;
 	NSURL *href;
 	NSImage *icon;
+	NSURL *iconURL;
 	BOOL trashed;
+	BOOL private;
 }
 
 @property (copy, readwrite) NSString *name;
@@ -38,9 +41,15 @@ typedef enum _CLWebItemType {
 @property (retain, readwrite) NSURL *remoteURL;
 @property (retain, readwrite) NSURL *href;
 @property (retain, readwrite) NSImage *icon;
+@property (retain, readwrite) NSURL *iconURL;
 @property (assign, readwrite) BOOL trashed;
+@property (assign, readwrite, getter=isPrivate) BOOL private;
 
+- (id)initWithName:(NSString *)theName;
 - (id)initWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount;
+
++ (CLWebItem *)webItem;
++ (CLWebItem *)webItemWithName:(NSString *)theName;
 + (CLWebItem *)webItemWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount;
 
 @end

@@ -16,13 +16,19 @@ static NSString * const CLWebItemViewCountKey = @"CLWebItemViewCountKey";
 static NSString * const CLWebItemRemoteURLKey = @"CLWebItemRemoteURLKey";
 static NSString * const CLWebItemHrefKey = @"CLWebItemHrefKey";
 static NSString * const CLWebItemIconKey = @"CLWebItemIconKey";
+static NSString * const CLWebItemIconURLKey = @"CLWebItemIconURLKey";
 static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
+static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 
 @implementation CLWebItem
-@synthesize name, type, contentURL, mimeType, viewCount, remoteURL, href, icon, trashed;
+@synthesize name, type, contentURL, mimeType, viewCount, remoteURL, href, icon, trashed, private, iconURL;
 
 - (id)init {
-	return [self initWithName:nil type:CLWebItemTypeOther viewCount:0];
+	return [self initWithName:nil];
+}
+
+- (id)initWithName:(NSString *)theName {
+	return [self initWithName:theName type:CLWebItemTypeNone viewCount:0];
 }
 
 - (id)initWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount {
@@ -34,8 +40,20 @@ static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 	return self;
 }
 
++ (CLWebItem *)webItem {
+	return [[[[self class] alloc] init] autorelease];
+}
+
++ (CLWebItem *)webItemWithName:(NSString *)theName {
+	return [[[[self class] alloc] initWithName:theName] autorelease];
+}
+
 + (CLWebItem *)webItemWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount {
 	return [[[[self class] alloc] initWithName:theName type:theType viewCount:theCount] autorelease];
+}
+
+- (NSString *)description {
+	return [NSString stringWithFormat:@"%@ (%i) <%@>", self.name, self.viewCount, self.href];
 }
 
 #pragma mark -
@@ -49,6 +67,8 @@ static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 	retItem.href = self.href;
 	retItem.icon = self.icon;
 	retItem.trashed = self.trashed;
+	retItem.private = self.private;
+	retItem.iconURL = self.iconURL;
 	return retItem;
 }
 
@@ -67,6 +87,8 @@ static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 			href = [decoder decodeObjectForKey:CLWebItemHrefKey];
 			icon = [decoder decodeObjectForKey:CLWebItemIconKey];
 			trashed = [decoder decodeBoolForKey:CLWebItemTrashedKey];
+			private = [decoder decodeBoolForKey:CLWebItemPrivateKey];
+			iconURL = [decoder decodeObjectForKey:CLWebItemIconURLKey];
 		}
 	}
 	return self;
@@ -83,6 +105,8 @@ static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 		[encoder encodeObject:self.href forKey:CLWebItemHrefKey];
 		[encoder encodeObject:self.icon forKey:CLWebItemIconKey];
 		[encoder encodeBool:self.trashed forKey:CLWebItemTrashedKey];
+		[encoder encodeBool:self.private forKey:CLWebItemPrivateKey];
+		[encoder encodeObject:self.iconURL forKey:CLWebItemIconURLKey];
 	}
 }
 
@@ -96,6 +120,7 @@ static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 	self.remoteURL = nil;
 	self.href = nil;
 	self.icon = nil;
+	self.iconURL = nil;
 	[super dealloc];
 }
 

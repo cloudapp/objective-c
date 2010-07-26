@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const NPHTTPBoundary;
+extern NSString * const NPHTTPBoundary;
 
 @interface NSMutableURLRequest (NPPOSTBody)
 

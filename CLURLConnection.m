@@ -8,9 +8,12 @@
 
 #import "CLURLConnection.h"
 
+@interface CLURLConnection ()
+@property (retain, readwrite) NSDate *startDate;
+@end
 
 @implementation CLURLConnection
-@synthesize reqeustType, data, identifier;
+@synthesize requestType, data, identifier, userInfo, startDate;
 
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate {
 	return [self initWithRequest:request delegate:delegate requestType:CLURLRequestTypeUnknown identifier:nil];
@@ -36,6 +39,13 @@
 		self.identifier = anID;
 	}
 	return self;
+}
+
+- (void)start {
+	self.startDate = [NSDate date];
+	NSLog(@"self.startdate = %@", self.startDate);
+	
+	[super start];
 }
 
 - (void)dealloc {
