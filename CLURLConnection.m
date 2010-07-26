@@ -43,8 +43,6 @@
 
 - (void)start {
 	self.startDate = [NSDate date];
-	NSLog(@"self.startdate = %@", self.startDate);
-	
 	[super start];
 }
 
