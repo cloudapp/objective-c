@@ -26,6 +26,7 @@ typedef enum _CLURLRequestType {
 	NSString *identifier;
 	id userInfo;
 	NSDate *startDate;
+	NSHTTPURLResponse *response;
 }
 
 @property (retain, readwrite) NSMutableData *data;
@@ -33,6 +34,7 @@ typedef enum _CLURLRequestType {
 @property (assign, readwrite) CLURLRequestType requestType;
 @property (retain, readwrite) id userInfo;
 @property (retain, readonly) NSDate *startDate;
+@property (retain, readwrite) NSHTTPURLResponse *response;
 
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate requestType:(CLURLRequestType)reqType identifier:(NSString *)anID;
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate requestType:(CLURLRequestType)reqType identifier:(NSString *)anID startImmediately:(BOOL)startImmediately;

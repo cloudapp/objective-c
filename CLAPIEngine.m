@@ -14,6 +14,7 @@
 #import "NSDictionary+BSJSONAdditions.h"
 #import "NSArray+BSJSONAdditions.h"
 #import "CLAccount.h"
+#import "CLFileUpload.h"
 
 @interface CLAPIEngine ()
 - (CLWebItemType)_webItemTypeForTypeString:(NSString *)typeString;
@@ -21,6 +22,9 @@
 - (NSString *)_typeStringForWebItemType:(CLWebItemType)theType;
 - (NSString *)_handleRequest:(NSURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo;
 @end
+
+CGFloat CLUploadLimitExceeded = 301;
+CGFloat CLUploadSizeLimitExceeded = 302;
 
 @implementation CLAPIEngine
 @synthesize email, password, delegate, baseURL, clearsCookies, downloadsIcons;
@@ -143,49 +147,82 @@
 }
 
 - (void)connection:(CLURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-	//NSLog(@"Wrote %i with a total of %i and expecting %i", bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-	NSTimeInterval timeTaken = [[NSDate date] timeIntervalSinceReferenceDate] - [[connection startDate] timeIntervalSinceReferenceDate];
-	CGFloat percentDone = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
-	if (percentDone >= 0.20) {
-		NSTimeInterval totalTime = timeTaken / ((CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite);
-		NSTimeInterval timeLeft = totalTime - timeTaken;
-		NSLog(@"left = %i", (NSInteger)ceilf(timeLeft));
+	if ([(CLUpload *)connection.userInfo isKindOfClass:[CLFileUpload class]]) {
+		CGFloat percentDone = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
+		if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestProgressed:toPercentage:)])
+			[self.delegate requestProgressed:connection.identifier toPercentage:[NSNumber numberWithFloat:percentDone]];
 	}
+	
+	//	NSTimeInterval timeTaken = [[NSDate date] timeIntervalSinceReferenceDate] - [[connection startDate] timeIntervalSinceReferenceDate];
+	//	if (percentDone >= 0.20) {
+	//		NSTimeInterval totalTime = timeTaken / ((CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite);
+	//		NSTimeInterval timeLeft = totalTime - timeTaken;
+	//		NSLog(@"left = %i", (NSInteger)ceilf(timeLeft));
+	//	}
+}
+
+- (void)connection:(CLURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
+	if ([response isKindOfClass:[NSHTTPURLResponse class]])
+		[connection setResponse:response];
+}
+
+- (void)connection:(CLURLConnection *)connection didFailWithError:(NSError *)error {
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+		error = [NSError errorWithDomain:[error domain] code:[error code] userInfo:[NSDictionary dictionaryWithObject:@"Login failed" forKey:NSLocalizedDescriptionKey]];
+	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestFailed:withError:)])
+		[self.delegate requestFailed:connection.identifier withError:error];
 }
 
 - (void)connectionDidFinishLoading:(CLURLConnection *)connection {
+	if ([[connection response] statusCode] == 404) {
+		[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:[NSDictionary dictionaryWithObject:@"File not found" forKey:NSLocalizedDescriptionKey]]];
+		return;
+	}
+	
 	NSString *retString = [NSString stringWithData:[connection data] encoding:NSUTF8StringEncoding];
 	switch (connection.requestType) {
 		case CLURLRequestTypeUpload: {
-			CLUpload *theUpload = [connection userInfo];
+			CLUpload *theUpload = connection.userInfo;
 			if ([theUpload usesS3]) {
 				NSDictionary *s3Dict = [NSDictionary dictionaryWithJSONString:retString];
 				if (s3Dict == nil) {
-					NSLog(@"Handle S3 dictionary nil error!");
+					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter dictionary" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
+				
+				if ([[s3Dict allKeys] containsObject:@"uploads_remaining"] && [[s3Dict objectForKey:@"uploads_remaining"] integerValue] <= 0) {
+					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Upload limit exceeded" forKey:NSLocalizedDescriptionKey]]];
+					return;
+				}
+				
+				if ([[s3Dict allKeys] containsObject:@"max_upload_size"] && [theUpload size] > [[s3Dict objectForKey:@"max_upload_size"] integerValue]) {
+					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadSizeLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Max upload size exceeded" forKey:NSLocalizedDescriptionKey]]];
+					return;
+				}
+				
 				NSURL *s3URL = [NSURL URLWithString:[s3Dict objectForKey:@"url"]];
 				if (s3URL == nil) {
-					NSLog(@"Handle S3 URL nil error!");
+					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No S3 URL found" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				NSDictionary *paramsDict = [s3Dict objectForKey:@"params"];
 				if (paramsDict == nil) {
-					NSLog(@"Handle params dictionary nil error!");
+					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter keys found" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				NSMutableURLRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
 				[self _handleRequest:s3Request type:CLURLRequestTypeS3Upload userInfo:theUpload];
 			} else {
-				case CLURLRequestTypeS3Upload: {
-					NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
-					if (itemDictionary == nil) {
-						NSLog(@"Handle upload item dictionary nil error!");
-						return;
-					}
-					CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
-					NSLog(@"This item should be passed off to the delegate: %@", theItem);
+			case CLURLRequestTypeS3Upload: {
+				NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
+				if (itemDictionary == nil) {
+					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
+					return;
 				}
+				CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
+				if (self.delegate != nil && [self.delegate respondsToSelector:@selector(uploadSucceeded:resultingItem:forRequest:)])
+					[self.delegate uploadSucceeded:connection.userInfo resultingItem:theItem forRequest:connection.identifier];
+			}
 			}
 		}
 			break;
@@ -195,11 +232,12 @@
 			for (NSDictionary *currDict in dictArray) {
 				[itemArray addObject:[self _webItemForDictionary:currDict]];
 			}
-			NSLog(@"Recent items should be passed off to the delegate %@", itemArray);
+			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(recentItemsReceived:forRequest:)])
+				[self.delegate recentItemsReceived:itemArray forRequest:connection.identifier];
 		}
 			break;
 		case CLURLRequestTypeDeleteItem: {
-			NSLog(@"Href should be passed off to the delegate %@", [connection userInfo]);
+			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(hrefDeleted
 		}
 			break;
 		case CLURLRequestTypeAccountInformation: {
@@ -207,8 +245,14 @@
 		}
 			break;
 		case CLURLRequestTypeShortURLInformation: {
-			CLWebItem *theItem = [self _webItemForDictionary:[NSDictionary dictionaryWithJSONString:retString]];
-			NSLog(@"Web item should be passed off to the delegate %@", theItem);
+			NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
+			if (itemDictionary == nil) {
+				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
+				return;
+			}
+			CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
+			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(shortURLInformationReceived:forRequest:)])
+				[self.delegate shortURLInformationReceived:theItem forRequest:connection.identifier];
 		}
 			break;
 		case CLURLRequestTypeUpdateAccount: {
@@ -291,7 +335,7 @@
 }
 
 - (NSString *)_handleRequest:(NSURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo {
-	if (clearsCookies) {
+	if (self.clearsCookies) {
 		NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:self.baseURL];
 		for (NSHTTPCookie *currCookie in cookies)
 			[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:currCookie];

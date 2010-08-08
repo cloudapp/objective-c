@@ -13,7 +13,7 @@
 @end
 
 @implementation CLURLConnection
-@synthesize requestType, data, identifier, userInfo, startDate;
+@synthesize requestType, data, identifier, userInfo, startDate, response;
 
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate {
 	return [self initWithRequest:request delegate:delegate requestType:CLURLRequestTypeUnknown identifier:nil];
