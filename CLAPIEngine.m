@@ -278,6 +278,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 											   type:[self _webItemTypeForTypeString:[itemDictionary objectForKey:@"item_type"]]
 										  viewCount:[[itemDictionary objectForKey:@"view_counter"] integerValue]];
 	[theItem setRemoteURL:[NSURL URLWithString:[itemDictionary objectForKey:([theItem type] == CLWebItemTypeBookmark) ? @"redirect_url" : @"remote_url"]]];
+	[theItem setURL:[NSURL URLWithString:[itemDictionary objectForKey:@"url"]]];
 	[theItem setHref:[NSURL URLWithString:[itemDictionary objectForKey:@"href"]]];
 	[theItem setTrashed:([itemDictionary objectForKey:@"deleted_at"] != nil && ![[NSNull null] isEqual:[itemDictionary objectForKey:@"deleted_at"]])];
 	[theItem setIconURL:[NSURL URLWithString:[itemDictionary objectForKey:@"icon"]]];
