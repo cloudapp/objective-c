@@ -134,22 +134,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4B23E54C11F5EC580055FF80 /* Upload Model */,
-				4B23E53311F5EBEF0055FF80 /* CLWebItem.h */,
-				4B23E53411F5EBEF0055FF80 /* CLWebItem.m */,
-				4B23E54D11F5EC6D0055FF80 /* CLAPIEngine.h */,
-				4B23E54E11F5EC6D0055FF80 /* CLAPIEngine.m */,
-				4B23E53711F5EC010055FF80 /* CLAccount.h */,
-				4B23E53811F5EC010055FF80 /* CLAccount.m */,
-				4B23E5E411F62CDC0055FF80 /* NSMutableURLRequest+NPPOSTBody.h */,
-				4B23E5E511F62CDC0055FF80 /* NSMutableURLRequest+NPPOSTBody.m */,
-				4B23E5FF11F6313E0055FF80 /* NSString+NPMimeType.h */,
-				4B23E60011F6313E0055FF80 /* NSString+NPMimeType.m */,
-				4B23E62711F6342B0055FF80 /* NSString+NPAdditions.h */,
-				4B23E62811F6342B0055FF80 /* NSString+NPAdditions.m */,
-				4B4CB24A11FCD5C600A9B138 /* CLURLConnection.h */,
-				4B4CB24B11FCD5C600A9B138 /* CLURLConnection.m */,
-				4B4CB41811FCFB3B00A9B138 /* BSJSONAdditions */,
+				4B8D5371120F0447002F9D35 /* Cloud API Engine */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -183,14 +168,6 @@
 		4B23E54C11F5EC580055FF80 /* Upload Model */ = {
 			isa = PBXGroup;
 			children = (
-				4B23E53B11F5EC060055FF80 /* CLUpload.h */,
-				4B23E53C11F5EC060055FF80 /* CLUpload.m */,
-				4B23E53F11F5EC0A0055FF80 /* CLFileUpload.h */,
-				4B23E54011F5EC0A0055FF80 /* CLFileUpload.m */,
-				4B23E54311F5EC190055FF80 /* CLRedirectUpload.h */,
-				4B23E54411F5EC190055FF80 /* CLRedirectUpload.m */,
-				4B23E54711F5EC200055FF80 /* CLTextUpload.h */,
-				4B23E54811F5EC200055FF80 /* CLTextUpload.m */,
 			);
 			name = "Upload Model";
 			sourceTree = "<group>";
@@ -210,6 +187,37 @@
 				4B4CB41211FCFB3900A9B138 /* BSJSONEncoder.m */,
 			);
 			name = BSJSONAdditions;
+			sourceTree = "<group>";
+		};
+		4B8D5371120F0447002F9D35 /* Cloud API Engine */ = {
+			isa = PBXGroup;
+			children = (
+				4B23E54C11F5EC580055FF80 /* Upload Model */,
+				4B23E53B11F5EC060055FF80 /* CLUpload.h */,
+				4B23E53C11F5EC060055FF80 /* CLUpload.m */,
+				4B23E53F11F5EC0A0055FF80 /* CLFileUpload.h */,
+				4B23E54011F5EC0A0055FF80 /* CLFileUpload.m */,
+				4B23E54311F5EC190055FF80 /* CLRedirectUpload.h */,
+				4B23E54411F5EC190055FF80 /* CLRedirectUpload.m */,
+				4B23E54711F5EC200055FF80 /* CLTextUpload.h */,
+				4B23E54811F5EC200055FF80 /* CLTextUpload.m */,
+				4B23E53311F5EBEF0055FF80 /* CLWebItem.h */,
+				4B23E53411F5EBEF0055FF80 /* CLWebItem.m */,
+				4B23E54D11F5EC6D0055FF80 /* CLAPIEngine.h */,
+				4B23E54E11F5EC6D0055FF80 /* CLAPIEngine.m */,
+				4B23E53711F5EC010055FF80 /* CLAccount.h */,
+				4B23E53811F5EC010055FF80 /* CLAccount.m */,
+				4B23E5E411F62CDC0055FF80 /* NSMutableURLRequest+NPPOSTBody.h */,
+				4B23E5E511F62CDC0055FF80 /* NSMutableURLRequest+NPPOSTBody.m */,
+				4B23E5FF11F6313E0055FF80 /* NSString+NPMimeType.h */,
+				4B23E60011F6313E0055FF80 /* NSString+NPMimeType.m */,
+				4B23E62711F6342B0055FF80 /* NSString+NPAdditions.h */,
+				4B23E62811F6342B0055FF80 /* NSString+NPAdditions.m */,
+				4B4CB24A11FCD5C600A9B138 /* CLURLConnection.h */,
+				4B4CB24B11FCD5C600A9B138 /* CLURLConnection.m */,
+				4B4CB41811FCFB3B00A9B138 /* BSJSONAdditions */,
+			);
+			name = "Cloud API Engine";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

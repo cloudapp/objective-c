@@ -147,7 +147,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (void)connection:(CLURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-	if ([(CLUpload *)connection.userInfo isKindOfClass:[CLFileUpload class]]) {
+	if ([connection.userInfo isKindOfClass:[CLUpload class]]) {
 		CGFloat percentDone = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
 		if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestProgressed:toPercentage:)])
 			[self.delegate requestProgressed:connection.identifier toPercentage:[NSNumber numberWithFloat:percentDone]];
@@ -237,7 +237,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		}
 			break;
 		case CLURLRequestTypeDeleteItem: {
-			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(hrefDeleted
+			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(hrefDeleted:forRequest:)])
+				[self.delegate hrefDeleted:connection.userInfo forRequest:connection.identifier];
 		}
 			break;
 		case CLURLRequestTypeAccountInformation: {
@@ -344,7 +345,11 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier];
 	[theConnection setUserInfo:userInfo];
 	[_connectionDictionary setObject:theConnection forKey:identifier];
+#if TARGET_OS_IPHONE
+	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:UITrackingRunLoopMode];
+#else
 	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSEventTrackingRunLoopMode];
+#endif
 	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[theConnection autorelease];
 	[theConnection start];

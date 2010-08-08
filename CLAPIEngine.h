@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "CLWebItem.h"
+#import "CLUpload.h"
+#import "CLFileUpload.h"
+#import "CLTextUpload.h"
+#import "CLAccount.h"
 
 @protocol CLAPIEngineDelegate <NSObject>
 @optional
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error;
 - (void)requestProgressed:(NSString *)connectionIdentifier toPercentage:(NSNumber *)floatPercantage;
 
-- (void)recentItemsReceived:(NSArray *)statuses forRequest:(NSString *)connectionIdentifier;
+- (void)recentItemsReceived:(NSArray *)recentItems forRequest:(NSString *)connectionIdentifier;
 - (void)shortURLInformationReceived:(CLWebItem *)theItem forRequest:(NSString *)connectionIdentifier;
 - (void)hrefDeleted:(NSURL *)theHref forRequest:(NSString *)connectionIdentifier;
 - (void)uploadSucceeded:(CLUpload *)theUpload resultingItem:(CLWebItem *)theItem forRequest:(NSString *)connectionIdentifier;

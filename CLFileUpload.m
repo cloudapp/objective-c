@@ -28,7 +28,7 @@
 	return [[[[self class] alloc] initWithName:theName data:theData] autorelease];
 }
 
-- (NSURLRequest *)requestForURL:(NSURL *)theURL {
+- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL {
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items/new"]];
 	[request setHTTPMethod:@"GET"];
 	[request addValue:@"application/json" forHTTPHeaderField:@"Accept"];

@@ -23,7 +23,7 @@
 	return self;
 }
 
-- (NSURLRequest *)requestForURL:(NSURL *)theURL {
+- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL {
 	return nil;
 }
 

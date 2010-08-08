@@ -7,7 +7,9 @@
 //
 
 #import "NSString+NPMimeType.h"
-
+#if TARGET_OS_IPHONE
+#import <MobileCoreServices/MobileCoreServices.h>
+#endif
 
 @implementation NSString (NPMimeType)
 
@@ -22,7 +24,7 @@
 		return @"application/octet-stream";
 	
     CFStringRef registeredType = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType);
-	if (registeredType = nil) {
+	if (registeredType == nil) {
 		CFRelease(UTI);
 		return @"application/octet-stream";
 	}
