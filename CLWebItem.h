@@ -27,6 +27,7 @@ typedef enum _CLWebItemType {
 	NSInteger viewCount;
 	NSURL *remoteURL;
 	NSURL *href;
+	NSURL *URL;
 #if TARGET_OS_IPHONE
 	UIImage *icon;
 #else
@@ -40,6 +41,7 @@ typedef enum _CLWebItemType {
 @property (copy, readwrite) NSString *name;
 @property (assign, readwrite) CLWebItemType type;
 @property (retain, readwrite) NSURL *contentURL;
+@property (retain, readwrite) NSURL *URL;
 @property (copy, readwrite) NSString *mimeType;
 @property (assign, readwrite) NSInteger viewCount;
 @property (retain, readwrite) NSURL *remoteURL;
