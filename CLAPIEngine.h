@@ -11,6 +11,7 @@
 #import "CLUpload.h"
 #import "CLFileUpload.h"
 #import "CLTextUpload.h"
+#import "CLRedirectUpload.h"
 #import "CLAccount.h"
 
 @protocol CLAPIEngineDelegate <NSObject>
