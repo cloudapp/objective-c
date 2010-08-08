@@ -13,17 +13,7 @@
 #import "CLTextUpload.h"
 #import "CLRedirectUpload.h"
 #import "CLAccount.h"
-
-@protocol CLAPIEngineDelegate <NSObject>
-@optional
-- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error;
-- (void)requestProgressed:(NSString *)connectionIdentifier toPercentage:(NSNumber *)floatPercantage;
-
-- (void)recentItemsReceived:(NSArray *)recentItems forRequest:(NSString *)connectionIdentifier;
-- (void)shortURLInformationReceived:(CLWebItem *)theItem forRequest:(NSString *)connectionIdentifier;
-- (void)hrefDeleted:(NSURL *)theHref forRequest:(NSString *)connectionIdentifier;
-- (void)uploadSucceeded:(CLUpload *)theUpload resultingItem:(CLWebItem *)theItem forRequest:(NSString *)connectionIdentifier;
-@end
+#import "CLAPIEngineDelegate.h"
 
 @class CLUpload, CLAccount;
 @interface CLAPIEngine : NSObject {
@@ -48,6 +38,8 @@
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 + (CLAPIEngine *)engine;
 + (CLAPIEngine *)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
+
+- (BOOL)isReady;
 
 - (NSString *)getAccountInformation;
 - (NSString *)doUpload:(CLUpload *)theUpload;

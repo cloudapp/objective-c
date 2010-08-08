@@ -131,6 +131,10 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	return [self _handleRequest:theRequest type:CLURLRequestTypeDeleteItem userInfo:theHref];
 }
 
+- (BOOL)isReady {
+	return self.email != nil && [self.email length] > 0 && self.password != nil && [self.password length] > 0 && self.baseURL != nil && [[self.baseURL absoluteString] length] > 0;
+}
+
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(CLURLConnection *)connection didReceiveData:(NSData *)data {
@@ -337,6 +341,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (NSString *)_handleRequest:(NSURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo {
+	if (![self isReady])
+		return nil;
 	if (self.clearsCookies) {
 		NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:self.baseURL];
 		for (NSHTTPCookie *currCookie in cookies)
