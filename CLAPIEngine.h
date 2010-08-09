@@ -40,6 +40,7 @@
 + (CLAPIEngine *)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 
 - (BOOL)isReady;
+- (void)cancelConnection:(NSString *)connectionIdentifier;
 
 - (NSString *)getAccountInformation;
 - (NSString *)doUpload:(CLUpload *)theUpload;

@@ -135,6 +135,16 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	return self.email != nil && [self.email length] > 0 && self.password != nil && [self.password length] > 0 && self.baseURL != nil && [[self.baseURL absoluteString] length] > 0;
 }
 
+- (void)cancelConnection:(NSString *)connectionIdentifier {
+	if (![[_connectionDictionary allKeys] containsObject:connectionIdentifier])
+		return;
+	CLURLConnection *theConnection = [_connectionDictionary objectForKey:connectionIdentifier];
+	if (theConnection == nil)
+		return;
+	[theConnection cancel];
+	[_connectionDictionary removeObjectForKey:connectionIdentifier];
+}
+
 #pragma mark NSURLConnection Delegate Methods
 
 - (void)connection:(CLURLConnection *)connection didReceiveData:(NSData *)data {
@@ -143,7 +153,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 
 - (void)connection:(CLURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 	if ([challenge previousFailureCount] == 0) {
-		NSURLCredential *credential = [NSURLCredential credentialWithUser:self.email password:self.password persistence:NSURLCredentialPersistenceNone];
+		NSURLCredential *credential = [NSURLCredential credentialWithUser:[self.email lowercaseString] password:self.password persistence:NSURLCredentialPersistenceNone];
 		[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
 	} else {
 		[[challenge sender] cancelAuthenticationChallenge:challenge];
@@ -175,6 +185,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		error = [NSError errorWithDomain:[error domain] code:[error code] userInfo:[NSDictionary dictionaryWithObject:@"Login failed" forKey:NSLocalizedDescriptionKey]];
 	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestFailed:withError:)])
 		[self.delegate requestFailed:connection.identifier withError:error];
+	if ([[_connectionDictionary allKeys] containsObject:connection.identifier])
+		[_connectionDictionary removeObjectForKey:connection.identifier];
 }
 
 - (void)connectionDidFinishLoading:(CLURLConnection *)connection {
@@ -272,6 +284,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		default:
 			break;
 	}
+	if ([[_connectionDictionary allKeys] containsObject:connection.identifier])
+		[_connectionDictionary removeObjectForKey:connection.identifier];
 }
 
 #pragma mark -
@@ -349,17 +363,20 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 			[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:currCookie];
 	}
 	NSString *identifier = [NSString uniqueString];
-	CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier];
-	[theConnection setUserInfo:userInfo];
-	[_connectionDictionary setObject:theConnection forKey:identifier];
+	//Thsi dispatch part is to make sure the connection is created and started in the main thread.
+	dispatch_async(dispatch_get_main_queue(), ^{
+		CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier];
+		[theConnection setUserInfo:userInfo];
+		[_connectionDictionary setObject:theConnection forKey:identifier];
 #if TARGET_OS_IPHONE
-	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:UITrackingRunLoopMode];
+		[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:UITrackingRunLoopMode];
 #else
-	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSEventTrackingRunLoopMode];
+		[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSEventTrackingRunLoopMode];
 #endif
-	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-	[theConnection autorelease];
-	[theConnection start];
+		[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+		[theConnection autorelease];
+		[theConnection start];
+	});
 	return identifier;
 }
 
