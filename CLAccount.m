@@ -74,7 +74,7 @@ static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 #pragma mark Cleanup
 
 - (void)dealloc {
-	
+	self.emailAddress = nil;
 	[super dealloc];
 }
 

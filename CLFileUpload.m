@@ -7,8 +7,8 @@
 //
 
 #import "CLFileUpload.h"
-#import "NSMutableURLRequest+NPPOSTBody.h"
 #import "NSString+NPMimeType.h"
+#import "ASIFormDataRequest.h"
 
 @implementation CLFileUpload
 @synthesize data;
@@ -28,23 +28,18 @@
 	return [[[[self class] alloc] initWithName:theName data:theData] autorelease];
 }
 
-- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items/new"]];
-	[request setHTTPMethod:@"GET"];
-	[request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+- (ASIHTTPRequest *)requestForURL:(NSURL *)theURL {
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items/new"]];
 	return request;
 }
 
-- (NSMutableURLRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:theURL];
-	[request setHTTPMethod:@"POST"];
-	[request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	[request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];
+- (ASIHTTPRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict {
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:theURL];
+	[request setRequestMethod:@"POST"];
 	for (NSString *currKey in [paramsDict allKeys]) {
-		[request addToHTTPBodyValue:[paramsDict objectForKey:currKey] forKey:currKey];
+		[request addPostValue:[paramsDict objectForKey:currKey] forKey:currKey];
 	}
-	[request addToHTTPBodyFileData:self.data fileName:self.name mimeType:[self.name mimeType] forKey:@"file"];
-	[request finalizeHTTPBody];
+	[request addData:self.data withFileName:self.name andContentType:[self.name mimeType] forKey:@"file"];
 	return request;
 }
 
@@ -71,6 +66,7 @@
 #pragma mark Cleanup
 
 - (void)dealloc {
+	NSLog(@"Dealloc!");
 	self.data = nil;
 	[super dealloc];
 }

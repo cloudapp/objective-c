@@ -54,7 +54,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%i) <%@>", self.name, self.viewCount, self.URL];
+	return [NSString stringWithFormat:@"%@ (%@) <%@>", self.name, self.href, self.URL];
 }
 
 #pragma mark -

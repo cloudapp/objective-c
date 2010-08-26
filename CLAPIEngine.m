@@ -10,17 +10,17 @@
 #import "CLUpload.h"
 #import "CLURLConnection.h"
 #import "NSString+NPAdditions.h"
-#import "NSMutableURLRequest+NPPOSTBody.h"
 #import "NSDictionary+BSJSONAdditions.h"
 #import "NSArray+BSJSONAdditions.h"
 #import "CLAccount.h"
 #import "CLFileUpload.h"
+#import "ASIFormDataRequest.h"
 
 @interface CLAPIEngine ()
 - (CLWebItemType)_webItemTypeForTypeString:(NSString *)typeString;
 - (CLWebItem *)_webItemForDictionary:(NSDictionary *)itemDictionary;
 - (NSString *)_typeStringForWebItemType:(CLWebItemType)theType;
-- (NSString *)_handleRequest:(NSURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo;
+- (NSString *)_handleRequest:(ASIHTTPRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo;
 @end
 
 CGFloat CLUploadLimitExceeded = 301;
@@ -53,15 +53,13 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (NSString *)getAccountInformation {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[self.baseURL URLByAppendingPathComponent:@"account"]];
-	[theRequest setHTTPMethod:@"GET"];
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	ASIHTTPRequest *theRequest = [ASIHTTPRequest requestWithURL:[self.baseURL URLByAppendingPathComponent:@"account"]];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeAccountInformation userInfo:nil];
 }
 
 - (NSString *)doUpload:(CLUpload *)theUpload {
 	if ([theUpload isValid]) {
-		NSURLRequest *theRequest = [theUpload requestForURL:self.baseURL];
+		ASIHTTPRequest *theRequest = [theUpload requestForURL:self.baseURL];
 		return [self _handleRequest:theRequest type:CLURLRequestTypeUpload userInfo:theUpload];
 	}
 	return nil;
@@ -85,38 +83,27 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		[urlAppend appendString:@"&deleted=true"];
 	
 	//If the URL path component method is used, it turns ? into %3F and causes the request to fail
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingPathComponent:urlAppend]]];
-	[theRequest setHTTPMethod:@"GET"];
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	ASIHTTPRequest *theRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingString:urlAppend]]];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeRecentItems userInfo:nil];
 }
 
 - (NSString *)getInformationForItemAtShortURL:(NSURL *)shortURL {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:shortURL];
-	[theRequest setHTTPMethod:@"GET"];
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	ASIHTTPRequest *theRequest = [ASIHTTPRequest requestWithURL:shortURL];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeShortURLInformation userInfo:shortURL];
 }
 
 - (NSString *)updateItem:(CLWebItem *)theItem {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[theItem href]];
-	[theRequest setHTTPMethod:@"PUT"];
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	[theRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];
-	[theRequest addToHTTPBodyValue:[theItem isPrivate] ? @"true" : @"false"  forKey:@"item[private]"];
-	[theRequest addToHTTPBodyValue:[theItem name] forKey:@"item[name]"];
-	[theRequest finalizeHTTPBody];
+	ASIFormDataRequest *theRequest = [ASIFormDataRequest requestWithURL:[theItem href]];
+	[theRequest setRequestMethod:@"PUT"];
+	[theRequest addPostValue:[theItem isPrivate] ? @"true" : @"false" forKey:@"item[private]"];
+	[theRequest addPostValue:[theItem name] forKey:@"item[name]"];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeUpdateItem userInfo:theItem];
 }
 
 - (NSString *)updateAccount:(CLAccount *)theAccount {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[self.baseURL URLByAppendingPathComponent:@"account"]];
-	[theRequest setHTTPMethod:@"PUT"];
-	[theRequest addToHTTPBodyValue:([theAccount uploadsArePrivate] ? @"true" : @"false") forKey:@"user[private_items]"];
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	[theRequest finalizeHTTPBody];
-	[theRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];
-	
+	ASIFormDataRequest *theRequest = [ASIFormDataRequest requestWithURL:[self.baseURL URLByAppendingPathComponent:@"account"]];
+	[theRequest setRequestMethod:@"PUT"];
+	[theRequest addPostValue:([theAccount uploadsArePrivate] ? @"true" : @"false") forKey:@"user[private_items]"];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeUpdateAccount userInfo:theAccount];
 }
 
@@ -125,9 +112,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (NSString *)deleteItemAtHref:(NSURL *)theHref {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theHref];
-	[theRequest setHTTPMethod:@"DELETE"];
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	ASIFormDataRequest *theRequest = [ASIFormDataRequest requestWithURL:theHref];
+	[theRequest setRequestMethod:@"DELETE"];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeDeleteItem userInfo:theHref];
 }
 
@@ -147,97 +133,63 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 
 #pragma mark NSURLConnection Delegate Methods
 
-- (void)connection:(CLURLConnection *)connection didReceiveData:(NSData *)data {
-	[[connection data] appendData:data];
+- (void)requestStarted:(ASIHTTPRequest *)request {
+	NSString *identifier = [[request userInfo] objectForKey:@"identifier"];
+	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestStarted:)])
+		[self.delegate requestStarted:identifier];
 }
 
-- (void)connection:(CLURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([challenge previousFailureCount] == 0) {
-		NSURLCredential *credential = [NSURLCredential credentialWithUser:[self.email lowercaseString] password:self.password persistence:NSURLCredentialPersistenceNone];
-		[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
-	} else {
-		[[challenge sender] cancelAuthenticationChallenge:challenge];
-	}
-}
-
-- (void)connection:(CLURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-	if ([connection.userInfo isKindOfClass:[CLUpload class]]) {
-		CGFloat percentDone = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
-		if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestProgressed:toPercentage:)])
-			[self.delegate requestProgressed:connection.identifier toPercentage:[NSNumber numberWithFloat:percentDone]];
-	}
-	
-	//	NSTimeInterval timeTaken = [[NSDate date] timeIntervalSinceReferenceDate] - [[connection startDate] timeIntervalSinceReferenceDate];
-	//	if (percentDone >= 0.20) {
-	//		NSTimeInterval totalTime = timeTaken / ((CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite);
-	//		NSTimeInterval timeLeft = totalTime - timeTaken;
-	//		NSLog(@"left = %i", (NSInteger)ceilf(timeLeft));
-	//	}
-}
-
-- (void)connection:(CLURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-	if ([response isKindOfClass:[NSHTTPURLResponse class]])
-		[connection setResponse:response];
-}
-
-- (void)connection:(CLURLConnection *)connection didFailWithError:(NSError *)error {
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-		error = [NSError errorWithDomain:[error domain] code:[error code] userInfo:[NSDictionary dictionaryWithObject:@"Login failed" forKey:NSLocalizedDescriptionKey]];
-	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestFailed:withError:)])
-		[self.delegate requestFailed:connection.identifier withError:error];
-	if ([[_connectionDictionary allKeys] containsObject:connection.identifier])
-		[_connectionDictionary removeObjectForKey:connection.identifier];
-}
-
-- (void)connectionDidFinishLoading:(CLURLConnection *)connection {
-	if ([[connection response] statusCode] == 404) {
-		[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:[NSDictionary dictionaryWithObject:@"File not found" forKey:NSLocalizedDescriptionKey]]];
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	if ([request responseStatusCode] == 404) {
+		[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:[NSDictionary dictionaryWithObject:@"File not found" forKey:NSLocalizedDescriptionKey]]];
 		return;
 	}
-	
-	NSString *retString = [NSString stringWithData:[connection data] encoding:NSUTF8StringEncoding];
-	switch (connection.requestType) {
+	NSInteger requestType = [[[request userInfo] objectForKey:@"requestType"] integerValue];
+	NSString *retString = [request responseString];
+	NSString *identifier = [[request userInfo] objectForKey:@"identifier"];
+	id userInfo = [[request userInfo] objectForKey:@"userInfo"];
+	switch (requestType) {
 		case CLURLRequestTypeUpload: {
-			CLUpload *theUpload = connection.userInfo;
+			CLUpload *theUpload = (CLUpload *)userInfo;
 			if ([theUpload usesS3]) {
 				NSDictionary *s3Dict = [NSDictionary dictionaryWithJSONString:retString];
 				if (s3Dict == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter dictionary" forKey:NSLocalizedDescriptionKey]]];
+					[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter dictionary" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				
 				if ([[s3Dict allKeys] containsObject:@"uploads_remaining"] && [[s3Dict objectForKey:@"uploads_remaining"] integerValue] <= 0) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Upload limit exceeded" forKey:NSLocalizedDescriptionKey]]];
+					[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Upload limit exceeded" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				
 				if ([[s3Dict allKeys] containsObject:@"max_upload_size"] && [theUpload size] > [[s3Dict objectForKey:@"max_upload_size"] integerValue]) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadSizeLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Max upload size exceeded" forKey:NSLocalizedDescriptionKey]]];
+					[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadSizeLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Max upload size exceeded" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				
 				NSURL *s3URL = [NSURL URLWithString:[s3Dict objectForKey:@"url"]];
 				if (s3URL == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No S3 URL found" forKey:NSLocalizedDescriptionKey]]];
+					[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No S3 URL found" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				NSDictionary *paramsDict = [s3Dict objectForKey:@"params"];
 				if (paramsDict == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter keys found" forKey:NSLocalizedDescriptionKey]]];
+					[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter keys found" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
-				NSMutableURLRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
+				ASIHTTPRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
 				[self _handleRequest:s3Request type:CLURLRequestTypeS3Upload userInfo:theUpload];
 			} else {
 			case CLURLRequestTypeS3Upload: {
 				NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
 				if (itemDictionary == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
+					[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
 					return;
 				}
 				CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
 				if (self.delegate != nil && [self.delegate respondsToSelector:@selector(uploadSucceeded:resultingItem:forRequest:)])
-					[self.delegate uploadSucceeded:connection.userInfo resultingItem:theItem forRequest:connection.identifier];
+					[self.delegate uploadSucceeded:userInfo resultingItem:theItem forRequest:identifier];
 			}
 			}
 		}
@@ -249,12 +201,12 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 				[itemArray addObject:[self _webItemForDictionary:currDict]];
 			}
 			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(recentItemsReceived:forRequest:)])
-				[self.delegate recentItemsReceived:itemArray forRequest:connection.identifier];
+				[self.delegate recentItemsReceived:itemArray forRequest:identifier];
 		}
 			break;
 		case CLURLRequestTypeDeleteItem: {
 			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(hrefDeleted:forRequest:)])
-				[self.delegate hrefDeleted:connection.userInfo forRequest:connection.identifier];
+				[self.delegate hrefDeleted:userInfo forRequest:identifier];
 		}
 			break;
 		case CLURLRequestTypeAccountInformation: {
@@ -264,12 +216,12 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		case CLURLRequestTypeShortURLInformation: {
 			NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
 			if (itemDictionary == nil) {
-				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
+				[request failWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
 				return;
 			}
 			CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
 			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(shortURLInformationReceived:forRequest:)])
-				[self.delegate shortURLInformationReceived:theItem forRequest:connection.identifier];
+				[self.delegate shortURLInformationReceived:theItem forRequest:identifier];
 		}
 			break;
 		case CLURLRequestTypeUpdateAccount: {
@@ -284,8 +236,27 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		default:
 			break;
 	}
-	if ([[_connectionDictionary allKeys] containsObject:connection.identifier])
-		[_connectionDictionary removeObjectForKey:connection.identifier];
+	
+	if ([[_connectionDictionary allKeys] containsObject:identifier])
+		[_connectionDictionary removeObjectForKey:identifier];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	NSError *error = [request error];
+	NSString *identifier = [[request userInfo] objectForKey:@"identifier"];
+	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestFailed:withError:)])
+		[self.delegate requestFailed:identifier withError:error];
+	if ([[_connectionDictionary allKeys] containsObject:identifier])
+		[_connectionDictionary removeObjectForKey:identifier];
+}
+
+- (void)authenticationNeededForRequest:(ASIHTTPRequest *)request {
+	if ([request authenticationRetryCount] == 0) {
+		[request applyCredentials:[NSDictionary dictionaryWithObjectsAndKeys:[self.email lowercaseString], kCFHTTPAuthenticationUsername, self.password, kCFHTTPAuthenticationPassword, nil]];
+		[request retryUsingSuppliedCredentials];
+	} else {
+		[request cancelAuthentication];
+	}
 }
 
 #pragma mark -
@@ -326,35 +297,27 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (NSString *)_typeStringForWebItemType:(CLWebItemType)theType {
-	NSString *retString = nil;
 	switch (theType) {
 		case CLWebItemTypeArchive:
-			retString = @"archive";
-			break;
+			return @"archive";
 		case CLWebItemTypeAudio:
-			retString = @"audio";
-			break;
+			return @"audio";
 		case CLWebItemTypeVideo:
-			retString = @"video";
-			break;
+			return @"video";
 		case CLWebItemTypeText:
-			retString = @"text";
-			break;
+			return @"text";
 		case CLWebItemTypeBookmark:
-			retString = @"bookmark";
-			break;
+			return @"bookmark";
 		case CLWebItemTypeImage:
-			retString = @"image";
-			break;
+			return @"image";
 		case CLWebItemTypeOther:
 		default:
-			retString = @"other";
-			break;
+			return @"other";
 	}
-	return retString;
+	return nil;
 }
 
-- (NSString *)_handleRequest:(NSURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo {
+- (NSString *)_handleRequest:(ASIHTTPRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo {
 	if (![self isReady])
 		return nil;
 	if (self.clearsCookies) {
@@ -362,21 +325,21 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		for (NSHTTPCookie *currCookie in cookies)
 			[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:currCookie];
 	}
+	
+	if (userInfo == nil)
+		userInfo = [NSNull null];
+	
+	[theRequest setUseSessionPersistence:!self.clearsCookies];
 	NSString *identifier = [NSString uniqueString];
 	//Thsi dispatch part is to make sure the connection is created and started in the main thread.
-	dispatch_async(dispatch_get_main_queue(), ^{
-		CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier];
-		[theConnection setUserInfo:userInfo];
-		[_connectionDictionary setObject:theConnection forKey:identifier];
-#if TARGET_OS_IPHONE
-		[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:UITrackingRunLoopMode];
-#else
-		[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSEventTrackingRunLoopMode];
-#endif
-		[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-		[theConnection autorelease];
-		[theConnection start];
-	});
+	//dispatch_async(dispatch_get_main_queue(), ^{
+	[theRequest setUseKeychainPersistence:NO];
+	[theRequest addRequestHeader:@"Accept" value:@"application/json"];
+	[theRequest setDelegate:self];
+	[theRequest setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:userInfo, @"userInfo", [NSNumber numberWithInteger:reqType], @"requestType", identifier, @"identifier", nil]];
+	[_connectionDictionary setObject:theRequest forKey:identifier];
+	[theRequest startAsynchronous];
+	//});
 	return identifier;
 }
 
@@ -388,6 +351,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	self.password = nil;
 	self.delegate = nil;
 	[_connectionDictionary release];
+	_connectionDictionary = nil;
 	[super dealloc];
 }
 

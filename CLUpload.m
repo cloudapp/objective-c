@@ -7,7 +7,8 @@
 //
 
 #import "CLUpload.h"
-
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 @implementation CLUpload
 @synthesize name;
@@ -23,11 +24,11 @@
 	return self;
 }
 
-- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL {
+- (ASIHTTPRequest *)requestForURL:(NSURL *)theURL {
 	return nil;
 }
 
-- (NSMutableURLRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict {
+- (ASIHTTPRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict {
 	return nil;
 }
 

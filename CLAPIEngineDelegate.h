@@ -11,6 +11,7 @@
 @class CLWebItem, CLUpload;
 @protocol CLAPIEngineDelegate <NSObject>
 @optional
+- (void)requestStarted:(NSString *)connectionIdentifier;
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error;
 - (void)requestProgressed:(NSString *)connectionIdentifier toPercentage:(NSNumber *)floatPercantage;
 

@@ -7,7 +7,7 @@
 //
 
 #import "CLRedirectUpload.h"
-#import "NSMutableURLRequest+NPPOSTBody.h"
+#import "ASIFormDataRequest.h"
 
 @implementation CLRedirectUpload
 @synthesize URL;
@@ -27,14 +27,11 @@
 	return [[[[self class] alloc] initWithName:theName URL:theURL] autorelease];
 }
 
-- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items"]];
-	[request setHTTPMethod:@"POST"];
-	[request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	[request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];
-	[request addToHTTPBodyValue:[[self URL] absoluteString] forKey:@"item[redirect_url]"];
-	[request addToHTTPBodyValue:self.name forKey:@"item[name]"];
-	[request finalizeHTTPBody];
+- (ASIHTTPRequest *)requestForURL:(NSURL *)theURL {
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items"]];
+	[request setRequestMethod:@"POST"];
+	[request addPostValue:[self.URL absoluteString] forKey:@"item[redirect_url]"];
+	[request addPostValue:self.name forKey:@"item[name]"];
 	return request;
 }
 
