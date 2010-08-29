@@ -12,12 +12,12 @@
 @implementation CLTextUpload
 @dynamic text;
 
-- (id)initWithName:(NSString *)theName text:(NSString *)theText {
-	return [super initWithName:theName data:[theText dataUsingEncoding:NSUTF8StringEncoding]];
+- (id)initWithText:(NSString *)theText {
+	return [super initWithName:nil data:[theText dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
-+ (CLTextUpload *)textUploadWithName:(NSString *)theName text:(NSString *)theText {
-	return [[[[self class] alloc] initWithName:theName text:theText] autorelease];
++ (CLTextUpload *)textUploadWithText:(NSString *)theText {
+	return [[[[self class] alloc] initWithText:theText] autorelease];
 }
 
 - (NSString *)name {

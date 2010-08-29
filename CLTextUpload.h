@@ -15,7 +15,7 @@
 
 @property (copy, readwrite) NSString *text;
 
-- (id)initWithName:(NSString *)theName text:(NSString *)theText;
-+ (CLTextUpload *)textUploadWithName:(NSString *)theName text:(NSString *)theText;
+- (id)initWithText:(NSString *)theText;
++ (CLTextUpload *)textUploadWithText:(NSString *)theText;
 
 @end
