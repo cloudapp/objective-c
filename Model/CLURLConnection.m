@@ -47,7 +47,6 @@
 }
 
 - (void)dealloc {
-	NSLog(@"Connection dealloc!");
 	self.data = nil;
 	self.identifier = nil;
 	self.userInfo = nil;

@@ -3,3 +3,4 @@ build/*
 *.mode1v3
 .DS_Store
 profile
+TestHarness/build/*

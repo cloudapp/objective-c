@@ -20,16 +20,15 @@
 	
     
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)pathExtension, NULL);
-    if (UTI == nil) {
+    if (UTI == nil) 
 		return @"application/octet-stream";
-	}
 	
     CFStringRef registeredType = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType);
 	if (registeredType == nil) {
 		CFRelease(UTI);
 		return @"application/octet-stream";
 	}
-	CFRelease(UTI);
+
     return [(NSString *)registeredType autorelease];
 }
 

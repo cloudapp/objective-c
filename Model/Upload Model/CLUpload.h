@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ASIHTTPRequest;
+
 @interface CLUpload : NSObject<NSCopying> {
 	NSString *name;
 }
@@ -17,8 +17,8 @@
 
 - (id)initWithName:(NSString *)theName;
 
-- (ASIHTTPRequest *)requestForURL:(NSURL *)theURL;
-- (ASIHTTPRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict;
+- (NSMutableURLRequest *)requestForURL:(NSURL *)theURL;
+- (NSMutableURLRequest *)s3RequestForURL:(NSURL *)theURL parameterDictionary:(NSDictionary *)paramsDict;
 - (BOOL)isValid;
 - (NSUInteger)size; //The size in bytes
 - (BOOL)usesS3;
