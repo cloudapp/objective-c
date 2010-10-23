@@ -37,7 +37,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate {
 	if (self = [super init]) {
 		self.delegate = aDelegate;
-		_connectionDictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
+		_connectionDictionary = [[NSMutableDictionary alloc] init];
 		self.baseURL = [NSURL URLWithString:@"http://my.cl.ly/"];
 		self.clearsCookies = NO;
 	}
@@ -188,6 +188,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		return;
 	}
 	
+	BOOL removeFromDict = [[_connectionDictionary allKeys] containsObject:connection.identifier];
+	
 	NSString *retString = [NSString stringWithData:[connection data] encoding:NSUTF8StringEncoding];
 	switch (connection.requestType) {
 		case CLURLRequestTypeUpload: {
@@ -221,7 +223,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 				}
 				NSMutableURLRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
 				[self _handleRequest:s3Request type:CLURLRequestTypeS3Upload userInfo:theUpload identifier:connection.identifier];
-				
+				removeFromDict = NO;
 			} else {
 			case CLURLRequestTypeS3Upload: {
 				NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
@@ -282,7 +284,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestSucceeded:)])
 		[self.delegate requestSucceeded:connection.identifier];
 	
-	if ([[_connectionDictionary allKeys] containsObject:connection.identifier] && ([connection.userInfo isKindOfClass:[CLUpload class]] && [(CLUpload *)connection.userInfo usesS3]))
+	if (removeFromDict)
 		[_connectionDictionary removeObjectForKey:connection.identifier];
 }
 
