@@ -220,7 +220,6 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 					return;
 				}
 				NSMutableURLRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
-				NSLog(@"%@:%s:%i: ", NSStringFromClass([self class]), _cmd, __LINE__);
 				[self _handleRequest:s3Request type:CLURLRequestTypeS3Upload userInfo:theUpload identifier:connection.identifier];
 				
 			} else {
