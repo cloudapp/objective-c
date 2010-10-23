@@ -29,7 +29,7 @@
 }
 
 - (NSMutableURLRequest *)requestForURL:(NSURL *)theURL {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[theURL URLByAppendingPathComponent:@"items/new"]];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[theURL absoluteString] stringByAppendingPathComponent:@"items/new"]]];
 	[request setHTTPMethod:@"GET"];
 	[request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	return request;

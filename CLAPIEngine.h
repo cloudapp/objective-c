@@ -46,6 +46,9 @@
 //Cancel the connection with identifier
 - (void)cancelConnection:(NSString *)connectionIdentifier;
 
+//Cancel all connections
+- (void)cancelAllConnections;
+
 //Gets account information for the email/password combo that is set.
 //This method is currently not full implemented.
 - (NSString *)getAccountInformation;

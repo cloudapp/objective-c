@@ -11,6 +11,8 @@
 @class CLWebItem, CLUpload;
 @protocol CLAPIEngineDelegate <NSObject>
 @optional
+//This method is guaranteed to be called upon success, but it could be before or after the connection-specific delegate method
+- (void)requestSucceeded:(NSString *)connectionIdentifier;
 - (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error;
 
 //This method is only sent to the delegate when the connection is an upload

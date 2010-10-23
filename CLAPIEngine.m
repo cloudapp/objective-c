@@ -53,14 +53,14 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (NSString *)getAccountInformation {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[self.baseURL URLByAppendingPathComponent:@"account"]];
+	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingPathComponent:@"account"]]];
 	[theRequest setHTTPMethod:@"GET"];
 	return [self _handleRequest:theRequest type:CLURLRequestTypeAccountInformation userInfo:nil];
 }
 
 - (NSString *)doUpload:(CLUpload *)theUpload {
 	if ([theUpload isValid]) {
-		NSURLRequest *theRequest = [theUpload requestForURL:self.baseURL];
+		NSMutableURLRequest *theRequest = [theUpload requestForURL:self.baseURL];
 		return [self _handleRequest:theRequest type:CLURLRequestTypeUpload userInfo:theUpload];
 	}
 	return nil;
@@ -106,7 +106,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 }
 
 - (NSString *)updateAccount:(CLAccount *)theAccount {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[self.baseURL URLByAppendingPathComponent:@"account"]];
+	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingPathComponent:@"account"]]];
 	[theRequest setHTTPMethod:@"PUT"];
 	[theRequest addToHTTPBodyValue:([theAccount uploadsArePrivate] ? @"true" : @"false") forKey:@"user[private_items]"];
 	[theRequest finalizeHTTPBody];
@@ -137,6 +137,12 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		return;
 	[theConnection cancel];
 	[_connectionDictionary removeObjectForKey:connectionIdentifier];
+}
+
+- (void)cancelAllConnections {
+	NSArray *keyArray = [[[_connectionDictionary allKeys] copy] autorelease];
+	for (NSString *connIdentifier in keyArray)
+		[self cancelConnection:connIdentifier];
 }
 
 #pragma mark NSURLConnection Delegate Methods
@@ -214,7 +220,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 					return;
 				}
 				NSMutableURLRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
-				
+				NSLog(@"%@:%s:%i: ", NSStringFromClass([self class]), _cmd, __LINE__);
 				[self _handleRequest:s3Request type:CLURLRequestTypeS3Upload userInfo:theUpload identifier:connection.identifier];
 				
 			} else {
@@ -274,6 +280,9 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 			break;
 	}
 	
+	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestSucceeded:)])
+		[self.delegate requestSucceeded:connection.identifier];
+	
 	if ([[_connectionDictionary allKeys] containsObject:connection.identifier] && ([connection.userInfo isKindOfClass:[CLUpload class]] && [(CLUpload *)connection.userInfo usesS3]))
 		[_connectionDictionary removeObjectForKey:connection.identifier];
 }
@@ -313,7 +322,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 		retType = CLWebItemTypeOther;
 	}
 	return retType;
-}
+}	
 
 - (NSString *)_typeStringForWebItemType:(CLWebItemType)theType {
 	NSString *retString = nil;
@@ -357,8 +366,12 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 			[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:currCookie];
 	}
 	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier];
+	CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier startImmediately:NO];
 	[theConnection setUserInfo:userInfo];
+#if TARGET_OS_MAC
+	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSEventTrackingRunLoopMode];
+#endif
 	[_connectionDictionary setObject:theConnection forKey:identifier];
 	[theConnection autorelease];
 	[theConnection start];
