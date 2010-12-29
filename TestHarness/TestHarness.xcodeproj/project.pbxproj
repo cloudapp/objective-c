@@ -9,22 +9,22 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* TestHarnessAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* TestHarnessAppDelegate.m */; };
-		4B528D4F123DACDC003DB3AA /* BSJSONEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C5B123DACDC003DB3AA /* BSJSONEncoder.m */; };
-		4B528D50123DACDC003DB3AA /* NSArray+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C5D123DACDC003DB3AA /* NSArray+BSJSONAdditions.m */; };
-		4B528D51123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C5F123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.m */; };
-		4B528D52123DACDC003DB3AA /* NSScanner+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C61123DACDC003DB3AA /* NSScanner+BSJSONAdditions.m */; };
-		4B528D53123DACDC003DB3AA /* NSString+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C63123DACDC003DB3AA /* NSString+BSJSONAdditions.m */; };
-		4B528D54123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C66123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.m */; };
-		4B528D55123DACDC003DB3AA /* NSString+NPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C68123DACDC003DB3AA /* NSString+NPAdditions.m */; };
-		4B528D56123DACDC003DB3AA /* NSString+NPMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C6A123DACDC003DB3AA /* NSString+NPMimeType.m */; };
-		4B528D57123DACDC003DB3AA /* CLAPIEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C6C123DACDC003DB3AA /* CLAPIEngine.m */; };
-		4B528D58123DACDC003DB3AA /* CLAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C70123DACDC003DB3AA /* CLAccount.m */; };
-		4B528D59123DACDC003DB3AA /* CLURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C72123DACDC003DB3AA /* CLURLConnection.m */; };
-		4B528D5A123DACDC003DB3AA /* CLWebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C74123DACDC003DB3AA /* CLWebItem.m */; };
-		4B528D5B123DACDC003DB3AA /* CLFileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C77123DACDC003DB3AA /* CLFileUpload.m */; };
-		4B528D5C123DACDC003DB3AA /* CLRedirectUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C79123DACDC003DB3AA /* CLRedirectUpload.m */; };
-		4B528D5D123DACDC003DB3AA /* CLTextUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C7B123DACDC003DB3AA /* CLTextUpload.m */; };
-		4B528D5E123DACDC003DB3AA /* CLUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B528C7D123DACDC003DB3AA /* CLUpload.m */; };
+		4B2D37BD12CBF8260060CCFD /* BSJSONEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D379A12CBF8260060CCFD /* BSJSONEncoder.m */; };
+		4B2D37BE12CBF8260060CCFD /* NSArray+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D379C12CBF8260060CCFD /* NSArray+BSJSONAdditions.m */; };
+		4B2D37BF12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D379E12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.m */; };
+		4B2D37C012CBF8260060CCFD /* NSScanner+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37A012CBF8260060CCFD /* NSScanner+BSJSONAdditions.m */; };
+		4B2D37C112CBF8260060CCFD /* NSString+BSJSONAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37A212CBF8260060CCFD /* NSString+BSJSONAdditions.m */; };
+		4B2D37C212CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37A512CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.m */; };
+		4B2D37C312CBF8260060CCFD /* NSString+NPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37A712CBF8260060CCFD /* NSString+NPAdditions.m */; };
+		4B2D37C412CBF8260060CCFD /* NSString+NPMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37A912CBF8260060CCFD /* NSString+NPMimeType.m */; };
+		4B2D37C512CBF8260060CCFD /* CLAPIEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37AB12CBF8260060CCFD /* CLAPIEngine.m */; };
+		4B2D37C612CBF8260060CCFD /* CLAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37AF12CBF8260060CCFD /* CLAccount.m */; };
+		4B2D37C712CBF8260060CCFD /* CLURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37B112CBF8260060CCFD /* CLURLConnection.m */; };
+		4B2D37C812CBF8260060CCFD /* CLWebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37B312CBF8260060CCFD /* CLWebItem.m */; };
+		4B2D37C912CBF8260060CCFD /* CLFileUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37B612CBF8260060CCFD /* CLFileUpload.m */; };
+		4B2D37CA12CBF8260060CCFD /* CLRedirectUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37B812CBF8260060CCFD /* CLRedirectUpload.m */; };
+		4B2D37CB12CBF8260060CCFD /* CLTextUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37BA12CBF8260060CCFD /* CLTextUpload.m */; };
+		4B2D37CC12CBF8260060CCFD /* CLUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D37BC12CBF8260060CCFD /* CLUpload.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -41,39 +41,39 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		4B528C5A123DACDC003DB3AA /* BSJSONEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSJSONEncoder.h; path = Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/BSJSONEncoder.h; sourceTree = DEVELOPER_DIR; };
-		4B528C5B123DACDC003DB3AA /* BSJSONEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSJSONEncoder.m; path = Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/BSJSONEncoder.m; sourceTree = DEVELOPER_DIR; };
-		4B528C5C123DACDC003DB3AA /* NSArray+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+BSJSONAdditions.h"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSArray+BSJSONAdditions.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C5D123DACDC003DB3AA /* NSArray+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+BSJSONAdditions.m"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSArray+BSJSONAdditions.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C5E123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+BSJSONAdditions.h"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSDictionary+BSJSONAdditions.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C5F123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+BSJSONAdditions.m"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSDictionary+BSJSONAdditions.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C60123DACDC003DB3AA /* NSScanner+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSScanner+BSJSONAdditions.h"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSScanner+BSJSONAdditions.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C61123DACDC003DB3AA /* NSScanner+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSScanner+BSJSONAdditions.m"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSScanner+BSJSONAdditions.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C62123DACDC003DB3AA /* NSString+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+BSJSONAdditions.h"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSString+BSJSONAdditions.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C63123DACDC003DB3AA /* NSString+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+BSJSONAdditions.m"; path = "Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions/NSString+BSJSONAdditions.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C65123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableURLRequest+NPPOSTBody.h"; path = "Projects/Linebreak/Cloud/Wrapper/Categories/NSMutableURLRequest+NPPOSTBody.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C66123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+NPPOSTBody.m"; path = "Projects/Linebreak/Cloud/Wrapper/Categories/NSMutableURLRequest+NPPOSTBody.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C67123DACDC003DB3AA /* NSString+NPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NPAdditions.h"; path = "Projects/Linebreak/Cloud/Wrapper/Categories/NSString+NPAdditions.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C68123DACDC003DB3AA /* NSString+NPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NPAdditions.m"; path = "Projects/Linebreak/Cloud/Wrapper/Categories/NSString+NPAdditions.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C69123DACDC003DB3AA /* NSString+NPMimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NPMimeType.h"; path = "Projects/Linebreak/Cloud/Wrapper/Categories/NSString+NPMimeType.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C6A123DACDC003DB3AA /* NSString+NPMimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NPMimeType.m"; path = "Projects/Linebreak/Cloud/Wrapper/Categories/NSString+NPMimeType.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C6B123DACDC003DB3AA /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAPIEngine.h; path = Projects/Linebreak/Cloud/Wrapper/CLAPIEngine.h; sourceTree = DEVELOPER_DIR; };
-		4B528C6C123DACDC003DB3AA /* CLAPIEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLAPIEngine.m; path = Projects/Linebreak/Cloud/Wrapper/CLAPIEngine.m; sourceTree = DEVELOPER_DIR; };
-		4B528C6D123DACDC003DB3AA /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAPIEngineDelegate.h; path = Projects/Linebreak/Cloud/Wrapper/CLAPIEngineDelegate.h; sourceTree = DEVELOPER_DIR; };
-		4B528C6F123DACDC003DB3AA /* CLAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAccount.h; path = Projects/Linebreak/Cloud/Wrapper/Model/CLAccount.h; sourceTree = DEVELOPER_DIR; };
-		4B528C70123DACDC003DB3AA /* CLAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLAccount.m; path = Projects/Linebreak/Cloud/Wrapper/Model/CLAccount.m; sourceTree = DEVELOPER_DIR; };
-		4B528C71123DACDC003DB3AA /* CLURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLURLConnection.h; path = Projects/Linebreak/Cloud/Wrapper/Model/CLURLConnection.h; sourceTree = DEVELOPER_DIR; };
-		4B528C72123DACDC003DB3AA /* CLURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLURLConnection.m; path = Projects/Linebreak/Cloud/Wrapper/Model/CLURLConnection.m; sourceTree = DEVELOPER_DIR; };
-		4B528C73123DACDC003DB3AA /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLWebItem.h; path = Projects/Linebreak/Cloud/Wrapper/Model/CLWebItem.h; sourceTree = DEVELOPER_DIR; };
-		4B528C74123DACDC003DB3AA /* CLWebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLWebItem.m; path = Projects/Linebreak/Cloud/Wrapper/Model/CLWebItem.m; sourceTree = DEVELOPER_DIR; };
-		4B528C76123DACDC003DB3AA /* CLFileUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLFileUpload.h; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLFileUpload.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C77123DACDC003DB3AA /* CLFileUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLFileUpload.m; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLFileUpload.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C78123DACDC003DB3AA /* CLRedirectUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLRedirectUpload.h; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLRedirectUpload.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C79123DACDC003DB3AA /* CLRedirectUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLRedirectUpload.m; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLRedirectUpload.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C7A123DACDC003DB3AA /* CLTextUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLTextUpload.h; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLTextUpload.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C7B123DACDC003DB3AA /* CLTextUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLTextUpload.m; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLTextUpload.m"; sourceTree = DEVELOPER_DIR; };
-		4B528C7C123DACDC003DB3AA /* CLUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLUpload.h; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLUpload.h"; sourceTree = DEVELOPER_DIR; };
-		4B528C7D123DACDC003DB3AA /* CLUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLUpload.m; path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model/CLUpload.m"; sourceTree = DEVELOPER_DIR; };
+		4B2D379912CBF8260060CCFD /* BSJSONEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSJSONEncoder.h; sourceTree = "<group>"; };
+		4B2D379A12CBF8260060CCFD /* BSJSONEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONEncoder.m; sourceTree = "<group>"; };
+		4B2D379B12CBF8260060CCFD /* NSArray+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BSJSONAdditions.h"; sourceTree = "<group>"; };
+		4B2D379C12CBF8260060CCFD /* NSArray+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BSJSONAdditions.m"; sourceTree = "<group>"; };
+		4B2D379D12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BSJSONAdditions.h"; sourceTree = "<group>"; };
+		4B2D379E12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BSJSONAdditions.m"; sourceTree = "<group>"; };
+		4B2D379F12CBF8260060CCFD /* NSScanner+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+BSJSONAdditions.h"; sourceTree = "<group>"; };
+		4B2D37A012CBF8260060CCFD /* NSScanner+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+BSJSONAdditions.m"; sourceTree = "<group>"; };
+		4B2D37A112CBF8260060CCFD /* NSString+BSJSONAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BSJSONAdditions.h"; sourceTree = "<group>"; };
+		4B2D37A212CBF8260060CCFD /* NSString+BSJSONAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BSJSONAdditions.m"; sourceTree = "<group>"; };
+		4B2D37A412CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+NPPOSTBody.h"; sourceTree = "<group>"; };
+		4B2D37A512CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+NPPOSTBody.m"; sourceTree = "<group>"; };
+		4B2D37A612CBF8260060CCFD /* NSString+NPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NPAdditions.h"; sourceTree = "<group>"; };
+		4B2D37A712CBF8260060CCFD /* NSString+NPAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NPAdditions.m"; sourceTree = "<group>"; };
+		4B2D37A812CBF8260060CCFD /* NSString+NPMimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NPMimeType.h"; sourceTree = "<group>"; };
+		4B2D37A912CBF8260060CCFD /* NSString+NPMimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NPMimeType.m"; sourceTree = "<group>"; };
+		4B2D37AA12CBF8260060CCFD /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAPIEngine.h; path = ../CLAPIEngine.h; sourceTree = "<group>"; };
+		4B2D37AB12CBF8260060CCFD /* CLAPIEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLAPIEngine.m; path = ../CLAPIEngine.m; sourceTree = "<group>"; };
+		4B2D37AC12CBF8260060CCFD /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLAPIEngineDelegate.h; path = ../CLAPIEngineDelegate.h; sourceTree = "<group>"; };
+		4B2D37AE12CBF8260060CCFD /* CLAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAccount.h; sourceTree = "<group>"; };
+		4B2D37AF12CBF8260060CCFD /* CLAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAccount.m; sourceTree = "<group>"; };
+		4B2D37B012CBF8260060CCFD /* CLURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLURLConnection.h; sourceTree = "<group>"; };
+		4B2D37B112CBF8260060CCFD /* CLURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLURLConnection.m; sourceTree = "<group>"; };
+		4B2D37B212CBF8260060CCFD /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebItem.h; sourceTree = "<group>"; };
+		4B2D37B312CBF8260060CCFD /* CLWebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWebItem.m; sourceTree = "<group>"; };
+		4B2D37B512CBF8260060CCFD /* CLFileUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLFileUpload.h; sourceTree = "<group>"; };
+		4B2D37B612CBF8260060CCFD /* CLFileUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLFileUpload.m; sourceTree = "<group>"; };
+		4B2D37B712CBF8260060CCFD /* CLRedirectUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRedirectUpload.h; sourceTree = "<group>"; };
+		4B2D37B812CBF8260060CCFD /* CLRedirectUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRedirectUpload.m; sourceTree = "<group>"; };
+		4B2D37B912CBF8260060CCFD /* CLTextUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextUpload.h; sourceTree = "<group>"; };
+		4B2D37BA12CBF8260060CCFD /* CLTextUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextUpload.m; sourceTree = "<group>"; };
+		4B2D37BB12CBF8260060CCFD /* CLUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUpload.h; sourceTree = "<group>"; };
+		4B2D37BC12CBF8260060CCFD /* CLUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUpload.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TestHarness-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TestHarness-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* TestHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,9 +93,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4B528AF1123DACD9003DB3AA /* Wrapper */,
 				256AC3D80F4B6AC300CF3369 /* TestHarnessAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* TestHarnessAppDelegate.m */,
+				4B2D37CD12CBF8350060CCFD /* Wrapper */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -166,82 +166,80 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4B528AF1123DACD9003DB3AA /* Wrapper */ = {
+		4B2D379812CBF8260060CCFD /* BSJSONAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				4B528C59123DACDC003DB3AA /* BSJSONAdditions */,
-				4B528C64123DACDC003DB3AA /* Categories */,
-				4B528C6B123DACDC003DB3AA /* CLAPIEngine.h */,
-				4B528C6C123DACDC003DB3AA /* CLAPIEngine.m */,
-				4B528C6D123DACDC003DB3AA /* CLAPIEngineDelegate.h */,
-				4B528C6E123DACDC003DB3AA /* Model */,
-			);
-			name = Wrapper;
-			path = Projects/Linebreak/Cloud/Wrapper;
-			sourceTree = DEVELOPER_DIR;
-		};
-		4B528C59123DACDC003DB3AA /* BSJSONAdditions */ = {
-			isa = PBXGroup;
-			children = (
-				4B528C5A123DACDC003DB3AA /* BSJSONEncoder.h */,
-				4B528C5B123DACDC003DB3AA /* BSJSONEncoder.m */,
-				4B528C5C123DACDC003DB3AA /* NSArray+BSJSONAdditions.h */,
-				4B528C5D123DACDC003DB3AA /* NSArray+BSJSONAdditions.m */,
-				4B528C5E123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.h */,
-				4B528C5F123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.m */,
-				4B528C60123DACDC003DB3AA /* NSScanner+BSJSONAdditions.h */,
-				4B528C61123DACDC003DB3AA /* NSScanner+BSJSONAdditions.m */,
-				4B528C62123DACDC003DB3AA /* NSString+BSJSONAdditions.h */,
-				4B528C63123DACDC003DB3AA /* NSString+BSJSONAdditions.m */,
+				4B2D379912CBF8260060CCFD /* BSJSONEncoder.h */,
+				4B2D379A12CBF8260060CCFD /* BSJSONEncoder.m */,
+				4B2D379B12CBF8260060CCFD /* NSArray+BSJSONAdditions.h */,
+				4B2D379C12CBF8260060CCFD /* NSArray+BSJSONAdditions.m */,
+				4B2D379D12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.h */,
+				4B2D379E12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.m */,
+				4B2D379F12CBF8260060CCFD /* NSScanner+BSJSONAdditions.h */,
+				4B2D37A012CBF8260060CCFD /* NSScanner+BSJSONAdditions.m */,
+				4B2D37A112CBF8260060CCFD /* NSString+BSJSONAdditions.h */,
+				4B2D37A212CBF8260060CCFD /* NSString+BSJSONAdditions.m */,
 			);
 			name = BSJSONAdditions;
-			path = Projects/Linebreak/Cloud/Wrapper/BSJSONAdditions;
-			sourceTree = DEVELOPER_DIR;
+			path = ../BSJSONAdditions;
+			sourceTree = "<group>";
 		};
-		4B528C64123DACDC003DB3AA /* Categories */ = {
+		4B2D37A312CBF8260060CCFD /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				4B528C65123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.h */,
-				4B528C66123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.m */,
-				4B528C67123DACDC003DB3AA /* NSString+NPAdditions.h */,
-				4B528C68123DACDC003DB3AA /* NSString+NPAdditions.m */,
-				4B528C69123DACDC003DB3AA /* NSString+NPMimeType.h */,
-				4B528C6A123DACDC003DB3AA /* NSString+NPMimeType.m */,
+				4B2D37A412CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.h */,
+				4B2D37A512CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.m */,
+				4B2D37A612CBF8260060CCFD /* NSString+NPAdditions.h */,
+				4B2D37A712CBF8260060CCFD /* NSString+NPAdditions.m */,
+				4B2D37A812CBF8260060CCFD /* NSString+NPMimeType.h */,
+				4B2D37A912CBF8260060CCFD /* NSString+NPMimeType.m */,
 			);
 			name = Categories;
-			path = Projects/Linebreak/Cloud/Wrapper/Categories;
-			sourceTree = DEVELOPER_DIR;
+			path = ../Categories;
+			sourceTree = "<group>";
 		};
-		4B528C6E123DACDC003DB3AA /* Model */ = {
+		4B2D37AD12CBF8260060CCFD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4B528C6F123DACDC003DB3AA /* CLAccount.h */,
-				4B528C70123DACDC003DB3AA /* CLAccount.m */,
-				4B528C71123DACDC003DB3AA /* CLURLConnection.h */,
-				4B528C72123DACDC003DB3AA /* CLURLConnection.m */,
-				4B528C73123DACDC003DB3AA /* CLWebItem.h */,
-				4B528C74123DACDC003DB3AA /* CLWebItem.m */,
-				4B528C75123DACDC003DB3AA /* Upload Model */,
+				4B2D37AE12CBF8260060CCFD /* CLAccount.h */,
+				4B2D37AF12CBF8260060CCFD /* CLAccount.m */,
+				4B2D37B012CBF8260060CCFD /* CLURLConnection.h */,
+				4B2D37B112CBF8260060CCFD /* CLURLConnection.m */,
+				4B2D37B212CBF8260060CCFD /* CLWebItem.h */,
+				4B2D37B312CBF8260060CCFD /* CLWebItem.m */,
+				4B2D37B412CBF8260060CCFD /* Upload Model */,
 			);
 			name = Model;
-			path = Projects/Linebreak/Cloud/Wrapper/Model;
-			sourceTree = DEVELOPER_DIR;
+			path = ../Model;
+			sourceTree = "<group>";
 		};
-		4B528C75123DACDC003DB3AA /* Upload Model */ = {
+		4B2D37B412CBF8260060CCFD /* Upload Model */ = {
 			isa = PBXGroup;
 			children = (
-				4B528C76123DACDC003DB3AA /* CLFileUpload.h */,
-				4B528C77123DACDC003DB3AA /* CLFileUpload.m */,
-				4B528C78123DACDC003DB3AA /* CLRedirectUpload.h */,
-				4B528C79123DACDC003DB3AA /* CLRedirectUpload.m */,
-				4B528C7A123DACDC003DB3AA /* CLTextUpload.h */,
-				4B528C7B123DACDC003DB3AA /* CLTextUpload.m */,
-				4B528C7C123DACDC003DB3AA /* CLUpload.h */,
-				4B528C7D123DACDC003DB3AA /* CLUpload.m */,
+				4B2D37B512CBF8260060CCFD /* CLFileUpload.h */,
+				4B2D37B612CBF8260060CCFD /* CLFileUpload.m */,
+				4B2D37B712CBF8260060CCFD /* CLRedirectUpload.h */,
+				4B2D37B812CBF8260060CCFD /* CLRedirectUpload.m */,
+				4B2D37B912CBF8260060CCFD /* CLTextUpload.h */,
+				4B2D37BA12CBF8260060CCFD /* CLTextUpload.m */,
+				4B2D37BB12CBF8260060CCFD /* CLUpload.h */,
+				4B2D37BC12CBF8260060CCFD /* CLUpload.m */,
 			);
-			name = "Upload Model";
-			path = "Projects/Linebreak/Cloud/Wrapper/Model/Upload Model";
-			sourceTree = DEVELOPER_DIR;
+			path = "Upload Model";
+			sourceTree = "<group>";
+		};
+		4B2D37CD12CBF8350060CCFD /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				4B2D379812CBF8260060CCFD /* BSJSONAdditions */,
+				4B2D37A312CBF8260060CCFD /* Categories */,
+				4B2D37AA12CBF8260060CCFD /* CLAPIEngine.h */,
+				4B2D37AB12CBF8260060CCFD /* CLAPIEngine.m */,
+				4B2D37AC12CBF8260060CCFD /* CLAPIEngineDelegate.h */,
+				4B2D37AD12CBF8260060CCFD /* Model */,
+			);
+			name = Wrapper;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -307,22 +305,22 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* TestHarnessAppDelegate.m in Sources */,
-				4B528D4F123DACDC003DB3AA /* BSJSONEncoder.m in Sources */,
-				4B528D50123DACDC003DB3AA /* NSArray+BSJSONAdditions.m in Sources */,
-				4B528D51123DACDC003DB3AA /* NSDictionary+BSJSONAdditions.m in Sources */,
-				4B528D52123DACDC003DB3AA /* NSScanner+BSJSONAdditions.m in Sources */,
-				4B528D53123DACDC003DB3AA /* NSString+BSJSONAdditions.m in Sources */,
-				4B528D54123DACDC003DB3AA /* NSMutableURLRequest+NPPOSTBody.m in Sources */,
-				4B528D55123DACDC003DB3AA /* NSString+NPAdditions.m in Sources */,
-				4B528D56123DACDC003DB3AA /* NSString+NPMimeType.m in Sources */,
-				4B528D57123DACDC003DB3AA /* CLAPIEngine.m in Sources */,
-				4B528D58123DACDC003DB3AA /* CLAccount.m in Sources */,
-				4B528D59123DACDC003DB3AA /* CLURLConnection.m in Sources */,
-				4B528D5A123DACDC003DB3AA /* CLWebItem.m in Sources */,
-				4B528D5B123DACDC003DB3AA /* CLFileUpload.m in Sources */,
-				4B528D5C123DACDC003DB3AA /* CLRedirectUpload.m in Sources */,
-				4B528D5D123DACDC003DB3AA /* CLTextUpload.m in Sources */,
-				4B528D5E123DACDC003DB3AA /* CLUpload.m in Sources */,
+				4B2D37BD12CBF8260060CCFD /* BSJSONEncoder.m in Sources */,
+				4B2D37BE12CBF8260060CCFD /* NSArray+BSJSONAdditions.m in Sources */,
+				4B2D37BF12CBF8260060CCFD /* NSDictionary+BSJSONAdditions.m in Sources */,
+				4B2D37C012CBF8260060CCFD /* NSScanner+BSJSONAdditions.m in Sources */,
+				4B2D37C112CBF8260060CCFD /* NSString+BSJSONAdditions.m in Sources */,
+				4B2D37C212CBF8260060CCFD /* NSMutableURLRequest+NPPOSTBody.m in Sources */,
+				4B2D37C312CBF8260060CCFD /* NSString+NPAdditions.m in Sources */,
+				4B2D37C412CBF8260060CCFD /* NSString+NPMimeType.m in Sources */,
+				4B2D37C512CBF8260060CCFD /* CLAPIEngine.m in Sources */,
+				4B2D37C612CBF8260060CCFD /* CLAccount.m in Sources */,
+				4B2D37C712CBF8260060CCFD /* CLURLConnection.m in Sources */,
+				4B2D37C812CBF8260060CCFD /* CLWebItem.m in Sources */,
+				4B2D37C912CBF8260060CCFD /* CLFileUpload.m in Sources */,
+				4B2D37CA12CBF8260060CCFD /* CLRedirectUpload.m in Sources */,
+				4B2D37CB12CBF8260060CCFD /* CLTextUpload.m in Sources */,
+				4B2D37CC12CBF8260060CCFD /* CLUpload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
