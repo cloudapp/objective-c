@@ -22,11 +22,18 @@
 
 static const CGFloat CLUploadLimitExceeded = 301;
 static const CGFloat CLUploadSizeLimitExceeded = 302;
-static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
+static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 
 @implementation CLAPIEngine
 @synthesize email = _email, password = _password, delegate = _delegate, clearsCookies = _clearsCookies,
 			transactions = _transactions;
+
++ (void)initialize {
+	//This is for testing against another server.
+	NSString *possibleURL = [[NSUserDefaults standardUserDefaults] objectForKey:@"CloudAppBaseURL"];
+	if ([possibleURL length] > 0)
+		CLAPIEngineBaseURL = possibleURL;
+}
 
 - (id)init {
 	return [self initWithDelegate:nil];
