@@ -291,7 +291,7 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 	}
 }
 
-- (id)userInfoForConnectionIdentifier:(NSString *)identifier {
+- (id)userInfoForConnectionIdentifier:(NSString *)connectionIdentifier {
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", connectionIdentifier];
 	NSSet *resultSet = [self.transactions filteredSetUsingPredicate:predicate];
 	CLAPITransaction *transaction = [resultSet anyObject];
