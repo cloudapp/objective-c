@@ -354,7 +354,7 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 	if (transaction.requestType != CLAPIRequestTypeGetS3UploadCredentials && 
 		[self.delegate respondsToSelector:@selector(requestDidSucceedWithConnectionIdentifier:userInfo:)])
 		[self.delegate requestDidSucceedWithConnectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
-
+	
 	switch (transaction.requestType) {
 		case CLAPIRequestTypeGetS3UploadCredentials: {
 			NSError *jsonError = nil;
@@ -380,6 +380,7 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 			newTransaction.identifier = transaction.identifier;
 			newTransaction.userInfo = transaction.userInfo;
 			newTransaction.request = request;
+			newTransaction.requestType = CLAPIRequestTypeS3FileUpload;
 			[self _createAndStartConnectionForTransaction:newTransaction];
 			break;
 		}
