@@ -7,53 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum _CLWebItemType {
-	CLWebItemTypeImage,
-	CLWebItemTypeBookmark,
-	CLWebItemTypeText,
-	CLWebItemTypeArchive,
-	CLWebItemTypeAudio,
-	CLWebItemTypeVideo,
-	CLWebItemTypeOther,
-	CLWebItemTypeNone
-} CLWebItemType;
+#import "CLAPIEngineConstants.h"
 
 @interface CLWebItem : NSObject<NSCopying, NSCoding> {
-	NSString *name;
-	CLWebItemType type;
-	NSURL *contentURL;
-	NSString *mimeType;
-	NSInteger viewCount;
-	NSURL *remoteURL;
-	NSURL *href;
-	NSURL *URL;
-#if TARGET_OS_IPHONE
-	UIImage *icon;
-#else
-	NSImage *icon;
-#endif
-	NSURL *iconURL;
-	BOOL trashed;
-	BOOL private;
+	NSString *_name;
+	CLWebItemType _type;
+	NSURL *_contentURL;
+	NSString *_mimeType;
+	NSInteger _viewCount;
+	NSURL *_remoteURL;
+	NSURL *_href;
+	NSURL *_URL;
+	NSURL *_iconURL;
+	BOOL _trashed;
+	BOOL _private;
 }
 
-@property (copy, readwrite) NSString *name;
-@property (assign, readwrite) CLWebItemType type;
-@property (retain, readwrite) NSURL *contentURL;
-@property (retain, readwrite) NSURL *URL;
-@property (copy, readwrite) NSString *mimeType;
-@property (assign, readwrite) NSInteger viewCount;
-@property (retain, readwrite) NSURL *remoteURL;
-@property (retain, readwrite) NSURL *href;
-#if TARGET_OS_IPHONE
-@property (retain, readwrite) UIImage *icon;
-#else
-@property (retain, readwrite) NSImage *icon;
-#endif
-@property (retain, readwrite) NSURL *iconURL;
-@property (assign, readwrite) BOOL trashed;
-@property (assign, readwrite, getter=isPrivate) BOOL private;
+@property (nonatomic, readwrite, copy) NSString *name;
+@property (nonatomic, readwrite, assign) CLWebItemType type;
+@property (nonatomic, readwrite, retain) NSURL *contentURL;
+@property (nonatomic, readwrite, retain) NSURL *URL;
+@property (nonatomic, readwrite, copy) NSString *mimeType;
+@property (nonatomic, readwrite, assign) NSInteger viewCount;
+@property (nonatomic, readwrite, retain) NSURL *remoteURL;
+@property (nonatomic, readwrite, retain) NSURL *href;
+@property (nonatomic, readwrite, retain) NSURL *iconURL;
+@property (nonatomic, readwrite, assign) BOOL trashed;
+@property (nonatomic, readwrite, assign, getter=isPrivate) BOOL private;
 
 - (id)initWithName:(NSString *)theName;
 - (id)initWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount;

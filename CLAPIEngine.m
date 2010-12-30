@@ -7,28 +7,26 @@
 //
 
 #import "CLAPIEngine.h"
-#import "CLUpload.h"
-#import "CLURLConnection.h"
+#import "CLWebItem.h"
+#import "CLAPITransaction.h"
+#import "CJSONSerializer.h"
+#import "CJSONDeserializer.h"
+#import "CLAPIDeserializer.h"
+#import "CLAPISerializer.h"
 #import "NSString+NPAdditions.h"
-#import "NSMutableURLRequest+NPPOSTBody.h"
-#import "NSDictionary+BSJSONAdditions.h"
-#import "NSArray+BSJSONAdditions.h"
-#import "CLAccount.h"
-#import "CLFileUpload.h"
 
 @interface CLAPIEngine ()
-- (CLWebItemType)_webItemTypeForTypeString:(NSString *)typeString;
-- (CLWebItem *)_webItemForDictionary:(NSDictionary *)itemDictionary;
-- (NSString *)_typeStringForWebItemType:(CLWebItemType)theType;
-- (NSString *)_handleRequest:(NSMutableURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo;
-- (NSString *)_handleRequest:(NSMutableURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo identifier:(NSString *)identifier;
+- (NSString *)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction;
+- (CLAPITransaction *)_transactionForConnection:(NSURLConnection *)connection;
 @end
 
-CGFloat CLUploadLimitExceeded = 301;
-CGFloat CLUploadSizeLimitExceeded = 302;
+static const CGFloat CLUploadLimitExceeded = 301;
+static const CGFloat CLUploadSizeLimitExceeded = 302;
+static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 
 @implementation CLAPIEngine
-@synthesize email, password, delegate, baseURL, clearsCookies;
+@synthesize email = _email, password = _password, delegate = _delegate, clearsCookies = _clearsCookies,
+			transactions = _transactions;
 
 - (id)init {
 	return [self initWithDelegate:nil];
@@ -37,8 +35,7 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate {
 	if (self = [super init]) {
 		self.delegate = aDelegate;
-		_connectionDictionary = [[NSMutableDictionary alloc] init];
-		self.baseURL = [NSURL URLWithString:@"http://my.cl.ly/"];
+		self.transactions = [NSMutableSet set];
 		self.clearsCookies = NO;
 	}
 	return self;
@@ -52,106 +49,255 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	return [[[[self class] alloc] initWithDelegate:aDelegate] autorelease];
 }
 
-- (NSString *)getAccountInformation {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingPathComponent:@"account"]]];
-	[theRequest setHTTPMethod:@"GET"];
-	return [self _handleRequest:theRequest type:CLURLRequestTypeAccountInformation userInfo:nil];
-}
-
-- (NSString *)doUpload:(CLUpload *)theUpload {
-	if ([theUpload isValid]) {
-		NSMutableURLRequest *theRequest = [theUpload requestForURL:self.baseURL];
-		return [self _handleRequest:theRequest type:CLURLRequestTypeUpload userInfo:theUpload];
-	}
-	return nil;
-}
-
-- (NSString *)getRecentItemsStartingAtPage:(NSInteger)thePage count:(NSInteger)theCount {
-	return [self getRecentItemsStartingAtPage:thePage count:theCount trashedItems:NO];
-}
-
-- (NSString *)getRecentItemsStartingAtPage:(NSInteger)thePage count:(NSInteger)theCount trashedItems:(BOOL)returnTrashedItems {
-	return [self getRecentItemsStartingAtPage:thePage count:theCount type:CLWebItemTypeNone trashedItems:returnTrashedItems];
-}
-
-- (NSString *)getRecentItemsStartingAtPage:(NSInteger)thePage count:(NSInteger)theCount type:(CLWebItemType)theType trashedItems:(BOOL)returnTrashedItems {
-	thePage = MAX(1, thePage);
-	theCount = MAX(0, theCount);
-	NSMutableString *urlAppend = [NSMutableString stringWithFormat:@"items?page=%i&per_page=%i", thePage, theCount];
-	if (theType != CLWebItemTypeNone)
-		[urlAppend appendFormat:@"&type=%@", [self _typeStringForWebItemType:theType]];
-	if (returnTrashedItems)
-		[urlAppend appendString:@"&deleted=true"];
-	
-	//If the URL path component method is used, it turns ? into %3F and causes the request to fail
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingPathComponent:urlAppend]]];
-	[theRequest setHTTPMethod:@"GET"];
-	return [self _handleRequest:theRequest type:CLURLRequestTypeRecentItems userInfo:nil];
-}
-
-- (NSString *)getInformationForItemAtShortURL:(NSURL *)shortURL {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:shortURL];
-	[theRequest setHTTPMethod:@"GET"];
-	return [self _handleRequest:theRequest type:CLURLRequestTypeShortURLInformation userInfo:shortURL];
-}
-
-- (NSString *)updateItem:(CLWebItem *)theItem {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[theItem href]];
-	[theRequest setHTTPMethod:@"PUT"];
-	[theRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];
-	[theRequest addToHTTPBodyValue:[theItem isPrivate] ? @"true" : @"false"  forKey:@"item[private]"];
-	[theRequest addToHTTPBodyValue:[theItem name] forKey:@"item[name]"];
-	[theRequest finalizeHTTPBody];
-	return [self _handleRequest:theRequest type:CLURLRequestTypeUpdateItem userInfo:theItem];
-}
-
-- (NSString *)updateAccount:(CLAccount *)theAccount {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingPathComponent:@"account"]]];
-	[theRequest setHTTPMethod:@"PUT"];
-	[theRequest addToHTTPBodyValue:([theAccount uploadsArePrivate] ? @"true" : @"false") forKey:@"user[private_items]"];
-	[theRequest finalizeHTTPBody];
-	[theRequest addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", NPHTTPBoundary] forHTTPHeaderField:@"Content-Type"];
-	
-	return [self _handleRequest:theRequest type:CLURLRequestTypeUpdateAccount userInfo:theAccount];
-}
-
-- (NSString *)deleteItem:(CLWebItem *)theItem {
-	return [self deleteItemAtHref:[theItem href]];
-}
-
-- (NSString *)deleteItemAtHref:(NSURL *)theHref {
-	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theHref];
-	[theRequest setHTTPMethod:@"DELETE"];
-	return [self _handleRequest:theRequest type:CLURLRequestTypeDeleteItem userInfo:theHref];
-}
-
 - (BOOL)isReady {
-	return self.email != nil && [self.email length] > 0 && self.password != nil && [self.password length] > 0 && self.baseURL != nil && [[self.baseURL absoluteString] length] > 0;
+	return self.email != nil && [self.email length] > 0 && self.password != nil && [self.password length] > 0;
+}
+
+- (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword userInfo:(id)userInfo {
+	if ([accountEmail length] == 0 || [accountPassword length] == 0)
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/register", CLAPIEngineBaseURL]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObjectsAndKeys:accountEmail, @"email", accountPassword, @"password", nil] forKey:@"user"];
+	
+	NSError *jsonError = nil;
+	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
+	if (jsonError != nil || bodyData == nil)
+		return nil;
+	
+	[request setHTTPBody:bodyData];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeCreateAccount;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo {
+	if (![self isReady] || webItem == nil || webItem.href == nil)
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
+	[request setHTTPMethod:@"PUT"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:newName forKey:@"name"] forKey:@"item"];
+	
+	NSError *jsonError = nil;
+	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
+	if (jsonError != nil || bodyData == nil)
+		return nil;
+	
+	[request setHTTPBody:bodyData];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeItemUpdate;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo {
+	if (![self isReady] || webItem == nil || webItem.href == nil)
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
+	[request setHTTPMethod:@"PUT"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:isPrivate ? @"true" : @"false" forKey:@"private"] forKey:@"item"];
+	
+	NSError *jsonError = nil;
+	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
+	if (jsonError != nil || bodyData == nil)
+		return nil;
+	
+	[request setHTTPBody:bodyData];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeItemUpdate;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)getAccountInformationWithUserInfo:(id)userInfo {
+	if (![self isReady])
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/account", CLAPIEngineBaseURL]]];
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeGetAccountInformation;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo {
+	if (![self isReady] || [[URL absoluteString] length] == 0)
+		return nil;
+	if ([name length] == 0)
+		name = [URL absoluteString];
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/register", CLAPIEngineBaseURL]]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", [URL absoluteString], @"redirect_url", nil] forKey:@"item"];
+	
+	NSError *jsonError = nil;
+	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
+	if (jsonError != nil || bodyData == nil)
+		return nil;
+	
+	[request setHTTPBody:bodyData];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeLinkBookmark;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo {
+	if (![self isReady] || webItem == nil || webItem.href == nil)
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
+	[request setHTTPMethod:@"DELETE"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeItemDeletion;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo {
+	CLWebItem *tempItem = [CLWebItem webItem];
+	tempItem.URL = itemURL;
+	return [self getItemInformation:tempItem userInfo:userInfo];
+}
+
+- (NSString *)getItemInformation:(CLWebItem *)webItem userInfo:(id)userInfo {
+	if (webItem == nil || webItem.URL == nil)
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.URL];
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeGetItemInformation;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo {
+	CLWebItem *tempItem = [CLWebItem webItem];
+	tempItem.href = href;
+	return [self deleteItem:tempItem userInfo:userInfo];
+}
+
+- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo {
+	return [self getItemListStartingAtPage:pageNumStartingAtOne ofType:CLWebItemTypeNone itemsPerPage:perPage showOnlyItemsInTrash:NO userInfo:userInfo];
+}
+
+- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo {
+	return [self getItemListStartingAtPage:pageNumStartingAtOne ofType:type itemsPerPage:perPage showOnlyItemsInTrash:NO userInfo:userInfo];
+}
+
+- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo {
+	if (![self isReady])
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSString *urlString = [NSString stringWithFormat:@"%@/items?page=%i&per_page=%i&deleted=%@", CLAPIEngineBaseURL, pageNumStartingAtOne, perPage, showOnlyItemsInTrash ? @"true" : @"false"];
+	if (type != CLWebItemTypeNone)
+		urlString = [urlString stringByAppendingFormat:@"type=%@", [CLAPISerializer webItemTypeStringForType:type]];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeGetItemList;
+	transaction.userInfo = userInfo;
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo {
+	if (![self isReady])
+		return nil;
+	
+	CLAPITransaction *transaction = [CLAPITransaction transaction];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/items/new", CLAPIEngineBaseURL]]];
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	transaction.request = request;
+	transaction.identifier = [NSString uniqueString];
+	transaction.requestType = CLAPIRequestTypeGetS3UploadCredentials;
+	transaction.userInfo = userInfo;
+	transaction.internalContext = [NSDictionary dictionaryWithObjectsAndKeys:fileName, @"name", fileData, @"data", nil];
+	
+	return [self _createAndStartConnectionForTransaction:transaction];
 }
 
 - (void)cancelConnection:(NSString *)connectionIdentifier {
-	if (![[_connectionDictionary allKeys] containsObject:connectionIdentifier])
-		return;
-	CLURLConnection *theConnection = [_connectionDictionary objectForKey:connectionIdentifier];
-	if (theConnection == nil)
-		return;
-	[theConnection cancel];
-	[_connectionDictionary removeObjectForKey:connectionIdentifier];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", connectionIdentifier];
+	NSSet *resultSet = [self.transactions filteredSetUsingPredicate:predicate];
+	CLAPITransaction *transaction = [resultSet anyObject];
+	if (transaction) {
+		[transaction.connection cancel];
+		if ([self.transactions containsObject:transaction])
+			[self.transactions removeObject:transaction];
+	}
 }
 
 - (void)cancelAllConnections {
-	NSArray *keyArray = [[[_connectionDictionary allKeys] copy] autorelease];
-	for (NSString *connIdentifier in keyArray)
-		[self cancelConnection:connIdentifier];
+	NSMutableSet *transCopy = [[self.transactions mutableCopy] autorelease];
+	for (CLAPITransaction *transaction in transCopy) {
+		[self cancelConnection:transaction.identifier];
+	}
 }
 
+#pragma mark -
 #pragma mark NSURLConnection Delegate Methods
 
-- (void)connection:(CLURLConnection *)connection didReceiveData:(NSData *)data {
-	[[connection data] appendData:data];
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[[self _transactionForConnection:connection].receivedData appendData:data];
 }
 
-- (void)connection:(CLURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
 	if ([challenge previousFailureCount] == 0) {
 		NSURLCredential *credential = [NSURLCredential credentialWithUser:[self.email lowercaseString] password:self.password persistence:NSURLCredentialPersistenceNone];
 		[[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
@@ -160,224 +306,160 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	}
 }
 
-- (void)connection:(CLURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-	if ([connection.userInfo isKindOfClass:[CLUpload class]]) {
+- (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
+	CLAPITransaction *transaction = [self _transactionForConnection:connection];
+	if (transaction.requestType = CLAPIRequestTypeS3FileUpload) {
 		CGFloat percentDone = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
-		if (self.delegate != nil && [self.delegate respondsToSelector:@selector(request:progressedToPercentage:)])
-			[self.delegate request:connection.identifier progressedToPercentage:percentDone];
+		if ([self.delegate respondsToSelector:@selector(fileUploadDidProgress:connectionIdentifier:userInfo:)])
+			[self.delegate fileUploadDidProgress:percentDone connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
 	}
 }
 
-- (void)connection:(CLURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-	if ([response isKindOfClass:[NSHTTPURLResponse class]])
-		[connection setResponse:response];
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+		CLAPITransaction *transaction = [self _transactionForConnection:connection];
+		transaction.response = (NSHTTPURLResponse *)response;
+	}
 }
 
-- (void)connection:(CLURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	if ([error code] == NSURLErrorUserCancelledAuthentication)
-		error = [NSError errorWithDomain:[error domain] code:[error code] userInfo:[NSDictionary dictionaryWithObject:@"Login failed" forKey:NSLocalizedDescriptionKey]];
-	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestFailed:withError:)])
-		[self.delegate requestFailed:connection.identifier withError:error];
-	if ([[_connectionDictionary allKeys] containsObject:connection.identifier])
-		[_connectionDictionary removeObjectForKey:connection.identifier];
+		error = [NSError errorWithDomain:[error domain] code:[error code] userInfo:[NSDictionary dictionaryWithObject:@"Authentication failed" forKey:NSLocalizedDescriptionKey]];
+	
+	CLAPITransaction *transaction = [self _transactionForConnection:connection];
+	
+	if ([self.delegate respondsToSelector:@selector(requestDidFailWithError:connectionIdentifier:userInfo:)])
+		[self.delegate requestDidFailWithError:error connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+	
+	if ([self.transactions containsObject:transaction])
+		[self.transactions removeObject:transaction];
 }
 
-- (void)connectionDidFinishLoading:(CLURLConnection *)connection {
-	if ([[connection response] statusCode] == 404) {
-		[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:[NSDictionary dictionaryWithObject:@"File not found" forKey:NSLocalizedDescriptionKey]]];
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	CLAPITransaction *transaction = [self _transactionForConnection:connection];
+	
+	if (transaction.response.statusCode != 200) {
+		[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Status code was not 200 (%i)", transaction.response.statusCode] forKey:NSLocalizedDescriptionKey]]];
 		return;
 	}
-	
-	BOOL removeFromDict = [[_connectionDictionary allKeys] containsObject:connection.identifier];
-	
-	NSString *retString = [NSString stringWithData:[connection data] encoding:NSUTF8StringEncoding];
-	switch (connection.requestType) {
-		case CLURLRequestTypeUpload: {
-			CLUpload *theUpload = connection.userInfo;
-			if ([theUpload usesS3]) {
-				NSDictionary *s3Dict = [NSDictionary dictionaryWithJSONString:retString];
-				if (s3Dict == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter dictionary" forKey:NSLocalizedDescriptionKey]]];
-					return;
-				}
-				
-				if ([[s3Dict allKeys] containsObject:@"uploads_remaining"] && [[s3Dict objectForKey:@"uploads_remaining"] integerValue] <= 0) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Upload limit exceeded" forKey:NSLocalizedDescriptionKey]]];
-					return;
-				}
-				
-				if ([[s3Dict allKeys] containsObject:@"max_upload_size"] && [theUpload size] > [[s3Dict objectForKey:@"max_upload_size"] integerValue]) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadSizeLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Max upload size exceeded" forKey:NSLocalizedDescriptionKey]]];
-					return;
-				}
-				
-				NSURL *s3URL = [NSURL URLWithString:[s3Dict objectForKey:@"url"]];
-				if (s3URL == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No S3 URL found" forKey:NSLocalizedDescriptionKey]]];
-					return;
-				}
-				NSDictionary *paramsDict = [s3Dict objectForKey:@"params"];
-				if (paramsDict == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"No parameter keys found" forKey:NSLocalizedDescriptionKey]]];
-					return;
-				}
-				NSMutableURLRequest *s3Request = [theUpload s3RequestForURL:s3URL parameterDictionary:paramsDict];
-				[self _handleRequest:s3Request type:CLURLRequestTypeS3Upload userInfo:theUpload identifier:connection.identifier];
-				removeFromDict = NO;
-			} else {
-			case CLURLRequestTypeS3Upload: {
-				NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
-				if (itemDictionary == nil) {
-					[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
-					return;
-				}
-				CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
-				if (self.delegate != nil && [self.delegate respondsToSelector:@selector(uploadSucceeded:resultingItem:forRequest:)])
-					[self.delegate uploadSucceeded:connection.userInfo resultingItem:theItem forRequest:connection.identifier];
-			}
-			}
-		}
-			break;
-		case CLURLRequestTypeRecentItems: {
-			NSArray *dictArray = [NSArray arrayWithJSONString:retString];
-			NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:[dictArray count]];
-			for (NSDictionary *currDict in dictArray) {
-				[itemArray addObject:[self _webItemForDictionary:currDict]];
-			}
-			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(recentItemsReceived:forRequest:)])
-				[self.delegate recentItemsReceived:itemArray forRequest:connection.identifier];
-		}
-			break;
-		case CLURLRequestTypeDeleteItem: {
-			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(hrefDeleted:forRequest:)])
-				[self.delegate hrefDeleted:connection.userInfo forRequest:connection.identifier];
-		}
-			break;
-		case CLURLRequestTypeAccountInformation: {
+		 
+	if (transaction.requestType != CLAPIRequestTypeGetS3UploadCredentials && 
+		[self.delegate respondsToSelector:@selector(requestDidSucceedWithConnectionIdentifier:userInfo:)])
+		[self.delegate requestDidSucceedWithConnectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+
+	switch (transaction.requestType) {
+		case CLAPIRequestTypeGetS3UploadCredentials: {
+			NSError *jsonError = nil;
+			NSDictionary *s3Dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:transaction.receivedData error:&jsonError];
+			if (jsonError != nil) {
+				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"S3 credentials dictionary invalid", transaction.response.statusCode] forKey:NSLocalizedDescriptionKey]]];
+			}		
 			
-		}
-			break;
-		case CLURLRequestTypeShortURLInformation: {
-			NSDictionary *itemDictionary = [NSDictionary dictionaryWithJSONString:retString];
-			if (itemDictionary == nil) {
-				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:@"Server returned invalid item information" forKey:NSLocalizedDescriptionKey]]];
+			if ([[s3Dict allKeys] containsObject:@"uploads_remaining"] && [[s3Dict objectForKey:@"uploads_remaining"] integerValue] <= 0) {
+				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Upload limit exceeded" forKey:NSLocalizedDescriptionKey]]];
 				return;
 			}
-			CLWebItem *theItem = [self _webItemForDictionary:itemDictionary];
-			if (self.delegate != nil && [self.delegate respondsToSelector:@selector(shortURLInformationReceived:forRequest:)])
-				[self.delegate shortURLInformationReceived:theItem forRequest:connection.identifier];
-		}
-			break;
-		case CLURLRequestTypeUpdateAccount: {
 			
-		}
-			break;
-		case CLURLRequestTypeUpdateItem: {
+			NSData *fileData = [transaction.internalContext objectForKey:@"data"];
 			
+			if ([[s3Dict allKeys] containsObject:@"max_upload_size"] && [fileData length] > [[s3Dict objectForKey:@"max_upload_size"] integerValue]) {
+				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:CLUploadSizeLimitExceeded userInfo:[NSDictionary dictionaryWithObject:@"Max upload size exceeded" forKey:NSLocalizedDescriptionKey]]];
+				return;
+			}
+			
+			NSURLRequest *request = [CLAPIDeserializer URLRequestWithS3ParametersDictionary:s3Dict fileName:[transaction.internalContext objectForKey:@"name"] fileData:fileData];
+			CLAPITransaction *newTransaction = [CLAPITransaction transaction];
+			newTransaction.identifier = transaction.identifier;
+			newTransaction.userInfo = transaction.userInfo;
+			newTransaction.request = request;
+			[self _createAndStartConnectionForTransaction:newTransaction];
+			break;
 		}
+		case CLAPIRequestTypeS3FileUpload: {
+			CLWebItem *resultItem = [CLAPIDeserializer webItemWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(fileUploadDidSucceedWithResultingItem:connectionIdentifier:userInfo:)])
+				[self.delegate fileUploadDidSucceedWithResultingItem:resultItem connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
 			break;
-		case CLURLRequestTypeUnknown:
-		default:
+		}
+		case CLAPIRequestTypeAccountUpdate: {
+			CLAccount *resultAccount = [CLAPIDeserializer accountWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(accountUpdateDidSucceed:connectionIdentifier:userInfo:)])
+				[self.delegate accountUpdateDidSucceed:resultAccount connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
 			break;
+		}
+		case CLAPIRequestTypeItemUpdate: {
+			CLWebItem *resultItem = [CLAPIDeserializer webItemWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(itemUpdateDidSucceed:connectionIdentifier:userInfo:)])
+				[self.delegate itemUpdateDidSucceed:resultItem connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
+		case CLAPIRequestTypeItemDeletion: {
+			CLWebItem *resultItem = [CLAPIDeserializer webItemWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(itemDeletionDidSucceed:connectionIdentifier:userInfo:)])
+				[self.delegate itemDeletionDidSucceed:resultItem connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
+		case CLAPIRequestTypeGetItemList: {
+			NSArray *itemArray = [CLAPIDeserializer webItemArrayWithJSONArrayData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(itemListRetrievalSucceeded:connectionIdentifier:userInfo:)])
+				[self.delegate itemListRetrievalSucceeded:itemArray connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
+		case CLAPIRequestTypeLinkBookmark: {
+			CLWebItem *resultItem = [CLAPIDeserializer webItemWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(linkBookmarkDidSucceedWithResultingItem:connectionIdentifier:userInfo:)])
+				[self.delegate linkBookmarkDidSucceedWithResultingItem:resultItem connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
+		case CLAPIRequestTypeCreateAccount: {
+			CLAccount *resultAccount = [CLAPIDeserializer accountWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(accountCreationSucceeded:connectionIdentifier:userInfo:)])
+				[self.delegate accountCreationSucceeded:resultAccount connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
+		case CLAPIRequestTypeGetAccountInformation: {
+			CLAccount *resultAccount = [CLAPIDeserializer accountWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(accountInformationRetrievalSucceeded:connectionIdentifier:userInfo:)])
+				[self.delegate accountInformationRetrievalSucceeded:resultAccount connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
+		case CLAPIRequestTypeGetItemInformation: {
+			CLWebItem *resultItem = [CLAPIDeserializer webItemWithJSONDictionaryData:transaction.receivedData];
+			if ([self.delegate respondsToSelector:@selector(itemInformationRetrievalSucceeded:connectionIdentifier:userInfo:)])
+				[self.delegate itemInformationRetrievalSucceeded:resultItem connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
+			break;
+		}
 	}
-	
-	if (self.delegate != nil && [self.delegate respondsToSelector:@selector(requestSucceeded:)])
-		[self.delegate requestSucceeded:connection.identifier];
-	
-	if (removeFromDict)
-		[_connectionDictionary removeObjectForKey:connection.identifier];
+	if ([self.transactions containsObject:transaction])
+		[self.transactions removeObject:transaction];
 }
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (CLWebItem *)_webItemForDictionary:(NSDictionary *)itemDictionary {
-	CLWebItem *theItem = [CLWebItem webItemWithName:[itemDictionary objectForKey:@"name"] 
-											   type:[self _webItemTypeForTypeString:[itemDictionary objectForKey:@"item_type"]]
-										  viewCount:[[itemDictionary objectForKey:@"view_counter"] integerValue]];
-	[theItem setRemoteURL:[NSURL URLWithString:[itemDictionary objectForKey:([theItem type] == CLWebItemTypeBookmark) ? @"redirect_url" : @"remote_url"]]];
-	[theItem setURL:[NSURL URLWithString:[itemDictionary objectForKey:@"url"]]];
-	[theItem setHref:[NSURL URLWithString:[itemDictionary objectForKey:@"href"]]];
-	[theItem setTrashed:([itemDictionary objectForKey:@"deleted_at"] != nil && ![[NSNull null] isEqual:[itemDictionary objectForKey:@"deleted_at"]])];
-	[theItem setIconURL:[NSURL URLWithString:[itemDictionary objectForKey:@"icon"]]];
-	[theItem setPrivate:[[itemDictionary objectForKey:@"private"] isEqual:@"true"]];
-	return theItem;
-}
-
-- (CLWebItemType)_webItemTypeForTypeString:(NSString *)typeString {
-	typeString = [typeString lowercaseString];
-	CLWebItemType retType = CLWebItemTypeNone;
-	if ([typeString isEqualToString:@"archive"]) {
-		retType = CLWebItemTypeArchive;
-	} else if ([typeString isEqualToString:@"audio"]) {
-		retType = CLWebItemTypeAudio;
-	} else if ([typeString isEqualToString:@"video"]) {
-		retType = CLWebItemTypeVideo;
-	} else if ([typeString isEqualToString:@"text"]) {
-		retType = CLWebItemTypeText;
-	} else if ([typeString isEqualToString:@"bookmark"]) {
-		retType = CLWebItemTypeBookmark;
-	} else if ([typeString isEqualToString:@"image"]) {
-		retType = CLWebItemTypeImage;
-	} else if ([typeString isEqualToString:@"other"]) {
-		retType = CLWebItemTypeOther;
-	}
-	return retType;
-}	
-
-- (NSString *)_typeStringForWebItemType:(CLWebItemType)theType {
-	NSString *retString = nil;
-	switch (theType) {
-		case CLWebItemTypeArchive:
-			retString = @"archive";
-			break;
-		case CLWebItemTypeAudio:
-			retString = @"audio";
-			break;
-		case CLWebItemTypeVideo:
-			retString = @"video";
-			break;
-		case CLWebItemTypeText:
-			retString = @"text";
-			break;
-		case CLWebItemTypeBookmark:
-			retString = @"bookmark";
-			break;
-		case CLWebItemTypeImage:
-			retString = @"image";
-			break;
-		case CLWebItemTypeOther:
-		default:
-			retString = @"other";
-			break;
-	}
-	return retString;
-}
-
-- (NSString *)_handleRequest:(NSMutableURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo {
-	return [self _handleRequest:theRequest type:reqType userInfo:userInfo identifier:[NSString uniqueString]];
-}
-
-- (NSString *)_handleRequest:(NSMutableURLRequest *)theRequest type:(CLURLRequestType)reqType userInfo:(id)userInfo identifier:(NSString *)identifier {
-	if (![self isReady])
-		return nil;
+- (NSString *)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction {
 	if (self.clearsCookies) {
-		NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:self.baseURL];
+		NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[NSURL URLWithString:CLAPIEngineBaseURL]];
 		for (NSHTTPCookie *currCookie in cookies)
 			[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:currCookie];
 	}
-	[theRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	CLURLConnection *theConnection = [[CLURLConnection alloc] initWithRequest:theRequest delegate:self requestType:reqType identifier:identifier startImmediately:NO];
-	[theConnection setUserInfo:userInfo];
-#if TARGET_OS_MAC
-	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-	[theConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSEventTrackingRunLoopMode];
-#endif
-	[_connectionDictionary setObject:theConnection forKey:identifier];
-	[theConnection autorelease];
-	[theConnection start];
-	return identifier;
+
+	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:transaction.request delegate:self startImmediately:NO];
+	[connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+	transaction.connection = connection;
+	[self.transactions addObject:transaction];
+	[connection start];
+	[connection release];
+	
+	return transaction.identifier;
 }
+
+- (CLAPITransaction *)_transactionForConnection:(NSURLConnection *)connection {
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"connection = %@", connection];
+	NSSet *resultSet = [self.transactions filteredSetUsingPredicate:predicate];
+	return [resultSet anyObject];
+}
+
 
 #pragma mark -
 #pragma mark Cleanup
@@ -386,8 +468,8 @@ CGFloat CLUploadSizeLimitExceeded = 302;
 	self.email = nil;
 	self.password = nil;
 	self.delegate = nil;
-	self.baseURL = nil;
-	[_connectionDictionary release];
+	self.transactions = nil;
+	
 	[super dealloc];
 }
 

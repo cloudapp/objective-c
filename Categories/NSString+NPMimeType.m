@@ -28,7 +28,7 @@
 		CFRelease(UTI);
 		return @"application/octet-stream";
 	}
-
+	CFRelease(UTI);
     return [(NSString *)registeredType autorelease];
 }
 

@@ -14,20 +14,22 @@ typedef enum _CLAccountType {
 } CLAccountType;
 
 @interface CLAccount : NSObject<NSCopying, NSCoding> {
-	NSInteger uploadCountLimit;
-	NSUInteger uploadBytesLimit;
-	BOOL uploadsArePrivate;
-	NSString *emailAddress;
-	CLAccountType type;
+	NSURL *_domain;
+	NSURL *_domainHomePage;
+	BOOL _alphaUser;
+	BOOL _uploadsArePrivate;
+	NSString *_email;
+	CLAccountType _type;
 }
 
-@property (assign, readwrite) NSInteger uploadCountLimit;
-@property (assign, readwrite) NSUInteger uploadBytesLimit;
-@property (assign, readwrite) BOOL uploadsArePrivate;
-@property (copy, readwrite) NSString *emailAddress;
-@property (assign, readwrite) CLAccountType type;
+@property (nonatomic, readwrite, retain) NSURL *domain;
+@property (nonatomic, readwrite, retain) NSURL *domainHomePage;
+@property (nonatomic, readwrite) BOOL alphaUser;
+@property (nonatomic, readwrite, assign) BOOL uploadsArePrivate;
+@property (nonatomic, readwrite, copy) NSString *email;
+@property (nonatomic, readwrite, assign) CLAccountType type;
 
-- (id)initWithEmailAddress:(NSString *)anEmail;
-+ (CLAccount *)accountWithEmailAddress:(NSString *)anEmail;
+- (id)initWithEmail:(NSString *)anEmail;
++ (CLAccount *)accountWithEmail:(NSString *)anEmail;
 
 @end

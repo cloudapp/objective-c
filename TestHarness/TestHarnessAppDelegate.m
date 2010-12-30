@@ -15,31 +15,35 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	CLAPIEngine *engine = [CLAPIEngine engineWithDelegate:self];
-	[engine setEmail:@"user@email.com"];
-	[engine setPassword:@"password"];
+	engine.email = @"user@email.com";
+	engine.password = @"password";
 	
-	//File upload example
-	/*	
-	NSString *filePath = @"/Demo.mov";
-	NSData *fileData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filePath]];
-	CLFileUpload *newUpload = [CLFileUpload fileUploadWithName:[filePath lastPathComponent] data:fileData];
-	[engine doUpload:newUpload];
-	*/
+	/*
+	 --------Upload File--------
+	NSString *fileLocation = [@"~/Desktop/SomeFile.txt" stringByExpandingTildeInPath];
+	[engine uploadFileWithName:[fileLocation lastPathComponent] fileData:[NSData dataWithContentsOfFile:fileLocation] userInfo:@"Uploads rock!"];
+	 */
 	
-	//Recent items example
-	[engine getRecentItemsStartingAtPage:1 count:5];
+	/*
+	 --------Get Recent Items--------
+	[engine getItemListStartingAtPage:1 itemsPerPage:5 userInfo:nil];
+	 */
 }
 
-- (void)requestFailed:(NSString *)connectionIdentifier withError:(NSError *)error {
-	NSLog(@"[ERROR] %@: %@", connectionIdentifier, error);
+- (void)requestDidFailWithError:(NSError *)error connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo {
+	NSLog(@"[FAIL]: %@, %@", connectionIdentifier, error);
 }
 
-- (void)request:(NSString *)connectionIdentifier progressedToPercentage:(CGFloat)percentage {
-	NSLog(@"[PROGRESS] %@: %f", connectionIdentifier, percentage);
+- (void)fileUploadDidProgress:(CGFloat)percentageComplete connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo {
+	NSLog(@"[UPLOAD PROGRESS]: %@, %f", connectionIdentifier, percentageComplete);
 }
 
-- (void)recentItemsReceived:(NSArray *)recentItems forRequest:(NSString *)connectionIdentifier {
-	NSLog(@"[SUCCESS] %@: %@", connectionIdentifier, recentItems);
+- (void)fileUploadDidSucceedWithResultingItem:(CLWebItem *)item connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo {
+	NSLog(@"[UPLOAD SUCCESS]: %@, %@", connectionIdentifier, item);
+}
+
+- (void)itemListRetrievalSucceeded:(NSArray *)items connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo {
+	NSLog(@"[ITEM LIST]: %@, %@", connectionIdentifier, items);
 }
 
 @end
