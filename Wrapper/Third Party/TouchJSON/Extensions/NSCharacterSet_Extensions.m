@@ -52,6 +52,7 @@ static NSCharacterSet *sLineBreaksCharacterSet = NULL;
         }
     return(sLineBreaksCharacterSet);
     }
+	return nil;
 }
 
 @end

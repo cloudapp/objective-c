@@ -19,9 +19,9 @@
 	NSURL *_href;
 	NSURL *_URL;
 #if TARGET_OS_IPHONE
-	UIImage *icon;
+	UIImage *_icon;
 #else
-	NSImage *icon;
+	NSImage *_icon;
 #endif
 	NSURL *_iconURL;
 	BOOL _trashed;
