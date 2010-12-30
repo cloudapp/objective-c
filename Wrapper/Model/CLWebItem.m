@@ -17,12 +17,13 @@ static NSString * const CLWebItemViewCountKey = @"CLWebItemViewCountKey";
 static NSString * const CLWebItemRemoteURLKey = @"CLWebItemRemoteURLKey";
 static NSString * const CLWebItemHrefKey = @"CLWebItemHrefKey";
 static NSString * const CLWebItemIconURLKey = @"CLWebItemIconURLKey";
+static NSString * const CLWebItemIconKey = @"CLWebItemIconKey";
 static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 
 @implementation CLWebItem
 @synthesize name = _name, type = _type, contentURL = _contentURL, mimeType = _mimeType, viewCount = _viewCount, remoteURL = _remoteURL, 
-			href = _href, URL = _URL, iconURL = _iconURL, trashed = _trashed, private = _private;
+			href = _href, URL = _URL, iconURL = _iconURL, trashed = _trashed, private = _private, icon = _icon;
 
 - (id)init {
 	return [self initWithName:nil];
@@ -70,6 +71,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 	retItem.private = self.private;
 	retItem.iconURL = self.iconURL;
 	retItem.URL = self.URL;
+	retItem.icon = self.icon;
 	return retItem;
 }
 
@@ -87,6 +89,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 			_mimeType = [decoder decodeObjectForKey:CLWebItemMimeTypeKey];
 			_remoteURL = [decoder decodeObjectForKey:CLWebItemRemoteURLKey];
 			_href = [decoder decodeObjectForKey:CLWebItemHrefKey];
+			_icon = [decoder decodeObjectForKey:CLWebItemIconKey];
 			_trashed = [decoder decodeBoolForKey:CLWebItemTrashedKey];
 			_private = [decoder decodeBoolForKey:CLWebItemPrivateKey];
 			_iconURL = [decoder decodeObjectForKey:CLWebItemIconURLKey];
@@ -105,6 +108,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 		[encoder encodeObject:self.mimeType forKey:CLWebItemMimeTypeKey];
 		[encoder encodeObject:self.remoteURL forKey:CLWebItemRemoteURLKey];
 		[encoder encodeObject:self.href forKey:CLWebItemHrefKey];
+		[encoder encodeObject:self.icon forKey:CLWebItemIconKey];
 		[encoder encodeBool:self.trashed forKey:CLWebItemTrashedKey];
 		[encoder encodeBool:self.private forKey:CLWebItemPrivateKey];
 		[encoder encodeObject:self.iconURL forKey:CLWebItemIconURLKey];
@@ -120,6 +124,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 	self.mimeType = nil;
 	self.remoteURL = nil;
 	self.href = nil;
+	self.icon = nil;
 	self.iconURL = nil;
 	self.URL = nil;
 	[super dealloc];

@@ -28,9 +28,11 @@
 + (CLAccount *)accountWithAPIDictionary:(NSDictionary *)accountDict {
 	CLAccount *account = [CLAccount accountWithEmail:[accountDict objectForKey:@"email"]];
 	NSString *domain = [accountDict objectForKey:@"domain"];
-	account.domain = [NSURL URLWithString:[domain isEqual:[NSNull null]] ? nil : domain];
+	if (domain != nil && ![domain isEqual:[NSNull null]])
+		account.domain = [NSURL URLWithString:domain];
 	NSString *homepage = [accountDict objectForKey:@"domain_home_page"];
-	account.domainHomePage = [NSURL URLWithString:[homepage isEqual:[NSNull null]] ? nil : homepage];
+	if (homepage != nil && ![homepage isEqual:[NSNull null]])
+		account.domainHomePage = [NSURL URLWithString:homepage];
 	account.uploadsArePrivate = [[accountDict objectForKey:@"private_items"] isEqual:@"true"];
 	account.type = [[accountDict objectForKey:@"subscribed"] isEqual:@"true"] ? CLAccountTypePro : CLAccountTypeFree;
 	account.alphaUser = [[accountDict objectForKey:@"alpha"] isEqual:@"true"];
