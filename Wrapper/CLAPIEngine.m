@@ -158,7 +158,7 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 		name = [URL absoluteString];
 	
 	CLAPITransaction *transaction = [CLAPITransaction transaction];
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/register", CLAPIEngineBaseURL]]];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/items", CLAPIEngineBaseURL]]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
