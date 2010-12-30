@@ -255,6 +255,7 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 }
 
 - (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo {
+	
 	if (![self isReady])
 		return nil;
 	
@@ -308,7 +309,7 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 	CLAPITransaction *transaction = [self _transactionForConnection:connection];
-	if (transaction.requestType = CLAPIRequestTypeS3FileUpload) {
+	if (transaction.requestType == CLAPIRequestTypeS3FileUpload) {
 		CGFloat percentDone = (CGFloat)totalBytesWritten / (CGFloat)totalBytesExpectedToWrite;
 		if ([self.delegate respondsToSelector:@selector(fileUploadDidProgress:connectionIdentifier:userInfo:)])
 			[self.delegate fileUploadDidProgress:percentDone connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
