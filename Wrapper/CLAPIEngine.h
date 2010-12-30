@@ -42,6 +42,8 @@
 //Cancel all connections
 - (void)cancelAllConnections;
 
+- (id)userInfoForConnectionIdentifier:(NSString *)identifier;
+
 - (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword userInfo:(id)userInfo;
 - (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
 - (NSString *)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo;

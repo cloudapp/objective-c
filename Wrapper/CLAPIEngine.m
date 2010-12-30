@@ -291,6 +291,13 @@ static NSString * const CLAPIEngineBaseURL = @"http://my.cl.ly";
 	}
 }
 
+- (id)userInfoForConnectionIdentifier:(NSString *)identifier {
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", connectionIdentifier];
+	NSSet *resultSet = [self.transactions filteredSetUsingPredicate:predicate];
+	CLAPITransaction *transaction = [resultSet anyObject];
+	return [transaction userInfo];
+}
+
 #pragma mark -
 #pragma mark NSURLConnection Delegate Methods
 
