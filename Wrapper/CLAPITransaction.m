@@ -1,6 +1,6 @@
 //
 //  CLAPITransaction.m
-//  TestHarness
+//  Cloud
 //
 //  Created by Nick Paulson on 12/29/10.
 //  Copyright 2010 Linebreak. All rights reserved.
