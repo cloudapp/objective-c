@@ -53,11 +53,11 @@ static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 - (id)initWithCoder:(NSCoder *)decoder {
 	if (self = [super init]) {
 		if ([decoder allowsKeyedCoding]) {
-			_domain = [decoder decodeObjectForKey:CLAccountDomainKey];
-			_domainHomePage = [decoder decodeObjectForKey:CLAccountDomainHomepageKey];
+			_domain = [[decoder decodeObjectForKey:CLAccountDomainKey] retain];
+			_domainHomePage = [[decoder decodeObjectForKey:CLAccountDomainHomepageKey] retain];
 			_alphaUser = [decoder decodeBoolForKey:CLAccountAlphaUserKey];
 			_uploadsArePrivate = [decoder decodeBoolForKey:CLAccountUploadsArePrivateKey];
-			_email = [decoder decodeObjectForKey:CLAccountEmailKey];
+			_email = [[decoder decodeObjectForKey:CLAccountEmailKey] retain];
 			_type = [decoder decodeIntegerForKey:CLAccountTypeKey];
 		}
 	}

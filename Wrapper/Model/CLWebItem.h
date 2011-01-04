@@ -18,11 +18,6 @@
 	NSURL *_remoteURL;
 	NSURL *_href;
 	NSURL *_URL;
-#if TARGET_OS_IPHONE
-	UIImage *_icon;
-#else
-	NSImage *_icon;
-#endif
 	NSURL *_iconURL;
 	BOOL _trashed;
 	BOOL _private;
@@ -36,11 +31,6 @@
 @property (nonatomic, readwrite, assign) NSInteger viewCount;
 @property (nonatomic, readwrite, retain) NSURL *remoteURL;
 @property (nonatomic, readwrite, retain) NSURL *href;
-#if TARGET_OS_IPHONE
-@property (nonatomic, readwrite, copy) UIImage *icon;
-#else
-@property (nonatomic, readwrite, copy) NSImage *icon;
-#endif
 @property (nonatomic, readwrite, retain) NSURL *iconURL;
 @property (nonatomic, readwrite, assign) BOOL trashed;
 @property (nonatomic, readwrite, assign, getter=isPrivate) BOOL private;
