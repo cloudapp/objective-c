@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "CLAPIEngineDelegate.h"
 #import "CLAPIEngineConstants.h"
+#import "CLWebItem.h"
+#import "CLAccount.h"
 
 @interface CLAPIEngine : NSObject {
 	NSString *_email;
