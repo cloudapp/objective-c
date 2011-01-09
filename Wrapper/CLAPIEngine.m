@@ -48,11 +48,11 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	return self;
 }
 
-+ (CLAPIEngine *)engine {
++ (id)engine {
 	return [[[[self class] alloc] init] autorelease];
 }
 
-+ (CLAPIEngine *)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate {
++ (id)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate {
 	return [[[[self class] alloc] initWithDelegate:aDelegate] autorelease];
 }
 

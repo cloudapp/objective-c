@@ -29,6 +29,6 @@
 @property (nonatomic, readwrite, retain) id userInfo;
 @property (nonatomic, readwrite, retain) id internalContext;
 
-+ (CLAPITransaction *)transaction;
++ (id)transaction;
 
 @end

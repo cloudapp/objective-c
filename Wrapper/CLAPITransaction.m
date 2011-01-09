@@ -21,7 +21,7 @@
 	return self;
 }
 
-+ (CLAPITransaction *)transaction {
++ (id)transaction {
 	return [[[[self class] alloc] init] autorelease];
 }
 

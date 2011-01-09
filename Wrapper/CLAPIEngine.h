@@ -32,8 +32,8 @@
 @property (nonatomic, readwrite, assign) BOOL clearsCookies;
 
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
-+ (CLAPIEngine *)engine;
-+ (CLAPIEngine *)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
++ (id)engine;
++ (id)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 
 //Returns whether or not the email/password fields are complete.
 - (BOOL)isReady;

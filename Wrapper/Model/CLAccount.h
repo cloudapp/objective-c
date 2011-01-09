@@ -30,6 +30,6 @@ typedef enum _CLAccountType {
 @property (nonatomic, readwrite, assign) CLAccountType type;
 
 - (id)initWithEmail:(NSString *)anEmail;
-+ (CLAccount *)accountWithEmail:(NSString *)anEmail;
++ (id)accountWithEmail:(NSString *)anEmail;
 
 @end

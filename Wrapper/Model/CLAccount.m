@@ -30,7 +30,7 @@ static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 	return self;
 }
 
-+ (CLAccount *)accountWithEmail:(NSString *)anEmail {
++ (id)accountWithEmail:(NSString *)anEmail {
 	return [[[[self class] alloc] initWithEmail:anEmail] autorelease];
 }
 
