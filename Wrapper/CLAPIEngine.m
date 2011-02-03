@@ -40,7 +40,7 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 }
 
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.delegate = aDelegate;
 		self.transactions = [NSMutableSet set];
 		self.clearsCookies = NO;

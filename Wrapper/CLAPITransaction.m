@@ -15,7 +15,7 @@
 			userInfo = _userInfo, identifier = _identifier, response = _response, internalContext = _internalContext;
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.receivedData = [NSMutableData data];
 	}
 	return self;

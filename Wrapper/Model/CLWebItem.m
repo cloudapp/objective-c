@@ -34,7 +34,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 }
 
 - (id)initWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.name = theName;
 		self.type = theType;
 		self.viewCount = theCount;
@@ -79,7 +79,7 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		if ([decoder allowsKeyedCoding]) {
 			_name = [[decoder decodeObjectForKey:CLWebItemNameKey] retain];
 			_type = [decoder decodeIntegerForKey:CLWebItemTypeKey];

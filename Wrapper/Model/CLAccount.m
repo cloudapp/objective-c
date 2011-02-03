@@ -24,7 +24,7 @@ static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 }
 
 - (id)initWithEmail:(NSString *)anEmail {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.email = anEmail;
 	}
 	return self;
@@ -51,7 +51,7 @@ static NSString * const CLAccountTypeKey = @"CLAccountTypeKey";
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		if ([decoder allowsKeyedCoding]) {
 			_domain = [[decoder decodeObjectForKey:CLAccountDomainKey] retain];
 			_domainHomePage = [[decoder decodeObjectForKey:CLAccountDomainHomepageKey] retain];

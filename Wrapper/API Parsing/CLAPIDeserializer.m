@@ -12,6 +12,7 @@
 #import "CJSONDeserializer.h"
 #import "NSMutableURLRequest+NPPOSTBody.h"
 #import "NSString+NPMimeType.h"
+#import "NSURL+IFUnicodeURL.h"
 
 @implementation CLAPIDeserializer
 
@@ -73,7 +74,10 @@
 										  viewCount:[[jsonDict objectForKey:@"view_counter"] integerValue]];
 	
 	webItem.remoteURL = [NSURL URLWithString:[jsonDict objectForKey:([webItem type] == CLWebItemTypeBookmark) ? @"redirect_url" : @"remote_url"]];
-	webItem.URL = [NSURL URLWithString:[jsonDict objectForKey:@"url"]];
+	NSString *urlString = [jsonDict objectForKey:@"url"];
+	if ([urlString isKindOfClass:[NSString class]]) {
+		webItem.URL = [NSURL URLWithUnicodeString:urlString];
+	}
 	webItem.href = [NSURL URLWithString:[jsonDict objectForKey:@"href"]];
 	webItem.trashed = ([jsonDict objectForKey:@"deleted_at"] != nil && ![[NSNull null] isEqual:[jsonDict objectForKey:@"deleted_at"]]);
 	webItem.iconURL = [NSURL URLWithString:[jsonDict objectForKey:@"icon"]];
