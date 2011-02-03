@@ -22,7 +22,7 @@
 
 static const CGFloat CLUploadLimitExceeded = 301;
 static const CGFloat CLUploadSizeLimitExceeded = 302;
-static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
+static NSString * CLAPIEngineBaseURL = @"https://my.cl.ly";
 
 @implementation CLAPIEngine
 @synthesize email = _email, password = _password, delegate = _delegate, clearsCookies = _clearsCookies,
