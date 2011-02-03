@@ -61,7 +61,7 @@ absence of 0..2C, 2E..2F, 3A..40, 5B..60, and 7B..7F.
 
 int is_ldh_character32(const DWORD c)
 {
-	if ( (c <= 0x002C ) ||
+	if ( c <= 0x002C ||
 		( c == 0x002E || c == 0x002F ) ||
 		( c >= 0x003A && c <= 0x0040 ) ||
 		( c >= 0x005B && c <= 0x0060 ) ||
