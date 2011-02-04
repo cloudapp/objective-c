@@ -26,6 +26,12 @@
 		4B2D3C1E12CC33090060CCFD /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D3C0712CC33090060CCFD /* CJSONDeserializer.m */; };
 		4B2D3C1F12CC33090060CCFD /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D3C0912CC33090060CCFD /* CJSONScanner.m */; };
 		4B2D3C2012CC33090060CCFD /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2D3C0B12CC33090060CCFD /* CJSONSerializer.m */; };
+		8C3BF8B912FC55FA005C10A6 /* nameprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BF89E12FC55FA005C10A6 /* nameprep.c */; };
+		8C3BF8BA12FC55FA005C10A6 /* puny.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BF8A012FC55FA005C10A6 /* puny.c */; };
+		8C3BF8BB12FC55FA005C10A6 /* race.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BF8A212FC55FA005C10A6 /* race.c */; };
+		8C3BF8BC12FC55FA005C10A6 /* toxxx.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BF8B112FC55FA005C10A6 /* toxxx.c */; };
+		8C3BF8BD12FC55FA005C10A6 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BF8B312FC55FA005C10A6 /* util.c */; };
+		8C3BF8BE12FC55FA005C10A6 /* NSURL+IFUnicodeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3BF8B812FC55FA005C10A6 /* NSURL+IFUnicodeURL.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -79,6 +85,33 @@
 		4B2D3C0A12CC33090060CCFD /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		4B2D3C0B12CC33090060CCFD /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		4B2D3C0C12CC33090060CCFD /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		8C3BF89D12FC55FA005C10A6 /* adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adapter.h; sourceTree = "<group>"; };
+		8C3BF89E12FC55FA005C10A6 /* nameprep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nameprep.c; sourceTree = "<group>"; };
+		8C3BF89F12FC55FA005C10A6 /* nameprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep.h; sourceTree = "<group>"; };
+		8C3BF8A012FC55FA005C10A6 /* puny.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = puny.c; sourceTree = "<group>"; };
+		8C3BF8A112FC55FA005C10A6 /* puny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puny.h; sourceTree = "<group>"; };
+		8C3BF8A212FC55FA005C10A6 /* race.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = race.c; sourceTree = "<group>"; };
+		8C3BF8A312FC55FA005C10A6 /* race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = race.h; sourceTree = "<group>"; };
+		8C3BF8A512FC55FA005C10A6 /* nameprep_bidi_lcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_lcat.h; sourceTree = "<group>"; };
+		8C3BF8A612FC55FA005C10A6 /* nameprep_bidi_randalcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_randalcat.h; sourceTree = "<group>"; };
+		8C3BF8A712FC55FA005C10A6 /* nameprep_charmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_charmap.h; sourceTree = "<group>"; };
+		8C3BF8A812FC55FA005C10A6 /* nameprep_compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compatible.h; sourceTree = "<group>"; };
+		8C3BF8A912FC55FA005C10A6 /* nameprep_compose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compose.h; sourceTree = "<group>"; };
+		8C3BF8AA12FC55FA005C10A6 /* nameprep_cononical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_cononical.h; sourceTree = "<group>"; };
+		8C3BF8AB12FC55FA005C10A6 /* nameprep_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_data.h; sourceTree = "<group>"; };
+		8C3BF8AC12FC55FA005C10A6 /* nameprep_datastructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_datastructures.h; sourceTree = "<group>"; };
+		8C3BF8AD12FC55FA005C10A6 /* nameprep_decompose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_decompose.h; sourceTree = "<group>"; };
+		8C3BF8AE12FC55FA005C10A6 /* nameprep_lookups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_lookups.h; sourceTree = "<group>"; };
+		8C3BF8AF12FC55FA005C10A6 /* nameprep_prohibit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit.h; sourceTree = "<group>"; };
+		8C3BF8B012FC55FA005C10A6 /* nameprep_prohibit_allowunassigned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit_allowunassigned.h; sourceTree = "<group>"; };
+		8C3BF8B112FC55FA005C10A6 /* toxxx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = toxxx.c; sourceTree = "<group>"; };
+		8C3BF8B212FC55FA005C10A6 /* toxxx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toxxx.h; sourceTree = "<group>"; };
+		8C3BF8B312FC55FA005C10A6 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		8C3BF8B412FC55FA005C10A6 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		8C3BF8B512FC55FA005C10A6 /* xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode.h; sourceTree = "<group>"; };
+		8C3BF8B612FC55FA005C10A6 /* xcode_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode_config.h; sourceTree = "<group>"; };
+		8C3BF8B712FC55FA005C10A6 /* NSURL+IFUnicodeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IFUnicodeURL.h"; sourceTree = "<group>"; };
+		8C3BF8B812FC55FA005C10A6 /* NSURL+IFUnicodeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IFUnicodeURL.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TestHarness-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TestHarness-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* TestHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -227,6 +260,7 @@
 		4B2D3BF112CC33090060CCFD /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				8C3BF89B12FC55FA005C10A6 /* IFUnicodeURL */,
 				4B2D3BF212CC33090060CCFD /* TouchJSON */,
 			);
 			path = "Third Party";
@@ -270,6 +304,56 @@
 				4B2D3C0C12CC33090060CCFD /* JSONRepresentation.h */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		8C3BF89B12FC55FA005C10A6 /* IFUnicodeURL */ = {
+			isa = PBXGroup;
+			children = (
+				8C3BF89C12FC55FA005C10A6 /* IDNSDK */,
+				8C3BF8B712FC55FA005C10A6 /* NSURL+IFUnicodeURL.h */,
+				8C3BF8B812FC55FA005C10A6 /* NSURL+IFUnicodeURL.m */,
+			);
+			path = IFUnicodeURL;
+			sourceTree = "<group>";
+		};
+		8C3BF89C12FC55FA005C10A6 /* IDNSDK */ = {
+			isa = PBXGroup;
+			children = (
+				8C3BF89D12FC55FA005C10A6 /* adapter.h */,
+				8C3BF89E12FC55FA005C10A6 /* nameprep.c */,
+				8C3BF89F12FC55FA005C10A6 /* nameprep.h */,
+				8C3BF8A012FC55FA005C10A6 /* puny.c */,
+				8C3BF8A112FC55FA005C10A6 /* puny.h */,
+				8C3BF8A212FC55FA005C10A6 /* race.c */,
+				8C3BF8A312FC55FA005C10A6 /* race.h */,
+				8C3BF8A412FC55FA005C10A6 /* staticdata */,
+				8C3BF8B112FC55FA005C10A6 /* toxxx.c */,
+				8C3BF8B212FC55FA005C10A6 /* toxxx.h */,
+				8C3BF8B312FC55FA005C10A6 /* util.c */,
+				8C3BF8B412FC55FA005C10A6 /* util.h */,
+				8C3BF8B512FC55FA005C10A6 /* xcode.h */,
+				8C3BF8B612FC55FA005C10A6 /* xcode_config.h */,
+			);
+			path = IDNSDK;
+			sourceTree = "<group>";
+		};
+		8C3BF8A412FC55FA005C10A6 /* staticdata */ = {
+			isa = PBXGroup;
+			children = (
+				8C3BF8A512FC55FA005C10A6 /* nameprep_bidi_lcat.h */,
+				8C3BF8A612FC55FA005C10A6 /* nameprep_bidi_randalcat.h */,
+				8C3BF8A712FC55FA005C10A6 /* nameprep_charmap.h */,
+				8C3BF8A812FC55FA005C10A6 /* nameprep_compatible.h */,
+				8C3BF8A912FC55FA005C10A6 /* nameprep_compose.h */,
+				8C3BF8AA12FC55FA005C10A6 /* nameprep_cononical.h */,
+				8C3BF8AB12FC55FA005C10A6 /* nameprep_data.h */,
+				8C3BF8AC12FC55FA005C10A6 /* nameprep_datastructures.h */,
+				8C3BF8AD12FC55FA005C10A6 /* nameprep_decompose.h */,
+				8C3BF8AE12FC55FA005C10A6 /* nameprep_lookups.h */,
+				8C3BF8AF12FC55FA005C10A6 /* nameprep_prohibit.h */,
+				8C3BF8B012FC55FA005C10A6 /* nameprep_prohibit_allowunassigned.h */,
+			);
+			path = staticdata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +437,12 @@
 				4B2D3C1E12CC33090060CCFD /* CJSONDeserializer.m in Sources */,
 				4B2D3C1F12CC33090060CCFD /* CJSONScanner.m in Sources */,
 				4B2D3C2012CC33090060CCFD /* CJSONSerializer.m in Sources */,
+				8C3BF8B912FC55FA005C10A6 /* nameprep.c in Sources */,
+				8C3BF8BA12FC55FA005C10A6 /* puny.c in Sources */,
+				8C3BF8BB12FC55FA005C10A6 /* race.c in Sources */,
+				8C3BF8BC12FC55FA005C10A6 /* toxxx.c in Sources */,
+				8C3BF8BD12FC55FA005C10A6 /* util.c in Sources */,
+				8C3BF8BE12FC55FA005C10A6 /* NSURL+IFUnicodeURL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
