@@ -20,10 +20,14 @@ static NSString * const CLWebItemIconURLKey = @"CLWebItemIconURLKey";
 static NSString * const CLWebItemIconKey = @"CLWebItemIconKey";
 static NSString * const CLWebItemTrashedKey = @"CLWebItemTrashedKey";
 static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
+static NSString * const CLWebItemCreatedAtKey = @"CLWebItemCreatedAtKey";
+static NSString * const CLWebItemUpdatedAtKey = @"CLWebItemUpdatedAtKey";
+static NSString * const CLWebItemDeletedAtKey = @"CLWebItemDeletedAtKey";
 
 @implementation CLWebItem
 @synthesize name = _name, type = _type, contentURL = _contentURL, mimeType = _mimeType, viewCount = _viewCount, remoteURL = _remoteURL, 
-			href = _href, URL = _URL, iconURL = _iconURL, icon = _icon, trashed = _trashed, private = _private;
+			href = _href, URL = _URL, iconURL = _iconURL, icon = _icon, trashed = _trashed, private = _private, createdAt = _createdAt,
+            updatedAt = _updatedAt, deletedAt = _deletedAt;
 
 - (id)init {
 	return [self initWithName:nil];
@@ -93,6 +97,9 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 			_private = [decoder decodeBoolForKey:CLWebItemPrivateKey];
 			_iconURL = [[decoder decodeObjectForKey:CLWebItemIconURLKey] retain];
 			_icon = [[decoder decodeObjectForKey:CLWebItemIconKey] retain];
+			_createdAt = [[decoder decodeObjectForKey:CLWebItemCreatedAtKey] retain];
+			_updatedAt = [[decoder decodeObjectForKey:CLWebItemUpdatedAtKey] retain];
+			_deletedAt = [[decoder decodeObjectForKey:CLWebItemDeletedAtKey] retain];
 		}
 	}
 	return self;
@@ -112,6 +119,9 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 		[encoder encodeBool:self.private forKey:CLWebItemPrivateKey];
 		[encoder encodeObject:self.icon forKey:CLWebItemIconKey];
 		[encoder encodeObject:self.iconURL forKey:CLWebItemIconURLKey];
+		[encoder encodeObject:self.createdAt forKey:CLWebItemCreatedAtKey];
+		[encoder encodeObject:self.updatedAt forKey:CLWebItemUpdatedAtKey];
+		[encoder encodeObject:self.deletedAt forKey:CLWebItemDeletedAtKey];
 	}
 }
 
@@ -127,6 +137,9 @@ static NSString * const CLWebItemPrivateKey = @"CLWebItemPrivateKey";
 	self.iconURL = nil;
 	self.icon = nil;
 	self.URL = nil;
+	self.createdAt = nil;
+	self.updatedAt = nil;
+	self.deletedAt = nil;
 	[super dealloc];
 }
 

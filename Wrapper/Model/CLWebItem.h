@@ -26,6 +26,9 @@
 #endif
 	BOOL _trashed;
 	BOOL _private;
+	NSDate *_createdAt;
+	NSDate *_updatedAt;
+	NSDate *_deletedAt;
 }
 
 @property (nonatomic, readwrite, copy) NSString *name;
@@ -44,6 +47,9 @@
 #endif
 @property (nonatomic, readwrite, assign) BOOL trashed;
 @property (nonatomic, readwrite, assign, getter=isPrivate) BOOL private;
+@property (nonatomic, readwrite, retain) NSDate *createdAt;
+@property (nonatomic, readwrite, retain) NSDate *updatedAt;
+@property (nonatomic, readwrite, retain) NSDate *deletedAt;
 
 - (id)initWithName:(NSString *)theName;
 - (id)initWithName:(NSString *)theName type:(CLWebItemType)theType viewCount:(NSInteger)theCount;

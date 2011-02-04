@@ -14,6 +14,14 @@
 #import "NSString+NPMimeType.h"
 #import "NSURL+IFUnicodeURL.h"
 
+
+@interface CLAPIDeserializer (Private)
+
++ (NSDate *)_dateFromDictionary:(NSDictionary *)dict forKey:(NSString *)key;
+
+@end
+
+
 @implementation CLAPIDeserializer
 
 + (CLAccount *)accountWithJSONDictionaryData:(NSData *)jsonData {
@@ -82,6 +90,10 @@
 	webItem.trashed = ([jsonDict objectForKey:@"deleted_at"] != nil && ![[NSNull null] isEqual:[jsonDict objectForKey:@"deleted_at"]]);
 	webItem.iconURL = [NSURL URLWithString:[jsonDict objectForKey:@"icon"]];
 	webItem.private = [[jsonDict objectForKey:@"private"] isEqual:@"true"];
+	webItem.createdAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"created_at"];
+	webItem.updatedAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"updated_at"];
+	webItem.deletedAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"deleted_at"];
+	
 	return webItem;
 }
 
@@ -132,6 +144,34 @@
 	[request addToHTTPBodyFileData:fileData fileName:fileName mimeType:[fileName mimeType] forKey:@"file"];
 	[request finalizeHTTPBody];
 	return request;
+}
+
+#pragma mark -
+#pragma mark Private
+
++ (NSDate *)_dateFromDictionary:(NSDictionary *)dict forKey:(NSString *)key
+{
+	// Date parsing
+	static NSDateFormatter *dateFormatter = nil;
+	if (dateFormatter == nil) {
+		dateFormatter = [[NSDateFormatter alloc] init];
+		
+		// Set locale to US to avoid formatting issues
+		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"US"];
+		[dateFormatter setLocale:locale];
+		[locale release];
+		
+		[dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]]; // GMT timezone
+		[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"]; // example: 2010-06-21T12:51:06Z
+	}
+	
+	NSString *dateString = [dict objectForKey:key];
+	if (dateString == nil || ![dateString isKindOfClass:[NSString class]]) {
+		// Invalid date
+		return nil;
+	}
+	
+	return [dateFormatter dateFromString:dateString];
 }
 
 @end
