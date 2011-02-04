@@ -19,10 +19,10 @@
 	NSURL *_href;
 	NSURL *_URL;
 	NSURL *_iconURL;
-#ifdef TARGET_OS_MAC
-	NSImage *_icon;
-#else
+#if TARGET_OS_IPHONE
 	UIImage *_icon;
+#else
+	NSImage *_icon;
 #endif
 	BOOL _trashed;
 	BOOL _private;
@@ -40,10 +40,10 @@
 @property (nonatomic, readwrite, retain) NSURL *remoteURL;
 @property (nonatomic, readwrite, retain) NSURL *href;
 @property (nonatomic, readwrite, retain) NSURL *iconURL;
-#ifdef TARGET_OS_MAC
-@property (nonatomic, readwrite, copy) NSImage *icon;
-#else
+#if TARGET_OS_IPHONE
 @property (nonatomic, readwrite, copy) UIImage *icon;
+#else
+@property (nonatomic, readwrite, copy) NSImage *icon;
 #endif
 @property (nonatomic, readwrite, assign) BOOL trashed;
 @property (nonatomic, readwrite, assign, getter=isPrivate) BOOL private;
