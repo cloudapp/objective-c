@@ -368,6 +368,7 @@ static NSString * CLAPIEngineBaseURL = @"https://my.cl.ly";
 			NSDictionary *s3Dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:transaction.receivedData error:&jsonError];
 			if (jsonError != nil) {
 				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"S3 credentials dictionary invalid", transaction.response.statusCode] forKey:NSLocalizedDescriptionKey]]];
+                return;
 			}		
 			
 			if ([[s3Dict allKeys] containsObject:@"uploads_remaining"] && [[s3Dict objectForKey:@"uploads_remaining"] integerValue] <= 0) {
