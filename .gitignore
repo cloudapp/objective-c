@@ -1,6 +1,9 @@
 build/*
 *.pbxuser
 *.mode1v3
+*.xcodeproj/xcuserdata/*
 .DS_Store
 profile
+
 TestHarness/build/*
+TestHarness/*.xcodeproj/xcuserdata/*
