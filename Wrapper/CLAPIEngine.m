@@ -114,6 +114,13 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	return [self _createAndStartConnectionForTransaction:transaction];
 }
 
+- (NSString *)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo
+{
+	CLWebItem *webItem = [CLWebItem webItem];
+	webItem.href = href;
+	return [self changeNameOfItem:webItem toName:newName userInfo:userInfo];
+}
+
 - (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo {
 	if (![self isReady] || webItem == nil || webItem.href == nil)
 		return nil;
@@ -139,6 +146,13 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	transaction.userInfo = userInfo;
 	
 	return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+- (NSString *)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
+{
+	CLWebItem *webItem = [CLWebItem webItem];
+	webItem.href = href;
+	return [self changePrivacyOfItem:webItem toPrivate:isPrivate userInfo:userInfo];
 }
 
 - (NSString *)getAccountInformationWithUserInfo:(id)userInfo {
