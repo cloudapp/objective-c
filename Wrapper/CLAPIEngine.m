@@ -18,6 +18,7 @@
 @interface CLAPIEngine ()
 - (NSString *)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction;
 - (CLAPITransaction *)_transactionForConnection:(NSURLConnection *)connection;
+- (CLAPITransaction *)_transactionForConnectionIdentifier:(NSString *)connectionIdentifier;
 @end
 
 static const CGFloat CLUploadLimitExceeded = 301;
@@ -313,10 +314,13 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 }
 
 - (id)userInfoForConnectionIdentifier:(NSString *)connectionIdentifier {
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", connectionIdentifier];
-	NSSet *resultSet = [self.transactions filteredSetUsingPredicate:predicate];
-	CLAPITransaction *transaction = [resultSet anyObject];
+	CLAPITransaction *transaction = [self _transactionForConnectionIdentifier:connectionIdentifier];
 	return [transaction userInfo];
+}
+
+- (CLAPIRequestType)requestTypeForConnectionIdentifier:(NSString *)connectionIdentifier {
+	CLAPITransaction *transaction = [self _transactionForConnectionIdentifier:connectionIdentifier];
+	return [transaction requestType];
 }
 
 #pragma mark -
@@ -491,6 +495,11 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	return [resultSet anyObject];
 }
 
+- (CLAPITransaction *)_transactionForConnectionIdentifier:(NSString *)connectionIdentifier {
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", connectionIdentifier];
+	NSSet *resultSet = [self.transactions filteredSetUsingPredicate:predicate];
+	return [resultSet anyObject];
+}
 
 #pragma mark -
 #pragma mark Cleanup

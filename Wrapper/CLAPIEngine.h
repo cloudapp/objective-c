@@ -45,6 +45,7 @@
 - (void)cancelAllConnections;
 
 - (id)userInfoForConnectionIdentifier:(NSString *)identifier;
+- (CLAPIRequestType)requestTypeForConnectionIdentifier:(NSString *)identifier;
 
 - (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword userInfo:(id)userInfo;
 - (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
