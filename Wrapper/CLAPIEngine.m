@@ -263,7 +263,7 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	CLAPITransaction *transaction = [CLAPITransaction transaction];
 	NSString *urlString = [NSString stringWithFormat:@"%@/items?page=%i&per_page=%i&deleted=%@", CLAPIEngineBaseURL, pageNumStartingAtOne, perPage, showOnlyItemsInTrash ? @"true" : @"false"];
 	if (type != CLWebItemTypeNone)
-		urlString = [urlString stringByAppendingFormat:@"type=%@", [CLAPISerializer webItemTypeStringForType:type]];
+		urlString = [urlString stringByAppendingFormat:@"&type=%@", [CLAPISerializer webItemTypeStringForType:type]];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
