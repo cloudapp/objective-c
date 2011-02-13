@@ -1,0 +1,3 @@
+[submodule "Wrapper/Third Party/JSON"]
+	path = Wrapper/Third Party/JSON
+	url = git://github.com/stig/json-framework.git

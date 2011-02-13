@@ -24,4 +24,7 @@
 + (NSURLRequest *)URLRequestWithS3ParametersDictionaryData:(NSData *)jsonData fileName:(NSString *)fileName fileData:(NSData *)fileData;
 + (NSURLRequest *)URLRequestWithS3ParametersDictionary:(NSDictionary *)s3Dict fileName:(NSString *)fileName fileData:(NSData *)fileData;
 
++ (NSDictionary *)dictionaryFromJSONData:(NSData *)data;
++ (NSArray *)arrayFromJSONData:(NSData *)data;
+
 @end

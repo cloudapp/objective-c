@@ -9,8 +9,6 @@
 #import "CLAPIEngine.h"
 #import "CLWebItem.h"
 #import "CLAPITransaction.h"
-#import "CJSONSerializer.h"
-#import "CJSONDeserializer.h"
 #import "CLAPIDeserializer.h"
 #import "CLAPISerializer.h"
 #import "NSString+NPAdditions.h"
@@ -71,11 +69,8 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObjectsAndKeys:accountEmail, @"email", accountPassword, @"password", nil] forKey:@"user"];
-	
-	NSError *jsonError = nil;
-	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
-	if (jsonError != nil || bodyData == nil)
+	NSData *bodyData = [CLAPISerializer accountWithEmail:accountEmail password:accountPassword];
+	if (bodyData == nil)
 		return nil;
 	
 	[request setHTTPBody:bodyData];
@@ -98,11 +93,8 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:newName forKey:@"name"] forKey:@"item"];
-	
-	NSError *jsonError = nil;
-	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
-	if (jsonError != nil || bodyData == nil)
+	NSData *bodyData = [CLAPISerializer itemWithName:newName];
+	if (bodyData == nil)
 		return nil;
 	
 	[request setHTTPBody:bodyData];
@@ -132,11 +124,8 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObject:isPrivate ? @"true" : @"false" forKey:@"private"] forKey:@"item"];
-	
-	NSError *jsonError = nil;
-	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
-	if (jsonError != nil || bodyData == nil)
+	NSData *bodyData = [CLAPISerializer itemWithPrivate:isPrivate];
+	if (bodyData == nil)
 		return nil;
 	
 	[request setHTTPBody:bodyData];
@@ -185,11 +174,8 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-	NSDictionary *dict = [NSDictionary dictionaryWithObject:[NSDictionary dictionaryWithObjectsAndKeys:name, @"name", [URL absoluteString], @"redirect_url", nil] forKey:@"item"];
-	
-	NSError *jsonError = nil;
-	NSData *bodyData = [[CJSONSerializer serializer] serializeDictionary:dict error:&jsonError];
-	if (jsonError != nil || bodyData == nil)
+	NSData *bodyData = [CLAPISerializer bookmarkWithURL:URL name:name];
+	if (bodyData == nil)
 		return nil;
 	
 	[request setHTTPBody:bodyData];
@@ -382,9 +368,8 @@ static NSString * CLAPIEngineBaseURL = @"http://my.cl.ly";
 	
 	switch (transaction.requestType) {
 		case CLAPIRequestTypeGetS3UploadCredentials: {
-			NSError *jsonError = nil;
-			NSDictionary *s3Dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:transaction.receivedData error:&jsonError];
-			if (jsonError != nil) {
+			NSDictionary *s3Dict = [CLAPIDeserializer dictionaryFromJSONData:transaction.receivedData];
+			if (s3Dict == nil) {
 				[self connection:connection didFailWithError:[NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorBadServerResponse userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"S3 credentials dictionary invalid", transaction.response.statusCode] forKey:NSLocalizedDescriptionKey]]];
                 return;
 			}		

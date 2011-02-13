@@ -9,7 +9,7 @@
 #import "CLAPIDeserializer.h"
 #import "CLWebItem.h"
 #import "CLAccount.h"
-#import "CJSONDeserializer.h"
+#import "JSON.h"
 #import "NSMutableURLRequest+NPPOSTBody.h"
 #import "NSString+NPMimeType.h"
 #import "NSURL+IFUnicodeURL.h"
@@ -17,7 +17,10 @@
 
 @interface CLAPIDeserializer (Private)
 
++ (id)_normalizedObjectFromDictionary:(NSDictionary *)dict forKey:(NSString *)key; // NSNull -> nil
 + (NSDate *)_dateFromDictionary:(NSDictionary *)dict forKey:(NSString *)key;
++ (NSURL *)_URLFromDictionary:(NSDictionary *)dict forKey:(NSString *)key;
++ (NSURL *)_unicodeURLFromDictionary:(NSDictionary *)dict forKey:(NSString *)key;
 
 @end
 
@@ -25,35 +28,25 @@
 @implementation CLAPIDeserializer
 
 + (CLAccount *)accountWithJSONDictionaryData:(NSData *)jsonData {
-	if ([jsonData length] == 0)
-		return nil;
-	NSError *jsonError = nil;
-	NSDictionary *dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&jsonError];
-	if (jsonError != nil)
+	NSDictionary *dict = [self dictionaryFromJSONData:jsonData];
+	if (dict == nil)
 		return nil;
 	return [self accountWithAPIDictionary:dict];
 }
 
 + (CLAccount *)accountWithAPIDictionary:(NSDictionary *)accountDict {
-	CLAccount *account = [CLAccount accountWithEmail:[accountDict objectForKey:@"email"]];
-	NSString *domain = [accountDict objectForKey:@"domain"];
-	if (domain != nil && ![domain isEqual:[NSNull null]])
-		account.domain = [NSURL URLWithString:domain];
-	NSString *homepage = [accountDict objectForKey:@"domain_home_page"];
-	if (homepage != nil && ![homepage isEqual:[NSNull null]])
-		account.domainHomePage = [NSURL URLWithString:homepage];
-	account.uploadsArePrivate = [[accountDict objectForKey:@"private_items"] isEqual:@"true"];
-	account.type = [[accountDict objectForKey:@"subscribed"] isEqual:@"true"] ? CLAccountTypePro : CLAccountTypeFree;
-	account.alphaUser = [[accountDict objectForKey:@"alpha"] isEqual:@"true"];
+	CLAccount *account        = [CLAccount accountWithEmail:[self _normalizedObjectFromDictionary:accountDict forKey:@"email"]];
+	account.domain            = [self _unicodeURLFromDictionary:accountDict forKey:@"domain"];
+	account.domainHomePage    = [self _unicodeURLFromDictionary:accountDict forKey:@"domain_home_page"];
+	account.uploadsArePrivate = [[self _normalizedObjectFromDictionary:accountDict forKey:@"private_items"] boolValue];
+	account.type              = [[self _normalizedObjectFromDictionary:accountDict forKey:@"subscribed"] boolValue] ? CLAccountTypePro : CLAccountTypeFree;
+	account.alphaUser         = [[self _normalizedObjectFromDictionary:accountDict forKey:@"alpha"] boolValue];
 	return account;
 }
 
 + (NSArray *)webItemArrayWithJSONArrayData:(NSData *)jsonData {
-	if ([jsonData length] == 0)
-		return nil;
-	NSError *jsonError = nil;
-	NSArray *array = [[CJSONDeserializer deserializer] deserializeAsArray:jsonData error:&jsonError];
-	if (jsonError != nil)
+	NSArray *array = [self arrayFromJSONData:jsonData];
+	if (array == nil)
 		return nil;
 	return [self webItemArrayWithAPIArray:array];
 }
@@ -67,32 +60,33 @@
 }
 
 + (CLWebItem *)webItemWithJSONDictionaryData:(NSData *)jsonData {
-	if ([jsonData length] == 0)
-		return nil;
-	NSError *jsonError = nil;
-	NSDictionary *dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&jsonError];
-	if (jsonError != nil)
+	NSDictionary *dict = [self dictionaryFromJSONData:jsonData];
+	if (dict == nil)
 		return nil;
 	return [self webItemWithAPIDictionary:dict];
 }
 
 + (CLWebItem *)webItemWithAPIDictionary:(NSDictionary *)jsonDict {
-	CLWebItem *webItem = [CLWebItem webItemWithName:[jsonDict objectForKey:@"name"] 
-											   type:[[self class] webItemTypeForTypeString:[jsonDict objectForKey:@"item_type"]]
-										  viewCount:[[jsonDict objectForKey:@"view_counter"] integerValue]];
+	CLWebItem *webItem = [CLWebItem webItemWithName:[self _normalizedObjectFromDictionary:jsonDict forKey:@"name"]
+											   type:[self webItemTypeForTypeString:[self _normalizedObjectFromDictionary:jsonDict forKey:@"item_type"]]
+										  viewCount:[[self _normalizedObjectFromDictionary:jsonDict forKey:@"view_counter"] integerValue]];
 	
-	webItem.remoteURL = [NSURL URLWithString:[jsonDict objectForKey:([webItem type] == CLWebItemTypeBookmark) ? @"redirect_url" : @"remote_url"]];
-	NSString *urlString = [jsonDict objectForKey:@"url"];
-	if ([urlString isKindOfClass:[NSString class]]) {
-		webItem.URL = [NSURL URLWithUnicodeString:urlString];
+	if (webItem.name == nil && webItem.type == CLWebItemTypeBookmark) {
+		webItem.remoteURL = [self _unicodeURLFromDictionary:jsonDict forKey:@"redirect_url"];
+		if (webItem.name == nil)
+			webItem.name = [webItem.remoteURL unicodeAbsoluteString];
+	} else {
+		webItem.remoteURL = [self _URLFromDictionary:jsonDict forKey:@"remote_url"];
 	}
-	webItem.href = [NSURL URLWithString:[jsonDict objectForKey:@"href"]];
-	webItem.trashed = ([jsonDict objectForKey:@"deleted_at"] != nil && ![[NSNull null] isEqual:[jsonDict objectForKey:@"deleted_at"]]);
-	webItem.iconURL = [NSURL URLWithString:[jsonDict objectForKey:@"icon"]];
-	webItem.private = [[jsonDict objectForKey:@"private"] boolValue];
-	webItem.createdAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"created_at"];
-	webItem.updatedAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"updated_at"];
-	webItem.deletedAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"deleted_at"];
+	
+	webItem.URL       = [self _unicodeURLFromDictionary:jsonDict forKey:@"url"];
+	webItem.href      = [self _URLFromDictionary:jsonDict forKey:@"href"];
+	webItem.iconURL   = [self _URLFromDictionary:jsonDict forKey:@"icon"];
+	webItem.private   = [[self _normalizedObjectFromDictionary:jsonDict forKey:@"private"] boolValue];
+	webItem.createdAt = [self _dateFromDictionary:jsonDict forKey:@"created_at"];
+	webItem.updatedAt = [self _dateFromDictionary:jsonDict forKey:@"updated_at"];
+	webItem.deletedAt = [self _dateFromDictionary:jsonDict forKey:@"deleted_at"];
+	webItem.trashed   = webItem.deletedAt == nil ? NO : YES;
 	
 	return webItem;
 }
@@ -118,18 +112,15 @@
 }
 
 + (NSURLRequest *)URLRequestWithS3ParametersDictionaryData:(NSData *)jsonData fileName:(NSString *)fileName fileData:(NSData *)fileData {
-	if ([jsonData length] == 0)
-		return nil;
-	NSError *jsonError = nil;
-	NSDictionary *dict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&jsonError];
-	if (jsonError != nil)
+	NSDictionary *dict = [self dictionaryFromJSONData:jsonData];
+	if (dict == nil)
 		return nil;
 	return [self URLRequestWithS3ParametersDictionary:dict fileName:fileName fileData:fileData];
 }
 
 + (NSURLRequest *)URLRequestWithS3ParametersDictionary:(NSDictionary *)s3Dict fileName:(NSString *)fileName fileData:(NSData *)fileData {
-	NSURL *postURL = [NSURL URLWithString:[s3Dict objectForKey:@"url"]];
-	NSDictionary *actualParams = [s3Dict objectForKey:@"params"];
+	NSURL *postURL             = [self _URLFromDictionary:s3Dict forKey:@"url"];
+	NSDictionary *actualParams = [self _normalizedObjectFromDictionary:s3Dict forKey:@"params"];
 	if ([[postURL absoluteString] length] == 0 || [[actualParams allKeys] count] == 0)
 		return nil;
 	
@@ -146,10 +137,45 @@
 }
 
 #pragma mark -
+#pragma mark General
+
++ (NSDictionary *)dictionaryFromJSONData:(NSData *)data {
+	if (data == nil || [data length] == 0)
+		return nil;
+	
+	NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	id object = [jsonString JSONValue];
+	[jsonString release];
+	
+	if (object == nil || ![object isKindOfClass:[NSDictionary class]])
+		return nil;
+	return object;
+}
+
++ (NSArray *)arrayFromJSONData:(NSData *)data {
+	if (data == nil || [data length] == 0)
+		return nil;
+	
+	NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	id object = [jsonString JSONValue];
+	[jsonString release];
+	
+	if (object == nil || ![object isKindOfClass:[NSArray class]])
+		return nil;
+	return object;
+}
+
+#pragma mark -
 #pragma mark Private
 
-+ (NSDate *)_dateFromDictionary:(NSDictionary *)dict forKey:(NSString *)key
-{
++ (id)_normalizedObjectFromDictionary:(NSDictionary *)dict forKey:(NSString *)key {
+	id object = [dict objectForKey:key];
+	if (object == [NSNull null])
+		return nil;
+	return object;
+}
+
++ (NSDate *)_dateFromDictionary:(NSDictionary *)dict forKey:(NSString *)key {
 	// Date parsing
 	static NSDateFormatter *dateFormatter = nil;
 	if (dateFormatter == nil) {
@@ -171,6 +197,20 @@
 	}
 	
 	return [dateFormatter dateFromString:dateString];
+}
+
++ (NSURL *)_URLFromDictionary:(NSDictionary *)dict forKey:(NSString *)key {
+	NSString *string = [dict objectForKey:key];
+	if (string == nil || ![string isKindOfClass:[NSString class]])
+		return nil;
+	return [NSURL URLWithString:string];
+}
+
++ (NSURL *)_unicodeURLFromDictionary:(NSDictionary *)dict forKey:(NSString *)key {
+	NSString *string = [dict objectForKey:key];
+	if (string == nil || ![string isKindOfClass:[NSString class]])
+		return nil;
+	return [NSURL URLWithUnicodeString:string];
 }
 
 @end
