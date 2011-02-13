@@ -89,7 +89,7 @@
 	webItem.href = [NSURL URLWithString:[jsonDict objectForKey:@"href"]];
 	webItem.trashed = ([jsonDict objectForKey:@"deleted_at"] != nil && ![[NSNull null] isEqual:[jsonDict objectForKey:@"deleted_at"]]);
 	webItem.iconURL = [NSURL URLWithString:[jsonDict objectForKey:@"icon"]];
-	webItem.private = [[jsonDict objectForKey:@"private"] isEqual:@"true"];
+	webItem.private = [[jsonDict objectForKey:@"private"] boolValue];
 	webItem.createdAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"created_at"];
 	webItem.updatedAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"updated_at"];
 	webItem.deletedAt = [CLAPIDeserializer _dateFromDictionary:jsonDict forKey:@"deleted_at"];
