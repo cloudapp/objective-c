@@ -99,7 +99,7 @@
 
 + (CLWebItemType)webItemTypeForTypeString:(NSString *)typeString {
 	typeString = [typeString lowercaseString];
-	CLWebItemType retType = CLWebItemTypeNone;
+	CLWebItemType retType = CLWebItemTypeUnknown;
 	if ([typeString isEqualToString:@"archive"]) {
 		retType = CLWebItemTypeArchive;
 	} else if ([typeString isEqualToString:@"audio"]) {
@@ -112,9 +112,8 @@
 		retType = CLWebItemTypeBookmark;
 	} else if ([typeString isEqualToString:@"image"]) {
 		retType = CLWebItemTypeImage;
-	} else if ([typeString isEqualToString:@"other"]) {
-		retType = CLWebItemTypeUnknown;
 	}
+	
 	return retType;
 }
 
