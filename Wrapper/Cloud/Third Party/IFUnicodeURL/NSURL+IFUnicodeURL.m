@@ -43,7 +43,7 @@
 static NSString *ConvertUnicodeDomainString(NSString *hostname, BOOL toAscii)
 {
 	const UTF16CHAR *inputString = (const UTF16CHAR *)[hostname cStringUsingEncoding:NSUTF16StringEncoding];
-	int inputLength = [hostname lengthOfBytesUsingEncoding:NSUTF16StringEncoding] / sizeof(UTF16CHAR);
+	int inputLength = (int)([hostname lengthOfBytesUsingEncoding:NSUTF16StringEncoding] / sizeof(UTF16CHAR));
 	
 	if (toAscii) {
 		int outputLength = MAX_DOMAIN_SIZE_8;
