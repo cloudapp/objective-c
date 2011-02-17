@@ -7,3 +7,6 @@ profile
 
 TestHarness/build/*
 TestHarness/*.xcodeproj/xcuserdata/*
+
+Source/libCloud/build/*
+Source/libCloud/*.xcodeproj/xcuserdata/*
