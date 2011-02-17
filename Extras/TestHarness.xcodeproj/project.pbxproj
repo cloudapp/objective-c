@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4BCB7450130B6D5800C3A701 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCB744F130B6D5800C3A701 /* Cocoa.framework */; };
+		4BCB745A130B6D5800C3A701 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BCB7458130B6D5800C3A701 /* InfoPlist.strings */; };
+		4BCB745D130B6D5800C3A701 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB745C130B6D5800C3A701 /* main.m */; };
+		4BCB7460130B6D5800C3A701 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4BCB745E130B6D5800C3A701 /* Credits.rtf */; };
+		4BCB7463130B6D5800C3A701 /* TestHarnessAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCB7462130B6D5800C3A701 /* TestHarnessAppDelegate.m */; };
+		4BCB7466130B6D5800C3A701 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BCB7464130B6D5800C3A701 /* MainMenu.xib */; };
+		4BCB7473130B6D7D00C3A701 /* libCloud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCB7472130B6D7D00C3A701 /* libCloud.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BCB74A7130B6EF900C3A701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4B1AB184130B69B900BD6A95;
+			remoteInfo = Cloud;
+		};
+		4BCB74AA130B6F0800C3A701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B1AB183130B69B900BD6A95;
+			remoteInfo = Cloud;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4BCB744B130B6D5800C3A701 /* TestHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BCB744F130B6D5800C3A701 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		4BCB7452130B6D5800C3A701 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		4BCB7453130B6D5800C3A701 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4BCB7454130B6D5800C3A701 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4BCB7457130B6D5800C3A701 /* TestHarness-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestHarness-Info.plist"; sourceTree = "<group>"; };
+		4BCB7459130B6D5800C3A701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4BCB745B130B6D5800C3A701 /* TestHarness-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestHarness-Prefix.pch"; sourceTree = "<group>"; };
+		4BCB745C130B6D5800C3A701 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4BCB745F130B6D5800C3A701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		4BCB7461130B6D5800C3A701 /* TestHarnessAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHarnessAppDelegate.h; sourceTree = "<group>"; };
+		4BCB7462130B6D5800C3A701 /* TestHarnessAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHarnessAppDelegate.m; sourceTree = "<group>"; };
+		4BCB7465130B6D5800C3A701 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4BCB7472130B6D7D00C3A701 /* libCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCloud.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Cloud-abtwsrtzrxyrskbxyjrwgmseiljc/Build/Products/Debug/libCloud.a"; sourceTree = "<group>"; };
+		4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cloud.xcodeproj; path = ../../Source/libCloud/Cloud.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4BCB7448130B6D5800C3A701 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BCB7450130B6D5800C3A701 /* Cocoa.framework in Frameworks */,
+				4BCB7473130B6D7D00C3A701 /* libCloud.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4BCB7440130B6D5700C3A701 = {
+			isa = PBXGroup;
+			children = (
+				4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */,
+				4BCB7455130B6D5800C3A701 /* TestHarness */,
+				4BCB744E130B6D5800C3A701 /* Frameworks */,
+				4BCB744C130B6D5800C3A701 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4BCB744C130B6D5800C3A701 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BCB744B130B6D5800C3A701 /* TestHarness.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4BCB744E130B6D5800C3A701 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BCB7472130B6D7D00C3A701 /* libCloud.a */,
+				4BCB744F130B6D5800C3A701 /* Cocoa.framework */,
+				4BCB7451130B6D5800C3A701 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4BCB7451130B6D5800C3A701 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BCB7452130B6D5800C3A701 /* AppKit.framework */,
+				4BCB7453130B6D5800C3A701 /* CoreData.framework */,
+				4BCB7454130B6D5800C3A701 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		4BCB7455130B6D5800C3A701 /* TestHarness */ = {
+			isa = PBXGroup;
+			children = (
+				4BCB7461130B6D5800C3A701 /* TestHarnessAppDelegate.h */,
+				4BCB7462130B6D5800C3A701 /* TestHarnessAppDelegate.m */,
+				4BCB7464130B6D5800C3A701 /* MainMenu.xib */,
+				4BCB7456130B6D5800C3A701 /* Supporting Files */,
+			);
+			path = TestHarness;
+			sourceTree = "<group>";
+		};
+		4BCB7456130B6D5800C3A701 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BCB7457130B6D5800C3A701 /* TestHarness-Info.plist */,
+				4BCB7458130B6D5800C3A701 /* InfoPlist.strings */,
+				4BCB745B130B6D5800C3A701 /* TestHarness-Prefix.pch */,
+				4BCB745C130B6D5800C3A701 /* main.m */,
+				4BCB745E130B6D5800C3A701 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BCB74A1130B6EF900C3A701 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BCB74A8130B6EF900C3A701 /* libCloud.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4BCB744A130B6D5800C3A701 /* TestHarness */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BCB7469130B6D5800C3A701 /* Build configuration list for PBXNativeTarget "TestHarness" */;
+			buildPhases = (
+				4BCB7447130B6D5800C3A701 /* Sources */,
+				4BCB7448130B6D5800C3A701 /* Frameworks */,
+				4BCB7449130B6D5800C3A701 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BCB74AB130B6F0800C3A701 /* PBXTargetDependency */,
+			);
+			name = TestHarness;
+			productName = TestHarness;
+			productReference = 4BCB744B130B6D5800C3A701 /* TestHarness.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4BCB7442130B6D5700C3A701 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Linebreak;
+			};
+			buildConfigurationList = 4BCB7445130B6D5700C3A701 /* Build configuration list for PBXProject "TestHarness" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4BCB7440130B6D5700C3A701;
+			productRefGroup = 4BCB744C130B6D5800C3A701 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4BCB74A1130B6EF900C3A701 /* Products */;
+					ProjectRef = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				4BCB744A130B6D5800C3A701 /* TestHarness */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4BCB74A8130B6EF900C3A701 /* libCloud.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCloud.a;
+			remoteRef = 4BCB74A7130B6EF900C3A701 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4BCB7449130B6D5800C3A701 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BCB745A130B6D5800C3A701 /* InfoPlist.strings in Resources */,
+				4BCB7460130B6D5800C3A701 /* Credits.rtf in Resources */,
+				4BCB7466130B6D5800C3A701 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4BCB7447130B6D5800C3A701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BCB745D130B6D5800C3A701 /* main.m in Sources */,
+				4BCB7463130B6D5800C3A701 /* TestHarnessAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BCB74AB130B6F0800C3A701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cloud;
+			targetProxy = 4BCB74AA130B6F0800C3A701 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4BCB7458130B6D5800C3A701 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BCB7459130B6D5800C3A701 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4BCB745E130B6D5800C3A701 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BCB745F130B6D5800C3A701 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		4BCB7464130B6D5800C3A701 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BCB7465130B6D5800C3A701 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4BCB7467130B6D5800C3A701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4BCB7468130B6D5800C3A701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4BCB746A130B6D5800C3A701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TestHarness/TestHarness-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Source/libCloud/Cloud/**";
+				INFOPLIST_FILE = "TestHarness/TestHarness-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Cloud-abtwsrtzrxyrskbxyjrwgmseiljc/Build/Products/Debug\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4BCB746B130B6D5800C3A701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TestHarness/TestHarness-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Source/libCloud/Cloud/**";
+				INFOPLIST_FILE = "TestHarness/TestHarness-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/Cloud-abtwsrtzrxyrskbxyjrwgmseiljc/Build/Products/Debug\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4BCB7445130B6D5700C3A701 /* Build configuration list for PBXProject "TestHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BCB7467130B6D5800C3A701 /* Debug */,
+				4BCB7468130B6D5800C3A701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BCB7469130B6D5800C3A701 /* Build configuration list for PBXNativeTarget "TestHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BCB746A130B6D5800C3A701 /* Debug */,
+				4BCB746B130B6D5800C3A701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4BCB7442130B6D5700C3A701 /* Project object */;
+}
