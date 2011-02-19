@@ -479,7 +479,7 @@ UCHAR8 * pszResult, int * piResultLength )
 
 	if (high) {return XCODE_UTIL_LONELY_HIGH_SURROGATE;}
 
-	*piResultLength = output_offset;
+	*piResultLength = (int)output_offset;
 
 	return XCODE_SUCCESS;
 }
@@ -604,7 +604,7 @@ int *             piResultLength )
 		return XCODE_UTIL_INVALID_8BIT_INPUT;
 	}
 
-	*piResultLength = output_offset;
+	*piResultLength = (int)output_offset;
 
 	return XCODE_SUCCESS;
 }

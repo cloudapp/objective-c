@@ -75,7 +75,7 @@ static void insert( DWORD * target, size_t * length, size_t offset, DWORD ch )
   int i;
   if (offset > *length) {return;}
 
-  for (i=(*length); i>offset; i--) {target[i] = target[i-1];}
+  for (i=(int)(*length); i>offset; i--) {target[i] = target[i-1];}
 
   target[offset] = ch;
 
@@ -160,11 +160,11 @@ static int composeHangul( DWORD dwLastCh, DWORD ch, DWORD * pdwOut )
 
   /* 1. check to see if two current characters are L and V */
 
-  LIndex = dwLastCh - LBase;
+  LIndex = (int)(dwLastCh - LBase);
 
   if ( 0 <= LIndex && LIndex < LCount ) 
   {
-    int VIndex = ch - VBase;
+    int VIndex = (int)(ch - VBase);
     if ( 0 <= VIndex && VIndex < VCount ) 
     {
 
@@ -177,11 +177,11 @@ static int composeHangul( DWORD dwLastCh, DWORD ch, DWORD * pdwOut )
 
   /* 2. check to see if two current characters are LV and T */
 
-  SIndex = dwLastCh - SBase;
+  SIndex = (int)(dwLastCh - SBase);
 
   if ( 0 <= SIndex && SIndex < SCount && (SIndex % TCount) == 0 ) 
   {
-    int TIndex = ch - TBase;
+    int TIndex = (int)(ch - TBase);
     if (0 <= TIndex && TIndex <= TCount) 
     {
 
@@ -212,7 +212,7 @@ static int composeHangul( DWORD dwLastCh, DWORD ch, DWORD * pdwOut )
 
 static int decomposeHangul( DWORD ch, DWORD * pdwOut ) 
 {
-  int SIndex = ch - SBase;
+  int SIndex = (int)(ch - SBase);
   int L;
   int V;
   int T;
@@ -345,7 +345,7 @@ static int doKCDecompose( const DWORD * input, int input_size,
     {
       ch = buf[j];
 
-      cClass = lookup_canonical(ch);
+      cClass = (int)lookup_canonical(ch);
 
       cursor = output_offset;
 
@@ -353,7 +353,7 @@ static int doKCDecompose( const DWORD * input, int input_size,
       {
         for (; cursor > 0; --cursor) 
         {
-          nCanonicalItem = lookup_canonical(output[cursor-1]);
+          nCanonicalItem = (int)lookup_canonical(output[cursor-1]);
           if (nCanonicalItem <= cClass) {break;}
         }
       }
@@ -363,7 +363,7 @@ static int doKCDecompose( const DWORD * input, int input_size,
   
   if (output_offset > *output_size) {return XCODE_NAMEPREP_BUFFER_OVERFLOW_ERROR;}
   
-  *output_size = output_offset;
+  *output_size = (int)output_offset;
   
   return XCODE_SUCCESS; 
 }
@@ -392,7 +392,7 @@ static int doKCCompose( DWORD * output, int * output_size )
 
   startCh = output[0];
 
-  lastClass = lookup_canonical(startCh);
+  lastClass = (int)lookup_canonical(startCh);
 
   if ( lastClass != 0 ) 
   {
@@ -408,7 +408,7 @@ static int doKCCompose( DWORD * output, int * output_size )
 
     DWORD ch = output[decompPos];
 
-    chClass = lookup_canonical(ch);
+    chClass = (int)lookup_canonical(ch);
 
     nComposeResult = composeHangul( startCh, ch, &nComposeItem );
 
@@ -426,7 +426,7 @@ static int doKCCompose( DWORD * output, int * output_size )
       composite = 0xffff; /* 65535 */
     } else 
     {
-      composite = nComposeItem;
+      composite = (int)nComposeItem;
     }
 
     if (composite != 0xffff && (lastClass < chClass || lastClass == 0)) 

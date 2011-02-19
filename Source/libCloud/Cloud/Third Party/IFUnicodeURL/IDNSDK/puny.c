@@ -187,7 +187,7 @@ int punycode_encode( unsigned int input_length,
     ++delta, ++n;
   }
 
-  *output_length = out;
+  *output_length = (unsigned int)out;
   return XCODE_SUCCESS;
 }
 
@@ -270,7 +270,7 @@ int punycode_decode( unsigned int input_length,
     output[i++] = n;
   }
 
-  *output_length = out;
+  *output_length = (unsigned int)out;
   return XCODE_SUCCESS;
 }
 
