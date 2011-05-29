@@ -16,6 +16,7 @@
 @interface CLAPIEngine : NSObject {
 	NSString *_email;
 	NSString *_password;
+    NSURL *_baseURL;
 	id<CLAPIEngineDelegate> _delegate;
 	
 	NSMutableSet *_transactions;
@@ -26,26 +27,27 @@
 @property (nonatomic, readwrite, copy) NSString *email;
 @property (nonatomic, readwrite, copy) NSString *password;
 @property (nonatomic, readwrite, assign) id<CLAPIEngineDelegate> delegate;
+@property (nonatomic, readwrite, retain) NSURL *baseURL;
 @property (nonatomic, readwrite, retain) NSMutableSet *transactions;
 
-//This property makes the engine clear the cookies before making a new connection.  
-//This can be helpful when credentials are "stuck."
+// This property makes the engine clear the cookies before making a new connection.  
+// This can be helpful when credentials are "stuck."
 @property (nonatomic, readwrite, assign) BOOL clearsCookies;
 
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 + (id)engine;
 + (id)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 
-//Returns whether or not the email/password fields are complete.
+// Returns whether or not the email/password fields are complete.
 - (BOOL)isReady;
 
-//Base URL for connections, usually http://my.cl.ly/
-+ (NSURL *)baseURL;
+// Base URL for connections, usually http://my.cl.ly/
++ (NSURL *)defaultBaseURL;
 
-//Cancel the connection with identifier
+// Cancel the connection with identifier
 - (void)cancelConnection:(NSString *)connectionIdentifier;
 
-//Cancel all connections
+// Cancel all connections
 - (void)cancelAllConnections;
 
 - (id)userInfoForConnectionIdentifier:(NSString *)identifier;

@@ -30,7 +30,7 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 
 @implementation CLAPIEngine
 
-@synthesize email = _email, password = _password, delegate = _delegate, clearsCookies = _clearsCookies,
+@synthesize email = _email, password = _password, delegate = _delegate, baseURL = _baseURL, clearsCookies = _clearsCookies,
 			transactions = _transactions;
 
 + (void)initialize
@@ -54,6 +54,7 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 		_delegate      = aDelegate;
 		_transactions  = [[NSMutableSet alloc] init];
 		_clearsCookies = NO;
+        _baseURL       = [[[self class] defaultBaseURL] retain];
 	}
 	return self;
 }
@@ -73,7 +74,7 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 	return (self.email != nil && [self.email length] > 0 && self.password != nil && [self.password length] > 0);
 }
 
-+ (NSURL *)baseURL
++ (NSURL *)defaultBaseURL
 {
     return [NSURL URLWithString:_CLAPIEngineBaseURL];
 }
@@ -752,7 +753,7 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 	if (self.clearsCookies) {
         // Clear cookies
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-		NSArray *cookies = [storage cookiesForURL:[CLAPIEngine baseURL]];
+		NSArray *cookies = [storage cookiesForURL:self.baseURL];
 		for (NSHTTPCookie *currCookie in cookies)
 			[storage deleteCookie:currCookie];
 	}
