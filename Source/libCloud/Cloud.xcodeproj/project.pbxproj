@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B08ABFB1391F7E600325181 /* adapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABDF1391F7E600325181 /* adapter.h */; };
+		4B08ABFC1391F7E600325181 /* nameprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B08ABE01391F7E600325181 /* nameprep.c */; };
+		4B08ABFD1391F7E600325181 /* nameprep.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABE11391F7E600325181 /* nameprep.h */; };
+		4B08ABFE1391F7E600325181 /* puny.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B08ABE21391F7E600325181 /* puny.c */; };
+		4B08ABFF1391F7E600325181 /* puny.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABE31391F7E600325181 /* puny.h */; };
+		4B08AC001391F7E600325181 /* race.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B08ABE41391F7E600325181 /* race.c */; };
+		4B08AC011391F7E600325181 /* race.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABE51391F7E600325181 /* race.h */; };
+		4B08AC021391F7E600325181 /* nameprep_bidi_lcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABE71391F7E600325181 /* nameprep_bidi_lcat.h */; };
+		4B08AC031391F7E600325181 /* nameprep_bidi_randalcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABE81391F7E600325181 /* nameprep_bidi_randalcat.h */; };
+		4B08AC041391F7E600325181 /* nameprep_charmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABE91391F7E600325181 /* nameprep_charmap.h */; };
+		4B08AC051391F7E600325181 /* nameprep_compatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABEA1391F7E600325181 /* nameprep_compatible.h */; };
+		4B08AC061391F7E600325181 /* nameprep_compose.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABEB1391F7E600325181 /* nameprep_compose.h */; };
+		4B08AC071391F7E600325181 /* nameprep_cononical.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABEC1391F7E600325181 /* nameprep_cononical.h */; };
+		4B08AC081391F7E600325181 /* nameprep_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABED1391F7E600325181 /* nameprep_data.h */; };
+		4B08AC091391F7E600325181 /* nameprep_datastructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABEE1391F7E600325181 /* nameprep_datastructures.h */; };
+		4B08AC0A1391F7E600325181 /* nameprep_decompose.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABEF1391F7E600325181 /* nameprep_decompose.h */; };
+		4B08AC0B1391F7E600325181 /* nameprep_lookups.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF01391F7E600325181 /* nameprep_lookups.h */; };
+		4B08AC0C1391F7E600325181 /* nameprep_prohibit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF11391F7E600325181 /* nameprep_prohibit.h */; };
+		4B08AC0D1391F7E600325181 /* nameprep_prohibit_allowunassigned.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF21391F7E600325181 /* nameprep_prohibit_allowunassigned.h */; };
+		4B08AC0E1391F7E600325181 /* toxxx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B08ABF31391F7E600325181 /* toxxx.c */; };
+		4B08AC0F1391F7E600325181 /* toxxx.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF41391F7E600325181 /* toxxx.h */; };
+		4B08AC101391F7E600325181 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B08ABF51391F7E600325181 /* util.c */; };
+		4B08AC111391F7E600325181 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF61391F7E600325181 /* util.h */; };
+		4B08AC121391F7E600325181 /* xcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF71391F7E600325181 /* xcode.h */; };
+		4B08AC131391F7E600325181 /* xcode_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF81391F7E600325181 /* xcode_config.h */; };
+		4B08AC141391F7E600325181 /* NSURL+IFUnicodeURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B08ABF91391F7E600325181 /* NSURL+IFUnicodeURL.h */; };
+		4B08AC151391F7E600325181 /* NSURL+IFUnicodeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B08ABFA1391F7E600325181 /* NSURL+IFUnicodeURL.m */; };
 		4B1AB188130B69B900BD6A95 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1AB187130B69B900BD6A95 /* Cocoa.framework */; };
 		4B1AB319130B69D100BD6A95 /* CLAPIDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB196130B69CF00BD6A95 /* CLAPIDeserializer.h */; };
 		4B1AB31A130B69D100BD6A95 /* CLAPIDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB197130B69CF00BD6A95 /* CLAPIDeserializer.m */; };
@@ -47,33 +74,6 @@
 		4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB530130B6AEA00BD6A95 /* SBJsonWriter.h */; };
 		4B1AB544130B6AEA00BD6A95 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB531130B6AEA00BD6A95 /* SBJsonWriter.m */; };
 		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (); }; };
-		8C3072B51337CC9F00574578 /* adapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072991337CC9F00574578 /* adapter.h */; };
-		8C3072B61337CC9F00574578 /* nameprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C30729A1337CC9F00574578 /* nameprep.c */; };
-		8C3072B71337CC9F00574578 /* nameprep.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C30729B1337CC9F00574578 /* nameprep.h */; };
-		8C3072B81337CC9F00574578 /* puny.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C30729C1337CC9F00574578 /* puny.c */; };
-		8C3072B91337CC9F00574578 /* puny.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C30729D1337CC9F00574578 /* puny.h */; };
-		8C3072BA1337CC9F00574578 /* race.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C30729E1337CC9F00574578 /* race.c */; };
-		8C3072BB1337CC9F00574578 /* race.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C30729F1337CC9F00574578 /* race.h */; };
-		8C3072BC1337CC9F00574578 /* nameprep_bidi_lcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A11337CC9F00574578 /* nameprep_bidi_lcat.h */; };
-		8C3072BD1337CC9F00574578 /* nameprep_bidi_randalcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A21337CC9F00574578 /* nameprep_bidi_randalcat.h */; };
-		8C3072BE1337CC9F00574578 /* nameprep_charmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A31337CC9F00574578 /* nameprep_charmap.h */; };
-		8C3072BF1337CC9F00574578 /* nameprep_compatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A41337CC9F00574578 /* nameprep_compatible.h */; };
-		8C3072C01337CC9F00574578 /* nameprep_compose.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A51337CC9F00574578 /* nameprep_compose.h */; };
-		8C3072C11337CC9F00574578 /* nameprep_cononical.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A61337CC9F00574578 /* nameprep_cononical.h */; };
-		8C3072C21337CC9F00574578 /* nameprep_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A71337CC9F00574578 /* nameprep_data.h */; };
-		8C3072C31337CC9F00574578 /* nameprep_datastructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A81337CC9F00574578 /* nameprep_datastructures.h */; };
-		8C3072C41337CC9F00574578 /* nameprep_decompose.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A91337CC9F00574578 /* nameprep_decompose.h */; };
-		8C3072C51337CC9F00574578 /* nameprep_lookups.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AA1337CC9F00574578 /* nameprep_lookups.h */; };
-		8C3072C61337CC9F00574578 /* nameprep_prohibit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AB1337CC9F00574578 /* nameprep_prohibit.h */; };
-		8C3072C71337CC9F00574578 /* nameprep_prohibit_allowunassigned.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AC1337CC9F00574578 /* nameprep_prohibit_allowunassigned.h */; };
-		8C3072C81337CC9F00574578 /* toxxx.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3072AD1337CC9F00574578 /* toxxx.c */; };
-		8C3072C91337CC9F00574578 /* toxxx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AE1337CC9F00574578 /* toxxx.h */; };
-		8C3072CA1337CC9F00574578 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3072AF1337CC9F00574578 /* util.c */; };
-		8C3072CB1337CC9F00574578 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B01337CC9F00574578 /* util.h */; };
-		8C3072CC1337CC9F00574578 /* xcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B11337CC9F00574578 /* xcode.h */; };
-		8C3072CD1337CC9F00574578 /* xcode_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B21337CC9F00574578 /* xcode_config.h */; };
-		8C3072CE1337CC9F00574578 /* NSURL+IFUnicodeURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B31337CC9F00574578 /* NSURL+IFUnicodeURL.h */; };
-		8C3072CF1337CC9F00574578 /* NSURL+IFUnicodeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3072B41337CC9F00574578 /* NSURL+IFUnicodeURL.m */; };
 		8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */; };
 		8CADDD3313715AFD00CBDDD1 /* CLAPIEngineConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */; };
 		8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDB51DD1310924E00FDF09B /* CLSocket.h */; };
@@ -81,6 +81,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B08ABDF1391F7E600325181 /* adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adapter.h; sourceTree = "<group>"; };
+		4B08ABE01391F7E600325181 /* nameprep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nameprep.c; sourceTree = "<group>"; };
+		4B08ABE11391F7E600325181 /* nameprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep.h; sourceTree = "<group>"; };
+		4B08ABE21391F7E600325181 /* puny.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = puny.c; sourceTree = "<group>"; };
+		4B08ABE31391F7E600325181 /* puny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puny.h; sourceTree = "<group>"; };
+		4B08ABE41391F7E600325181 /* race.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = race.c; sourceTree = "<group>"; };
+		4B08ABE51391F7E600325181 /* race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = race.h; sourceTree = "<group>"; };
+		4B08ABE71391F7E600325181 /* nameprep_bidi_lcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_lcat.h; sourceTree = "<group>"; };
+		4B08ABE81391F7E600325181 /* nameprep_bidi_randalcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_randalcat.h; sourceTree = "<group>"; };
+		4B08ABE91391F7E600325181 /* nameprep_charmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_charmap.h; sourceTree = "<group>"; };
+		4B08ABEA1391F7E600325181 /* nameprep_compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compatible.h; sourceTree = "<group>"; };
+		4B08ABEB1391F7E600325181 /* nameprep_compose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compose.h; sourceTree = "<group>"; };
+		4B08ABEC1391F7E600325181 /* nameprep_cononical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_cononical.h; sourceTree = "<group>"; };
+		4B08ABED1391F7E600325181 /* nameprep_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_data.h; sourceTree = "<group>"; };
+		4B08ABEE1391F7E600325181 /* nameprep_datastructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_datastructures.h; sourceTree = "<group>"; };
+		4B08ABEF1391F7E600325181 /* nameprep_decompose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_decompose.h; sourceTree = "<group>"; };
+		4B08ABF01391F7E600325181 /* nameprep_lookups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_lookups.h; sourceTree = "<group>"; };
+		4B08ABF11391F7E600325181 /* nameprep_prohibit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit.h; sourceTree = "<group>"; };
+		4B08ABF21391F7E600325181 /* nameprep_prohibit_allowunassigned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit_allowunassigned.h; sourceTree = "<group>"; };
+		4B08ABF31391F7E600325181 /* toxxx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = toxxx.c; sourceTree = "<group>"; };
+		4B08ABF41391F7E600325181 /* toxxx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toxxx.h; sourceTree = "<group>"; };
+		4B08ABF51391F7E600325181 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		4B08ABF61391F7E600325181 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		4B08ABF71391F7E600325181 /* xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode.h; sourceTree = "<group>"; };
+		4B08ABF81391F7E600325181 /* xcode_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode_config.h; sourceTree = "<group>"; };
+		4B08ABF91391F7E600325181 /* NSURL+IFUnicodeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IFUnicodeURL.h"; sourceTree = "<group>"; };
+		4B08ABFA1391F7E600325181 /* NSURL+IFUnicodeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IFUnicodeURL.m"; sourceTree = "<group>"; };
 		4B1AB184130B69B900BD6A95 /* libCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCloud.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B1AB187130B69B900BD6A95 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4B1AB18A130B69B900BD6A95 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -126,33 +153,6 @@
 		4B1AB530130B6AEA00BD6A95 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4B1AB531130B6AEA00BD6A95 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		4B1AB553130B6BE200BD6A95 /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
-		8C3072991337CC9F00574578 /* adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adapter.h; sourceTree = "<group>"; };
-		8C30729A1337CC9F00574578 /* nameprep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nameprep.c; sourceTree = "<group>"; };
-		8C30729B1337CC9F00574578 /* nameprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep.h; sourceTree = "<group>"; };
-		8C30729C1337CC9F00574578 /* puny.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = puny.c; sourceTree = "<group>"; };
-		8C30729D1337CC9F00574578 /* puny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puny.h; sourceTree = "<group>"; };
-		8C30729E1337CC9F00574578 /* race.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = race.c; sourceTree = "<group>"; };
-		8C30729F1337CC9F00574578 /* race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = race.h; sourceTree = "<group>"; };
-		8C3072A11337CC9F00574578 /* nameprep_bidi_lcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_lcat.h; sourceTree = "<group>"; };
-		8C3072A21337CC9F00574578 /* nameprep_bidi_randalcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_randalcat.h; sourceTree = "<group>"; };
-		8C3072A31337CC9F00574578 /* nameprep_charmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_charmap.h; sourceTree = "<group>"; };
-		8C3072A41337CC9F00574578 /* nameprep_compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compatible.h; sourceTree = "<group>"; };
-		8C3072A51337CC9F00574578 /* nameprep_compose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compose.h; sourceTree = "<group>"; };
-		8C3072A61337CC9F00574578 /* nameprep_cononical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_cononical.h; sourceTree = "<group>"; };
-		8C3072A71337CC9F00574578 /* nameprep_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_data.h; sourceTree = "<group>"; };
-		8C3072A81337CC9F00574578 /* nameprep_datastructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_datastructures.h; sourceTree = "<group>"; };
-		8C3072A91337CC9F00574578 /* nameprep_decompose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_decompose.h; sourceTree = "<group>"; };
-		8C3072AA1337CC9F00574578 /* nameprep_lookups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_lookups.h; sourceTree = "<group>"; };
-		8C3072AB1337CC9F00574578 /* nameprep_prohibit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit.h; sourceTree = "<group>"; };
-		8C3072AC1337CC9F00574578 /* nameprep_prohibit_allowunassigned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit_allowunassigned.h; sourceTree = "<group>"; };
-		8C3072AD1337CC9F00574578 /* toxxx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = toxxx.c; sourceTree = "<group>"; };
-		8C3072AE1337CC9F00574578 /* toxxx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toxxx.h; sourceTree = "<group>"; };
-		8C3072AF1337CC9F00574578 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
-		8C3072B01337CC9F00574578 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
-		8C3072B11337CC9F00574578 /* xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode.h; sourceTree = "<group>"; };
-		8C3072B21337CC9F00574578 /* xcode_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode_config.h; sourceTree = "<group>"; };
-		8C3072B31337CC9F00574578 /* NSURL+IFUnicodeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IFUnicodeURL.h"; sourceTree = "<group>"; };
-		8C3072B41337CC9F00574578 /* NSURL+IFUnicodeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IFUnicodeURL.m"; sourceTree = "<group>"; };
 		8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
 		8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAPIEngineConstants.m; sourceTree = "<group>"; };
 		8CDB51DD1310924E00FDF09B /* CLSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSocket.h; sourceTree = "<group>"; };
@@ -171,6 +171,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B08ABDD1391F7E600325181 /* IFUnicodeURL */ = {
+			isa = PBXGroup;
+			children = (
+				4B08ABDE1391F7E600325181 /* IDNSDK */,
+				4B08ABF91391F7E600325181 /* NSURL+IFUnicodeURL.h */,
+				4B08ABFA1391F7E600325181 /* NSURL+IFUnicodeURL.m */,
+			);
+			name = IFUnicodeURL;
+			path = IFUnicodeURL/IFUnicodeURL;
+			sourceTree = "<group>";
+		};
+		4B08ABDE1391F7E600325181 /* IDNSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4B08ABDF1391F7E600325181 /* adapter.h */,
+				4B08ABE01391F7E600325181 /* nameprep.c */,
+				4B08ABE11391F7E600325181 /* nameprep.h */,
+				4B08ABE21391F7E600325181 /* puny.c */,
+				4B08ABE31391F7E600325181 /* puny.h */,
+				4B08ABE41391F7E600325181 /* race.c */,
+				4B08ABE51391F7E600325181 /* race.h */,
+				4B08ABE61391F7E600325181 /* staticdata */,
+				4B08ABF31391F7E600325181 /* toxxx.c */,
+				4B08ABF41391F7E600325181 /* toxxx.h */,
+				4B08ABF51391F7E600325181 /* util.c */,
+				4B08ABF61391F7E600325181 /* util.h */,
+				4B08ABF71391F7E600325181 /* xcode.h */,
+				4B08ABF81391F7E600325181 /* xcode_config.h */,
+			);
+			path = IDNSDK;
+			sourceTree = "<group>";
+		};
+		4B08ABE61391F7E600325181 /* staticdata */ = {
+			isa = PBXGroup;
+			children = (
+				4B08ABE71391F7E600325181 /* nameprep_bidi_lcat.h */,
+				4B08ABE81391F7E600325181 /* nameprep_bidi_randalcat.h */,
+				4B08ABE91391F7E600325181 /* nameprep_charmap.h */,
+				4B08ABEA1391F7E600325181 /* nameprep_compatible.h */,
+				4B08ABEB1391F7E600325181 /* nameprep_compose.h */,
+				4B08ABEC1391F7E600325181 /* nameprep_cononical.h */,
+				4B08ABED1391F7E600325181 /* nameprep_data.h */,
+				4B08ABEE1391F7E600325181 /* nameprep_datastructures.h */,
+				4B08ABEF1391F7E600325181 /* nameprep_decompose.h */,
+				4B08ABF01391F7E600325181 /* nameprep_lookups.h */,
+				4B08ABF11391F7E600325181 /* nameprep_prohibit.h */,
+				4B08ABF21391F7E600325181 /* nameprep_prohibit_allowunassigned.h */,
+			);
+			path = staticdata;
+			sourceTree = "<group>";
+		};
 		4B1AB179130B69B900BD6A95 = {
 			isa = PBXGroup;
 			children = (
@@ -275,7 +326,7 @@
 		4B1AB1AC130B69CF00BD6A95 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				8C3072971337CC9F00574578 /* IFUnicodeURL */,
+				4B08ABDD1391F7E600325181 /* IFUnicodeURL */,
 				4B1AB51E130B6AEA00BD6A95 /* JSON */,
 			);
 			path = "Third Party";
@@ -308,57 +359,6 @@
 			path = JSON/Classes;
 			sourceTree = "<group>";
 		};
-		8C3072971337CC9F00574578 /* IFUnicodeURL */ = {
-			isa = PBXGroup;
-			children = (
-				8C3072981337CC9F00574578 /* IDNSDK */,
-				8C3072B31337CC9F00574578 /* NSURL+IFUnicodeURL.h */,
-				8C3072B41337CC9F00574578 /* NSURL+IFUnicodeURL.m */,
-			);
-			name = IFUnicodeURL;
-			path = IFUnicodeURL/IFUnicodeURL;
-			sourceTree = "<group>";
-		};
-		8C3072981337CC9F00574578 /* IDNSDK */ = {
-			isa = PBXGroup;
-			children = (
-				8C3072991337CC9F00574578 /* adapter.h */,
-				8C30729A1337CC9F00574578 /* nameprep.c */,
-				8C30729B1337CC9F00574578 /* nameprep.h */,
-				8C30729C1337CC9F00574578 /* puny.c */,
-				8C30729D1337CC9F00574578 /* puny.h */,
-				8C30729E1337CC9F00574578 /* race.c */,
-				8C30729F1337CC9F00574578 /* race.h */,
-				8C3072A01337CC9F00574578 /* staticdata */,
-				8C3072AD1337CC9F00574578 /* toxxx.c */,
-				8C3072AE1337CC9F00574578 /* toxxx.h */,
-				8C3072AF1337CC9F00574578 /* util.c */,
-				8C3072B01337CC9F00574578 /* util.h */,
-				8C3072B11337CC9F00574578 /* xcode.h */,
-				8C3072B21337CC9F00574578 /* xcode_config.h */,
-			);
-			path = IDNSDK;
-			sourceTree = "<group>";
-		};
-		8C3072A01337CC9F00574578 /* staticdata */ = {
-			isa = PBXGroup;
-			children = (
-				8C3072A11337CC9F00574578 /* nameprep_bidi_lcat.h */,
-				8C3072A21337CC9F00574578 /* nameprep_bidi_randalcat.h */,
-				8C3072A31337CC9F00574578 /* nameprep_charmap.h */,
-				8C3072A41337CC9F00574578 /* nameprep_compatible.h */,
-				8C3072A51337CC9F00574578 /* nameprep_compose.h */,
-				8C3072A61337CC9F00574578 /* nameprep_cononical.h */,
-				8C3072A71337CC9F00574578 /* nameprep_data.h */,
-				8C3072A81337CC9F00574578 /* nameprep_datastructures.h */,
-				8C3072A91337CC9F00574578 /* nameprep_decompose.h */,
-				8C3072AA1337CC9F00574578 /* nameprep_lookups.h */,
-				8C3072AB1337CC9F00574578 /* nameprep_prohibit.h */,
-				8C3072AC1337CC9F00574578 /* nameprep_prohibit_allowunassigned.h */,
-			);
-			path = staticdata;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -388,28 +388,28 @@
 				4B1AB541130B6AEA00BD6A95 /* SBJsonTokeniser.h in Headers */,
 				4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */,
 				8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */,
-				8C3072B51337CC9F00574578 /* adapter.h in Headers */,
-				8C3072B71337CC9F00574578 /* nameprep.h in Headers */,
-				8C3072B91337CC9F00574578 /* puny.h in Headers */,
-				8C3072BB1337CC9F00574578 /* race.h in Headers */,
-				8C3072BC1337CC9F00574578 /* nameprep_bidi_lcat.h in Headers */,
-				8C3072BD1337CC9F00574578 /* nameprep_bidi_randalcat.h in Headers */,
-				8C3072BE1337CC9F00574578 /* nameprep_charmap.h in Headers */,
-				8C3072BF1337CC9F00574578 /* nameprep_compatible.h in Headers */,
-				8C3072C01337CC9F00574578 /* nameprep_compose.h in Headers */,
-				8C3072C11337CC9F00574578 /* nameprep_cononical.h in Headers */,
-				8C3072C21337CC9F00574578 /* nameprep_data.h in Headers */,
-				8C3072C31337CC9F00574578 /* nameprep_datastructures.h in Headers */,
-				8C3072C41337CC9F00574578 /* nameprep_decompose.h in Headers */,
-				8C3072C51337CC9F00574578 /* nameprep_lookups.h in Headers */,
-				8C3072C61337CC9F00574578 /* nameprep_prohibit.h in Headers */,
-				8C3072C71337CC9F00574578 /* nameprep_prohibit_allowunassigned.h in Headers */,
-				8C3072C91337CC9F00574578 /* toxxx.h in Headers */,
-				8C3072CB1337CC9F00574578 /* util.h in Headers */,
-				8C3072CC1337CC9F00574578 /* xcode.h in Headers */,
-				8C3072CD1337CC9F00574578 /* xcode_config.h in Headers */,
-				8C3072CE1337CC9F00574578 /* NSURL+IFUnicodeURL.h in Headers */,
 				8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */,
+				4B08ABFB1391F7E600325181 /* adapter.h in Headers */,
+				4B08ABFD1391F7E600325181 /* nameprep.h in Headers */,
+				4B08ABFF1391F7E600325181 /* puny.h in Headers */,
+				4B08AC011391F7E600325181 /* race.h in Headers */,
+				4B08AC021391F7E600325181 /* nameprep_bidi_lcat.h in Headers */,
+				4B08AC031391F7E600325181 /* nameprep_bidi_randalcat.h in Headers */,
+				4B08AC041391F7E600325181 /* nameprep_charmap.h in Headers */,
+				4B08AC051391F7E600325181 /* nameprep_compatible.h in Headers */,
+				4B08AC061391F7E600325181 /* nameprep_compose.h in Headers */,
+				4B08AC071391F7E600325181 /* nameprep_cononical.h in Headers */,
+				4B08AC081391F7E600325181 /* nameprep_data.h in Headers */,
+				4B08AC091391F7E600325181 /* nameprep_datastructures.h in Headers */,
+				4B08AC0A1391F7E600325181 /* nameprep_decompose.h in Headers */,
+				4B08AC0B1391F7E600325181 /* nameprep_lookups.h in Headers */,
+				4B08AC0C1391F7E600325181 /* nameprep_prohibit.h in Headers */,
+				4B08AC0D1391F7E600325181 /* nameprep_prohibit_allowunassigned.h in Headers */,
+				4B08AC0F1391F7E600325181 /* toxxx.h in Headers */,
+				4B08AC111391F7E600325181 /* util.h in Headers */,
+				4B08AC121391F7E600325181 /* xcode.h in Headers */,
+				4B08AC131391F7E600325181 /* xcode_config.h in Headers */,
+				4B08AC141391F7E600325181 /* NSURL+IFUnicodeURL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,13 +483,13 @@
 				4B1AB542130B6AEA00BD6A95 /* SBJsonTokeniser.m in Sources */,
 				4B1AB544130B6AEA00BD6A95 /* SBJsonWriter.m in Sources */,
 				8CDB51E01310924E00FDF09B /* CLSocket.m in Sources */,
-				8C3072B61337CC9F00574578 /* nameprep.c in Sources */,
-				8C3072B81337CC9F00574578 /* puny.c in Sources */,
-				8C3072BA1337CC9F00574578 /* race.c in Sources */,
-				8C3072C81337CC9F00574578 /* toxxx.c in Sources */,
-				8C3072CA1337CC9F00574578 /* util.c in Sources */,
-				8C3072CF1337CC9F00574578 /* NSURL+IFUnicodeURL.m in Sources */,
 				8CADDD3313715AFD00CBDDD1 /* CLAPIEngineConstants.m in Sources */,
+				4B08ABFC1391F7E600325181 /* nameprep.c in Sources */,
+				4B08ABFE1391F7E600325181 /* puny.c in Sources */,
+				4B08AC001391F7E600325181 /* race.c in Sources */,
+				4B08AC0E1391F7E600325181 /* toxxx.c in Sources */,
+				4B08AC101391F7E600325181 /* util.c in Sources */,
+				4B08AC151391F7E600325181 /* NSURL+IFUnicodeURL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
