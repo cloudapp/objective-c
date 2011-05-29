@@ -36,7 +36,7 @@
 			break;
 		case CLWebItemTypeUnknown:
 		default:
-			retString = @"other";
+			retString = @"unknown";
 			break;
 	}
 	return retString;
