@@ -1,3 +1,6 @@
 [submodule "Source/libCloud/Cloud/Third Party/JSON"]
 	path = Source/libCloud/Cloud/Third Party/JSON
 	url = https://github.com/stig/json-framework.git
+[submodule "Source/libCloud/Cloud/Third Party/IFUnicodeURL"]
+	path = Source/libCloud/Cloud/Third Party/IFUnicodeURL
+	url = git://github.com/BigZaphod/IFUnicodeURL.git

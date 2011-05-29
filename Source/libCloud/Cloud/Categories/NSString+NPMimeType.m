@@ -11,10 +11,11 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #endif
 
+
 @implementation NSString (NPMimeType)
 
-- (NSString *)mimeType {
-	
+- (NSString *)mimeType
+{	
 	NSString *pathExtension = [self pathExtension];
 	if (pathExtension == nil || [pathExtension isEqualToString:@""])
 		return @"application/octet-stream";
@@ -30,7 +31,6 @@
 	}
 	
 	CFRelease(UTI);
-	
     return [(NSString *)registeredType autorelease];
 }
 

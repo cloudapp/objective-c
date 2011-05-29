@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CLAPIEngineConstants.h"
 
+
 @interface CLWebItem : NSObject<NSCopying, NSCoding> {
 	NSString *_name;
 	CLWebItemType _type;
@@ -45,8 +46,8 @@
 #else
 @property (nonatomic, readwrite, copy) NSImage *icon;
 #endif
-@property (nonatomic, readwrite, assign) BOOL trashed;
-@property (nonatomic, readwrite, assign, getter=isPrivate) BOOL private;
+@property (nonatomic, readwrite, assign, getter = isTrashed) BOOL trashed;
+@property (nonatomic, readwrite, assign, getter = isPrivate) BOOL private;
 @property (nonatomic, readwrite, retain) NSDate *createdAt;
 @property (nonatomic, readwrite, retain) NSDate *updatedAt;
 @property (nonatomic, readwrite, retain) NSDate *deletedAt;

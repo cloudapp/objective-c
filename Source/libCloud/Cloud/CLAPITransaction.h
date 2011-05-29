@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CLAPIEngineConstants.h"
 
+
 @interface CLAPITransaction : NSObject {
 	NSURLRequest *_request;
 	NSURLConnection *_connection;

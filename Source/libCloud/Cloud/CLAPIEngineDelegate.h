@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class CLWebItem, CLAPITransaction, CLAccount;
-@protocol CLAPIEngineDelegate <NSObject>
-@optional
 
+@class CLWebItem, CLAPITransaction, CLAccount;
+
+
+@protocol CLAPIEngineDelegate <NSObject>
+
+@optional
 - (void)requestDidSucceedWithConnectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)requestDidFailWithError:(NSError *)error connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 
@@ -23,11 +26,15 @@
 - (void)accountUpdateDidSucceed:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)itemUpdateDidSucceed:(CLWebItem *)item connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)itemDeletionDidSucceed:(CLWebItem *)item connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
+- (void)itemRestorationDidSucceed:(CLWebItem *)item connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 
 - (void)itemInformationRetrievalSucceeded:(CLWebItem *)item connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)accountInformationRetrievalSucceeded:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)itemListRetrievalSucceeded:(NSArray *)items connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 
 - (void)accountCreationSucceeded:(CLAccount *)newAccount connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
+
+- (void)storeProductInformationRetrievalSucceeded:(NSArray *)productIdentifiers connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
+- (void)storeReceiptRedemptionSucceeded:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 
 @end

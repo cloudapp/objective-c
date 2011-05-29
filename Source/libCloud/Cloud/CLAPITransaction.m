@@ -11,28 +11,39 @@
 
 @implementation CLAPITransaction
 
-@synthesize request = _request, connection = _connection, receivedData = _receivedData, requestType = _requestType, 
-			userInfo = _userInfo, identifier = _identifier, response = _response, internalContext = _internalContext;
+@synthesize request = _request, connection = _connection, receivedData = _receivedData,
+            requestType = _requestType,  userInfo = _userInfo, identifier = _identifier,
+            response = _response, internalContext = _internalContext;
 
-- (id)init {
++ (id)transaction
+{
+	return [[[[self class] alloc] init] autorelease];
+}
+
+- (id)init
+{
 	if ((self = [super init])) {
-		self.receivedData = [NSMutableData data];
+		_receivedData = [[NSMutableData alloc] init];
 	}
 	return self;
 }
 
-+ (id)transaction {
-	return [[[[self class] alloc] init] autorelease];
-}
-
-- (void)dealloc {
-    self.request = nil;
-	self.response = nil;
-    self.connection = nil;
-    self.receivedData = nil;
-    self.userInfo = nil;
-	self.identifier = nil;
-	self.internalContext = nil;
+- (void)dealloc
+{
+    [_request release];
+    _request = nil;
+    [_response release];
+	_response = nil;
+    [_connection release];
+    _connection = nil;
+    [_receivedData release];
+    _receivedData = nil;
+    [_userInfo release];
+    _userInfo = nil;
+    [_identifier release];
+	_identifier = nil;
+    [_internalContext release];
+	_internalContext = nil;
 	
     [super dealloc];
 }

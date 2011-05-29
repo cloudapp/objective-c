@@ -12,6 +12,7 @@
 #import "CLWebItem.h"
 #import "CLAccount.h"
 
+
 @interface CLAPIEngine : NSObject {
 	NSString *_email;
 	NSString *_password;
@@ -38,6 +39,9 @@
 //Returns whether or not the email/password fields are complete.
 - (BOOL)isReady;
 
+//Base URL for connections, usually http://my.cl.ly/
++ (NSURL *)baseURL;
+
 //Cancel the connection with identifier
 - (void)cancelConnection:(NSString *)connectionIdentifier;
 
@@ -47,7 +51,7 @@
 - (id)userInfoForConnectionIdentifier:(NSString *)identifier;
 - (CLAPIRequestType)requestTypeForConnectionIdentifier:(NSString *)identifier;
 
-- (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword userInfo:(id)userInfo;
+- (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo;
 - (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
 - (NSString *)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
 - (NSString *)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo;
@@ -59,8 +63,13 @@
 - (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo;
 - (NSString *)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo;
 - (NSString *)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo;
+- (NSString *)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo;
+- (NSString *)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo;
 - (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
 - (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
 - (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo;
+
+- (NSString *)getStoreProductsWithUserInfo:(id)userInfo;
+- (NSString *)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo;
 
 @end

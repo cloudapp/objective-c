@@ -20,7 +20,6 @@
 		4B1AB322130B69D100BD6A95 /* NSString+NPMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A0130B69CF00BD6A95 /* NSString+NPMimeType.m */; };
 		4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */; };
 		4B1AB324130B69D100BD6A95 /* CLAPIEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A2130B69CF00BD6A95 /* CLAPIEngine.m */; };
-		4B1AB325130B69D100BD6A95 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A3130B69CF00BD6A95 /* CLAPIEngineConstants.h */; };
 		4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */; };
 		4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A5130B69CF00BD6A95 /* CLAPITransaction.h */; };
 		4B1AB328130B69D100BD6A95 /* CLAPITransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A6130B69CF00BD6A95 /* CLAPITransaction.m */; };
@@ -28,33 +27,6 @@
 		4B1AB32A130B69D100BD6A95 /* CLAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A9130B69CF00BD6A95 /* CLAccount.m */; };
 		4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */; };
 		4B1AB32C130B69D100BD6A95 /* CLWebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1AB130B69CF00BD6A95 /* CLWebItem.m */; };
-		4B1AB32D130B69D100BD6A95 /* adapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1AF130B69CF00BD6A95 /* adapter.h */; };
-		4B1AB32E130B69D100BD6A95 /* nameprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1B0130B69CF00BD6A95 /* nameprep.c */; };
-		4B1AB32F130B69D100BD6A95 /* nameprep.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1B1130B69CF00BD6A95 /* nameprep.h */; };
-		4B1AB330130B69D100BD6A95 /* puny.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1B2130B69CF00BD6A95 /* puny.c */; };
-		4B1AB331130B69D100BD6A95 /* puny.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1B3130B69CF00BD6A95 /* puny.h */; };
-		4B1AB332130B69D100BD6A95 /* race.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1B4130B69CF00BD6A95 /* race.c */; };
-		4B1AB333130B69D100BD6A95 /* race.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1B5130B69CF00BD6A95 /* race.h */; };
-		4B1AB334130B69D100BD6A95 /* nameprep_bidi_lcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1B7130B69CF00BD6A95 /* nameprep_bidi_lcat.h */; };
-		4B1AB335130B69D100BD6A95 /* nameprep_bidi_randalcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1B8130B69CF00BD6A95 /* nameprep_bidi_randalcat.h */; };
-		4B1AB336130B69D100BD6A95 /* nameprep_charmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1B9130B69CF00BD6A95 /* nameprep_charmap.h */; };
-		4B1AB337130B69D100BD6A95 /* nameprep_compatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1BA130B69CF00BD6A95 /* nameprep_compatible.h */; };
-		4B1AB338130B69D100BD6A95 /* nameprep_compose.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1BB130B69CF00BD6A95 /* nameprep_compose.h */; };
-		4B1AB339130B69D100BD6A95 /* nameprep_cononical.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1BC130B69CF00BD6A95 /* nameprep_cononical.h */; };
-		4B1AB33A130B69D100BD6A95 /* nameprep_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1BD130B69CF00BD6A95 /* nameprep_data.h */; };
-		4B1AB33B130B69D100BD6A95 /* nameprep_datastructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1BE130B69CF00BD6A95 /* nameprep_datastructures.h */; };
-		4B1AB33C130B69D100BD6A95 /* nameprep_decompose.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1BF130B69CF00BD6A95 /* nameprep_decompose.h */; };
-		4B1AB33D130B69D100BD6A95 /* nameprep_lookups.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C0130B69CF00BD6A95 /* nameprep_lookups.h */; };
-		4B1AB33E130B69D100BD6A95 /* nameprep_prohibit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C1130B69CF00BD6A95 /* nameprep_prohibit.h */; };
-		4B1AB33F130B69D100BD6A95 /* nameprep_prohibit_allowunassigned.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C2130B69CF00BD6A95 /* nameprep_prohibit_allowunassigned.h */; };
-		4B1AB340130B69D100BD6A95 /* toxxx.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1C3130B69CF00BD6A95 /* toxxx.c */; };
-		4B1AB341130B69D100BD6A95 /* toxxx.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C4130B69CF00BD6A95 /* toxxx.h */; };
-		4B1AB342130B69D100BD6A95 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1C5130B69CF00BD6A95 /* util.c */; };
-		4B1AB343130B69D100BD6A95 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C6130B69CF00BD6A95 /* util.h */; };
-		4B1AB344130B69D100BD6A95 /* xcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C7130B69CF00BD6A95 /* xcode.h */; };
-		4B1AB345130B69D100BD6A95 /* xcode_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C8130B69CF00BD6A95 /* xcode_config.h */; };
-		4B1AB346130B69D100BD6A95 /* NSURL+IFUnicodeURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1C9130B69CF00BD6A95 /* NSURL+IFUnicodeURL.h */; };
-		4B1AB347130B69D100BD6A95 /* NSURL+IFUnicodeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1CA130B69CF00BD6A95 /* NSURL+IFUnicodeURL.m */; };
 		4B1AB532130B6AEA00BD6A95 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB51F130B6AEA00BD6A95 /* JSON.h */; };
 		4B1AB533130B6AEA00BD6A95 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB520130B6AEA00BD6A95 /* NSObject+JSON.h */; };
 		4B1AB534130B6AEA00BD6A95 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB521130B6AEA00BD6A95 /* NSObject+JSON.m */; };
@@ -74,7 +46,38 @@
 		4B1AB542130B6AEA00BD6A95 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB52F130B6AEA00BD6A95 /* SBJsonTokeniser.m */; };
 		4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB530130B6AEA00BD6A95 /* SBJsonWriter.h */; };
 		4B1AB544130B6AEA00BD6A95 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB531130B6AEA00BD6A95 /* SBJsonWriter.m */; };
-		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (); }; };
+		8C3072B51337CC9F00574578 /* adapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072991337CC9F00574578 /* adapter.h */; };
+		8C3072B61337CC9F00574578 /* nameprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C30729A1337CC9F00574578 /* nameprep.c */; };
+		8C3072B71337CC9F00574578 /* nameprep.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C30729B1337CC9F00574578 /* nameprep.h */; };
+		8C3072B81337CC9F00574578 /* puny.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C30729C1337CC9F00574578 /* puny.c */; };
+		8C3072B91337CC9F00574578 /* puny.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C30729D1337CC9F00574578 /* puny.h */; };
+		8C3072BA1337CC9F00574578 /* race.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C30729E1337CC9F00574578 /* race.c */; };
+		8C3072BB1337CC9F00574578 /* race.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C30729F1337CC9F00574578 /* race.h */; };
+		8C3072BC1337CC9F00574578 /* nameprep_bidi_lcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A11337CC9F00574578 /* nameprep_bidi_lcat.h */; };
+		8C3072BD1337CC9F00574578 /* nameprep_bidi_randalcat.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A21337CC9F00574578 /* nameprep_bidi_randalcat.h */; };
+		8C3072BE1337CC9F00574578 /* nameprep_charmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A31337CC9F00574578 /* nameprep_charmap.h */; };
+		8C3072BF1337CC9F00574578 /* nameprep_compatible.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A41337CC9F00574578 /* nameprep_compatible.h */; };
+		8C3072C01337CC9F00574578 /* nameprep_compose.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A51337CC9F00574578 /* nameprep_compose.h */; };
+		8C3072C11337CC9F00574578 /* nameprep_cononical.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A61337CC9F00574578 /* nameprep_cononical.h */; };
+		8C3072C21337CC9F00574578 /* nameprep_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A71337CC9F00574578 /* nameprep_data.h */; };
+		8C3072C31337CC9F00574578 /* nameprep_datastructures.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A81337CC9F00574578 /* nameprep_datastructures.h */; };
+		8C3072C41337CC9F00574578 /* nameprep_decompose.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072A91337CC9F00574578 /* nameprep_decompose.h */; };
+		8C3072C51337CC9F00574578 /* nameprep_lookups.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AA1337CC9F00574578 /* nameprep_lookups.h */; };
+		8C3072C61337CC9F00574578 /* nameprep_prohibit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AB1337CC9F00574578 /* nameprep_prohibit.h */; };
+		8C3072C71337CC9F00574578 /* nameprep_prohibit_allowunassigned.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AC1337CC9F00574578 /* nameprep_prohibit_allowunassigned.h */; };
+		8C3072C81337CC9F00574578 /* toxxx.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3072AD1337CC9F00574578 /* toxxx.c */; };
+		8C3072C91337CC9F00574578 /* toxxx.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072AE1337CC9F00574578 /* toxxx.h */; };
+		8C3072CA1337CC9F00574578 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 8C3072AF1337CC9F00574578 /* util.c */; };
+		8C3072CB1337CC9F00574578 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B01337CC9F00574578 /* util.h */; };
+		8C3072CC1337CC9F00574578 /* xcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B11337CC9F00574578 /* xcode.h */; };
+		8C3072CD1337CC9F00574578 /* xcode_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B21337CC9F00574578 /* xcode_config.h */; };
+		8C3072CE1337CC9F00574578 /* NSURL+IFUnicodeURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C3072B31337CC9F00574578 /* NSURL+IFUnicodeURL.h */; };
+		8C3072CF1337CC9F00574578 /* NSURL+IFUnicodeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3072B41337CC9F00574578 /* NSURL+IFUnicodeURL.m */; };
+		8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */; };
+		8CADDD3313715AFD00CBDDD1 /* CLAPIEngineConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */; };
+		8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDB51DD1310924E00FDF09B /* CLSocket.h */; };
+		8CDB51E01310924E00FDF09B /* CLSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDB51DE1310924E00FDF09B /* CLSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +99,6 @@
 		4B1AB1A0130B69CF00BD6A95 /* NSString+NPMimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NPMimeType.m"; sourceTree = "<group>"; };
 		4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
 		4B1AB1A2130B69CF00BD6A95 /* CLAPIEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAPIEngine.m; sourceTree = "<group>"; };
-		4B1AB1A3130B69CF00BD6A95 /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
 		4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineDelegate.h; sourceTree = "<group>"; };
 		4B1AB1A5130B69CF00BD6A95 /* CLAPITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPITransaction.h; sourceTree = "<group>"; };
 		4B1AB1A6130B69CF00BD6A95 /* CLAPITransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAPITransaction.m; sourceTree = "<group>"; };
@@ -104,33 +106,6 @@
 		4B1AB1A9130B69CF00BD6A95 /* CLAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAccount.m; sourceTree = "<group>"; };
 		4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebItem.h; sourceTree = "<group>"; };
 		4B1AB1AB130B69CF00BD6A95 /* CLWebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWebItem.m; sourceTree = "<group>"; };
-		4B1AB1AF130B69CF00BD6A95 /* adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adapter.h; sourceTree = "<group>"; };
-		4B1AB1B0130B69CF00BD6A95 /* nameprep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nameprep.c; sourceTree = "<group>"; };
-		4B1AB1B1130B69CF00BD6A95 /* nameprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep.h; sourceTree = "<group>"; };
-		4B1AB1B2130B69CF00BD6A95 /* puny.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = puny.c; sourceTree = "<group>"; };
-		4B1AB1B3130B69CF00BD6A95 /* puny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puny.h; sourceTree = "<group>"; };
-		4B1AB1B4130B69CF00BD6A95 /* race.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = race.c; sourceTree = "<group>"; };
-		4B1AB1B5130B69CF00BD6A95 /* race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = race.h; sourceTree = "<group>"; };
-		4B1AB1B7130B69CF00BD6A95 /* nameprep_bidi_lcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_lcat.h; sourceTree = "<group>"; };
-		4B1AB1B8130B69CF00BD6A95 /* nameprep_bidi_randalcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_randalcat.h; sourceTree = "<group>"; };
-		4B1AB1B9130B69CF00BD6A95 /* nameprep_charmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_charmap.h; sourceTree = "<group>"; };
-		4B1AB1BA130B69CF00BD6A95 /* nameprep_compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compatible.h; sourceTree = "<group>"; };
-		4B1AB1BB130B69CF00BD6A95 /* nameprep_compose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compose.h; sourceTree = "<group>"; };
-		4B1AB1BC130B69CF00BD6A95 /* nameprep_cononical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_cononical.h; sourceTree = "<group>"; };
-		4B1AB1BD130B69CF00BD6A95 /* nameprep_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_data.h; sourceTree = "<group>"; };
-		4B1AB1BE130B69CF00BD6A95 /* nameprep_datastructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_datastructures.h; sourceTree = "<group>"; };
-		4B1AB1BF130B69CF00BD6A95 /* nameprep_decompose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_decompose.h; sourceTree = "<group>"; };
-		4B1AB1C0130B69CF00BD6A95 /* nameprep_lookups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_lookups.h; sourceTree = "<group>"; };
-		4B1AB1C1130B69CF00BD6A95 /* nameprep_prohibit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit.h; sourceTree = "<group>"; };
-		4B1AB1C2130B69CF00BD6A95 /* nameprep_prohibit_allowunassigned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit_allowunassigned.h; sourceTree = "<group>"; };
-		4B1AB1C3130B69CF00BD6A95 /* toxxx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = toxxx.c; sourceTree = "<group>"; };
-		4B1AB1C4130B69CF00BD6A95 /* toxxx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toxxx.h; sourceTree = "<group>"; };
-		4B1AB1C5130B69CF00BD6A95 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
-		4B1AB1C6130B69CF00BD6A95 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
-		4B1AB1C7130B69CF00BD6A95 /* xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode.h; sourceTree = "<group>"; };
-		4B1AB1C8130B69CF00BD6A95 /* xcode_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode_config.h; sourceTree = "<group>"; };
-		4B1AB1C9130B69CF00BD6A95 /* NSURL+IFUnicodeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IFUnicodeURL.h"; sourceTree = "<group>"; };
-		4B1AB1CA130B69CF00BD6A95 /* NSURL+IFUnicodeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IFUnicodeURL.m"; sourceTree = "<group>"; };
 		4B1AB51F130B6AEA00BD6A95 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		4B1AB520130B6AEA00BD6A95 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
 		4B1AB521130B6AEA00BD6A95 /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
@@ -151,6 +126,37 @@
 		4B1AB530130B6AEA00BD6A95 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4B1AB531130B6AEA00BD6A95 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		4B1AB553130B6BE200BD6A95 /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
+		8C3072991337CC9F00574578 /* adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adapter.h; sourceTree = "<group>"; };
+		8C30729A1337CC9F00574578 /* nameprep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nameprep.c; sourceTree = "<group>"; };
+		8C30729B1337CC9F00574578 /* nameprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep.h; sourceTree = "<group>"; };
+		8C30729C1337CC9F00574578 /* puny.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = puny.c; sourceTree = "<group>"; };
+		8C30729D1337CC9F00574578 /* puny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puny.h; sourceTree = "<group>"; };
+		8C30729E1337CC9F00574578 /* race.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = race.c; sourceTree = "<group>"; };
+		8C30729F1337CC9F00574578 /* race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = race.h; sourceTree = "<group>"; };
+		8C3072A11337CC9F00574578 /* nameprep_bidi_lcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_lcat.h; sourceTree = "<group>"; };
+		8C3072A21337CC9F00574578 /* nameprep_bidi_randalcat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_bidi_randalcat.h; sourceTree = "<group>"; };
+		8C3072A31337CC9F00574578 /* nameprep_charmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_charmap.h; sourceTree = "<group>"; };
+		8C3072A41337CC9F00574578 /* nameprep_compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compatible.h; sourceTree = "<group>"; };
+		8C3072A51337CC9F00574578 /* nameprep_compose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_compose.h; sourceTree = "<group>"; };
+		8C3072A61337CC9F00574578 /* nameprep_cononical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_cononical.h; sourceTree = "<group>"; };
+		8C3072A71337CC9F00574578 /* nameprep_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_data.h; sourceTree = "<group>"; };
+		8C3072A81337CC9F00574578 /* nameprep_datastructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_datastructures.h; sourceTree = "<group>"; };
+		8C3072A91337CC9F00574578 /* nameprep_decompose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_decompose.h; sourceTree = "<group>"; };
+		8C3072AA1337CC9F00574578 /* nameprep_lookups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_lookups.h; sourceTree = "<group>"; };
+		8C3072AB1337CC9F00574578 /* nameprep_prohibit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit.h; sourceTree = "<group>"; };
+		8C3072AC1337CC9F00574578 /* nameprep_prohibit_allowunassigned.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nameprep_prohibit_allowunassigned.h; sourceTree = "<group>"; };
+		8C3072AD1337CC9F00574578 /* toxxx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = toxxx.c; sourceTree = "<group>"; };
+		8C3072AE1337CC9F00574578 /* toxxx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toxxx.h; sourceTree = "<group>"; };
+		8C3072AF1337CC9F00574578 /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		8C3072B01337CC9F00574578 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		8C3072B11337CC9F00574578 /* xcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode.h; sourceTree = "<group>"; };
+		8C3072B21337CC9F00574578 /* xcode_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xcode_config.h; sourceTree = "<group>"; };
+		8C3072B31337CC9F00574578 /* NSURL+IFUnicodeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IFUnicodeURL.h"; sourceTree = "<group>"; };
+		8C3072B41337CC9F00574578 /* NSURL+IFUnicodeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IFUnicodeURL.m"; sourceTree = "<group>"; };
+		8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
+		8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAPIEngineConstants.m; sourceTree = "<group>"; };
+		8CDB51DD1310924E00FDF09B /* CLSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSocket.h; sourceTree = "<group>"; };
+		8CDB51DE1310924E00FDF09B /* CLSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +215,8 @@
 				4B1AB19A130B69CF00BD6A95 /* Categories */,
 				4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */,
 				4B1AB1A2130B69CF00BD6A95 /* CLAPIEngine.m */,
-				4B1AB1A3130B69CF00BD6A95 /* CLAPIEngineConstants.h */,
+				8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */,
+				8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */,
 				4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */,
 				4B1AB1A5130B69CF00BD6A95 /* CLAPITransaction.h */,
 				4B1AB1A6130B69CF00BD6A95 /* CLAPITransaction.m */,
@@ -259,6 +266,8 @@
 				4B1AB1A9130B69CF00BD6A95 /* CLAccount.m */,
 				4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */,
 				4B1AB1AB130B69CF00BD6A95 /* CLWebItem.m */,
+				8CDB51DD1310924E00FDF09B /* CLSocket.h */,
+				8CDB51DE1310924E00FDF09B /* CLSocket.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,60 +275,10 @@
 		4B1AB1AC130B69CF00BD6A95 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				8C3072971337CC9F00574578 /* IFUnicodeURL */,
 				4B1AB51E130B6AEA00BD6A95 /* JSON */,
-				4B1AB1AD130B69CF00BD6A95 /* IFUnicodeURL */,
 			);
 			path = "Third Party";
-			sourceTree = "<group>";
-		};
-		4B1AB1AD130B69CF00BD6A95 /* IFUnicodeURL */ = {
-			isa = PBXGroup;
-			children = (
-				4B1AB1AE130B69CF00BD6A95 /* IDNSDK */,
-				4B1AB1C9130B69CF00BD6A95 /* NSURL+IFUnicodeURL.h */,
-				4B1AB1CA130B69CF00BD6A95 /* NSURL+IFUnicodeURL.m */,
-			);
-			path = IFUnicodeURL;
-			sourceTree = "<group>";
-		};
-		4B1AB1AE130B69CF00BD6A95 /* IDNSDK */ = {
-			isa = PBXGroup;
-			children = (
-				4B1AB1AF130B69CF00BD6A95 /* adapter.h */,
-				4B1AB1B0130B69CF00BD6A95 /* nameprep.c */,
-				4B1AB1B1130B69CF00BD6A95 /* nameprep.h */,
-				4B1AB1B2130B69CF00BD6A95 /* puny.c */,
-				4B1AB1B3130B69CF00BD6A95 /* puny.h */,
-				4B1AB1B4130B69CF00BD6A95 /* race.c */,
-				4B1AB1B5130B69CF00BD6A95 /* race.h */,
-				4B1AB1B6130B69CF00BD6A95 /* staticdata */,
-				4B1AB1C3130B69CF00BD6A95 /* toxxx.c */,
-				4B1AB1C4130B69CF00BD6A95 /* toxxx.h */,
-				4B1AB1C5130B69CF00BD6A95 /* util.c */,
-				4B1AB1C6130B69CF00BD6A95 /* util.h */,
-				4B1AB1C7130B69CF00BD6A95 /* xcode.h */,
-				4B1AB1C8130B69CF00BD6A95 /* xcode_config.h */,
-			);
-			path = IDNSDK;
-			sourceTree = "<group>";
-		};
-		4B1AB1B6130B69CF00BD6A95 /* staticdata */ = {
-			isa = PBXGroup;
-			children = (
-				4B1AB1B7130B69CF00BD6A95 /* nameprep_bidi_lcat.h */,
-				4B1AB1B8130B69CF00BD6A95 /* nameprep_bidi_randalcat.h */,
-				4B1AB1B9130B69CF00BD6A95 /* nameprep_charmap.h */,
-				4B1AB1BA130B69CF00BD6A95 /* nameprep_compatible.h */,
-				4B1AB1BB130B69CF00BD6A95 /* nameprep_compose.h */,
-				4B1AB1BC130B69CF00BD6A95 /* nameprep_cononical.h */,
-				4B1AB1BD130B69CF00BD6A95 /* nameprep_data.h */,
-				4B1AB1BE130B69CF00BD6A95 /* nameprep_datastructures.h */,
-				4B1AB1BF130B69CF00BD6A95 /* nameprep_decompose.h */,
-				4B1AB1C0130B69CF00BD6A95 /* nameprep_lookups.h */,
-				4B1AB1C1130B69CF00BD6A95 /* nameprep_prohibit.h */,
-				4B1AB1C2130B69CF00BD6A95 /* nameprep_prohibit_allowunassigned.h */,
-			);
-			path = staticdata;
 			sourceTree = "<group>";
 		};
 		4B1AB51E130B6AEA00BD6A95 /* JSON */ = {
@@ -349,6 +308,57 @@
 			path = JSON/Classes;
 			sourceTree = "<group>";
 		};
+		8C3072971337CC9F00574578 /* IFUnicodeURL */ = {
+			isa = PBXGroup;
+			children = (
+				8C3072981337CC9F00574578 /* IDNSDK */,
+				8C3072B31337CC9F00574578 /* NSURL+IFUnicodeURL.h */,
+				8C3072B41337CC9F00574578 /* NSURL+IFUnicodeURL.m */,
+			);
+			name = IFUnicodeURL;
+			path = IFUnicodeURL/IFUnicodeURL;
+			sourceTree = "<group>";
+		};
+		8C3072981337CC9F00574578 /* IDNSDK */ = {
+			isa = PBXGroup;
+			children = (
+				8C3072991337CC9F00574578 /* adapter.h */,
+				8C30729A1337CC9F00574578 /* nameprep.c */,
+				8C30729B1337CC9F00574578 /* nameprep.h */,
+				8C30729C1337CC9F00574578 /* puny.c */,
+				8C30729D1337CC9F00574578 /* puny.h */,
+				8C30729E1337CC9F00574578 /* race.c */,
+				8C30729F1337CC9F00574578 /* race.h */,
+				8C3072A01337CC9F00574578 /* staticdata */,
+				8C3072AD1337CC9F00574578 /* toxxx.c */,
+				8C3072AE1337CC9F00574578 /* toxxx.h */,
+				8C3072AF1337CC9F00574578 /* util.c */,
+				8C3072B01337CC9F00574578 /* util.h */,
+				8C3072B11337CC9F00574578 /* xcode.h */,
+				8C3072B21337CC9F00574578 /* xcode_config.h */,
+			);
+			path = IDNSDK;
+			sourceTree = "<group>";
+		};
+		8C3072A01337CC9F00574578 /* staticdata */ = {
+			isa = PBXGroup;
+			children = (
+				8C3072A11337CC9F00574578 /* nameprep_bidi_lcat.h */,
+				8C3072A21337CC9F00574578 /* nameprep_bidi_randalcat.h */,
+				8C3072A31337CC9F00574578 /* nameprep_charmap.h */,
+				8C3072A41337CC9F00574578 /* nameprep_compatible.h */,
+				8C3072A51337CC9F00574578 /* nameprep_compose.h */,
+				8C3072A61337CC9F00574578 /* nameprep_cononical.h */,
+				8C3072A71337CC9F00574578 /* nameprep_data.h */,
+				8C3072A81337CC9F00574578 /* nameprep_datastructures.h */,
+				8C3072A91337CC9F00574578 /* nameprep_decompose.h */,
+				8C3072AA1337CC9F00574578 /* nameprep_lookups.h */,
+				8C3072AB1337CC9F00574578 /* nameprep_prohibit.h */,
+				8C3072AC1337CC9F00574578 /* nameprep_prohibit_allowunassigned.h */,
+			);
+			path = staticdata;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -363,32 +373,10 @@
 				4B1AB31F130B69D100BD6A95 /* NSString+NPAdditions.h in Headers */,
 				4B1AB321130B69D100BD6A95 /* NSString+NPMimeType.h in Headers */,
 				4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */,
-				4B1AB325130B69D100BD6A95 /* CLAPIEngineConstants.h in Headers */,
 				4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */,
 				4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */,
 				4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */,
 				4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */,
-				4B1AB32D130B69D100BD6A95 /* adapter.h in Headers */,
-				4B1AB32F130B69D100BD6A95 /* nameprep.h in Headers */,
-				4B1AB331130B69D100BD6A95 /* puny.h in Headers */,
-				4B1AB333130B69D100BD6A95 /* race.h in Headers */,
-				4B1AB334130B69D100BD6A95 /* nameprep_bidi_lcat.h in Headers */,
-				4B1AB335130B69D100BD6A95 /* nameprep_bidi_randalcat.h in Headers */,
-				4B1AB336130B69D100BD6A95 /* nameprep_charmap.h in Headers */,
-				4B1AB337130B69D100BD6A95 /* nameprep_compatible.h in Headers */,
-				4B1AB338130B69D100BD6A95 /* nameprep_compose.h in Headers */,
-				4B1AB339130B69D100BD6A95 /* nameprep_cononical.h in Headers */,
-				4B1AB33A130B69D100BD6A95 /* nameprep_data.h in Headers */,
-				4B1AB33B130B69D100BD6A95 /* nameprep_datastructures.h in Headers */,
-				4B1AB33C130B69D100BD6A95 /* nameprep_decompose.h in Headers */,
-				4B1AB33D130B69D100BD6A95 /* nameprep_lookups.h in Headers */,
-				4B1AB33E130B69D100BD6A95 /* nameprep_prohibit.h in Headers */,
-				4B1AB33F130B69D100BD6A95 /* nameprep_prohibit_allowunassigned.h in Headers */,
-				4B1AB341130B69D100BD6A95 /* toxxx.h in Headers */,
-				4B1AB343130B69D100BD6A95 /* util.h in Headers */,
-				4B1AB344130B69D100BD6A95 /* xcode.h in Headers */,
-				4B1AB345130B69D100BD6A95 /* xcode_config.h in Headers */,
-				4B1AB346130B69D100BD6A95 /* NSURL+IFUnicodeURL.h in Headers */,
 				4B1AB532130B6AEA00BD6A95 /* JSON.h in Headers */,
 				4B1AB533130B6AEA00BD6A95 /* NSObject+JSON.h in Headers */,
 				4B1AB535130B6AEA00BD6A95 /* SBJsonParser.h in Headers */,
@@ -399,6 +387,29 @@
 				4B1AB53F130B6AEA00BD6A95 /* SBJsonStreamWriterState.h in Headers */,
 				4B1AB541130B6AEA00BD6A95 /* SBJsonTokeniser.h in Headers */,
 				4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */,
+				8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */,
+				8C3072B51337CC9F00574578 /* adapter.h in Headers */,
+				8C3072B71337CC9F00574578 /* nameprep.h in Headers */,
+				8C3072B91337CC9F00574578 /* puny.h in Headers */,
+				8C3072BB1337CC9F00574578 /* race.h in Headers */,
+				8C3072BC1337CC9F00574578 /* nameprep_bidi_lcat.h in Headers */,
+				8C3072BD1337CC9F00574578 /* nameprep_bidi_randalcat.h in Headers */,
+				8C3072BE1337CC9F00574578 /* nameprep_charmap.h in Headers */,
+				8C3072BF1337CC9F00574578 /* nameprep_compatible.h in Headers */,
+				8C3072C01337CC9F00574578 /* nameprep_compose.h in Headers */,
+				8C3072C11337CC9F00574578 /* nameprep_cononical.h in Headers */,
+				8C3072C21337CC9F00574578 /* nameprep_data.h in Headers */,
+				8C3072C31337CC9F00574578 /* nameprep_datastructures.h in Headers */,
+				8C3072C41337CC9F00574578 /* nameprep_decompose.h in Headers */,
+				8C3072C51337CC9F00574578 /* nameprep_lookups.h in Headers */,
+				8C3072C61337CC9F00574578 /* nameprep_prohibit.h in Headers */,
+				8C3072C71337CC9F00574578 /* nameprep_prohibit_allowunassigned.h in Headers */,
+				8C3072C91337CC9F00574578 /* toxxx.h in Headers */,
+				8C3072CB1337CC9F00574578 /* util.h in Headers */,
+				8C3072CC1337CC9F00574578 /* xcode.h in Headers */,
+				8C3072CD1337CC9F00574578 /* xcode_config.h in Headers */,
+				8C3072CE1337CC9F00574578 /* NSURL+IFUnicodeURL.h in Headers */,
+				8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,12 +473,6 @@
 				4B1AB328130B69D100BD6A95 /* CLAPITransaction.m in Sources */,
 				4B1AB32A130B69D100BD6A95 /* CLAccount.m in Sources */,
 				4B1AB32C130B69D100BD6A95 /* CLWebItem.m in Sources */,
-				4B1AB32E130B69D100BD6A95 /* nameprep.c in Sources */,
-				4B1AB330130B69D100BD6A95 /* puny.c in Sources */,
-				4B1AB332130B69D100BD6A95 /* race.c in Sources */,
-				4B1AB340130B69D100BD6A95 /* toxxx.c in Sources */,
-				4B1AB342130B69D100BD6A95 /* util.c in Sources */,
-				4B1AB347130B69D100BD6A95 /* NSURL+IFUnicodeURL.m in Sources */,
 				4B1AB534130B6AEA00BD6A95 /* NSObject+JSON.m in Sources */,
 				4B1AB536130B6AEA00BD6A95 /* SBJsonParser.m in Sources */,
 				4B1AB538130B6AEA00BD6A95 /* SBJsonStreamParser.m in Sources */,
@@ -477,6 +482,14 @@
 				4B1AB540130B6AEA00BD6A95 /* SBJsonStreamWriterState.m in Sources */,
 				4B1AB542130B6AEA00BD6A95 /* SBJsonTokeniser.m in Sources */,
 				4B1AB544130B6AEA00BD6A95 /* SBJsonWriter.m in Sources */,
+				8CDB51E01310924E00FDF09B /* CLSocket.m in Sources */,
+				8C3072B61337CC9F00574578 /* nameprep.c in Sources */,
+				8C3072B81337CC9F00574578 /* puny.c in Sources */,
+				8C3072BA1337CC9F00574578 /* race.c in Sources */,
+				8C3072C81337CC9F00574578 /* toxxx.c in Sources */,
+				8C3072CA1337CC9F00574578 /* util.c in Sources */,
+				8C3072CF1337CC9F00574578 /* NSURL+IFUnicodeURL.m in Sources */,
+				8CADDD3313715AFD00CBDDD1 /* CLAPIEngineConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +536,9 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cloud/Cloud-Prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -536,7 +551,9 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cloud/Cloud-Prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

@@ -11,11 +11,13 @@
 
 @implementation NSString (NPAdditions)
 
-+ (NSString *)stringWithData:(NSData *)theData encoding:(NSStringEncoding)theEncoding {
++ (NSString *)stringWithData:(NSData *)theData encoding:(NSStringEncoding)theEncoding
+{
 	return [[[NSString alloc] initWithData:theData encoding:theEncoding] autorelease];
 }
 
-+ (NSString *)uniqueString {
++ (NSString *)uniqueString
+{
 	return [[NSProcessInfo processInfo] globallyUniqueString];
 }
 
