@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-typedef enum _CLAccountType {
+enum {
 	CLAccountTypeFree,
 	CLAccountTypePro
-} CLAccountType;
+};
+typedef NSInteger CLAccountType;
 
 
 @class CLSocket;
