@@ -16,6 +16,11 @@
 
 static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 
+NSString *const CLAPIEngineUploadOptionPrivacyKey = @"CLAPIEngineUploadOptionPrivacy"; // Value is CLAPIEnginePrivacyOptionPrivate or CLAPIEnginePrivacyOptionPublic
+
+NSString *const CLAPIEnginePrivacyOptionPrivate = @"private";
+NSString *const CLAPIEnginePrivacyOptionPublic = @"public";
+
 
 @interface CLAPIEngine ()
 
@@ -195,19 +200,38 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 
 - (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo
 {
-	if (![self isReady] || [[URL absoluteString] length] == 0)
+    return [self bookmarkLinkWithURL:URL name:name options:nil userInfo:userInfo];
+}
+
+- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo
+{
+    if (![self isReady] || [[URL absoluteString] length] == 0)
 		return nil;
     
 	if ([name length] == 0)
 		name = [URL absoluteString];
 	
 	CLAPITransaction *transaction = [CLAPITransaction transaction];
+    
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _URLWithPath:@"/items"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-	NSData *bodyData = [CLAPISerializer bookmarkWithURL:URL name:name];
+    NSData *bodyData = nil;
+    
+    if ([options.allKeys containsObject:CLAPIEngineUploadOptionPrivacyKey]) {
+        NSString *privacySetting = [options objectForKey:CLAPIEngineUploadOptionPrivacyKey];
+        if ([privacySetting isEqualToString:CLAPIEnginePrivacyOptionPublic]) {
+            bodyData = [CLAPISerializer bookmarkWithURL:URL name:name private:NO];
+        } else if ([privacySetting isEqualToString:CLAPIEnginePrivacyOptionPrivate]) {
+            bodyData = [CLAPISerializer bookmarkWithURL:URL name:name private:YES];
+        } else {
+            bodyData = [CLAPISerializer bookmarkWithURL:URL name:name];
+        }
+    } else {
+        bodyData = [CLAPISerializer bookmarkWithURL:URL name:name];
+    }
 	if (bodyData == nil)
 		return nil;
 	
@@ -350,11 +374,34 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 
 - (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo
 {	
-	if (![self isReady])
+    return [self uploadFileWithName:fileName fileData:fileData options:nil userInfo:userInfo];
+}
+
+- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo
+{
+    if (![self isReady])
 		return nil;
+    
+    
+    NSURL *apiURL = [self _URLWithPath:@"/items/new"];
+    if ([options.allKeys containsObject:CLAPIEngineUploadOptionPrivacyKey]) {
+        NSString *apiURLString = [apiURL absoluteString];
+        NSString *privacyOption = [options objectForKey:CLAPIEngineUploadOptionPrivacyKey];
+        if ([privacyOption isEqualToString:CLAPIEnginePrivacyOptionPublic])
+            apiURLString = [apiURLString stringByAppendingString:@"?item[private]=false"];
+        else if ([privacyOption isEqualToString:CLAPIEnginePrivacyOptionPrivate])
+            apiURLString = [apiURLString stringByAppendingString:@"?item[private]=true"];
+        
+        apiURL = [NSURL URLWithString:apiURLString];
+    }
+    
+    // Make sure that the API URL is still valid after the editing
+    if (apiURL == nil)
+        return nil;
+
 	
 	CLAPITransaction *transaction = [CLAPITransaction transaction];
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _URLWithPath:@"/items/new"]];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:apiURL];
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
@@ -363,7 +410,7 @@ static NSString *_CLAPIEngineBaseURL = @"http://my.cl.ly";
 	transaction.requestType     = CLAPIRequestTypeGetS3UploadCredentials;
 	transaction.userInfo        = userInfo;
 	transaction.internalContext = [NSDictionary dictionaryWithObjectsAndKeys:fileName, @"name",
-                                                                             fileData, @"data", nil];
+                                   fileData, @"data", nil];
 	
 	return [self _createAndStartConnectionForTransaction:transaction];
 }

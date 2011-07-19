@@ -20,6 +20,7 @@
 + (NSData *)itemWithPrivate:(BOOL)isPrivate;
 + (NSData *)itemForRestore;
 + (NSData *)bookmarkWithURL:(NSURL *)URL name:(NSString *)name;
++ (NSData *)bookmarkWithURL:(NSURL *)URL name:(NSString *)name private:(BOOL)private;
 + (NSData *)receiptWithBase64String:(NSString *)base64String;
 
 + (NSData *)JSONDataFromDictionary:(NSDictionary *)dict;

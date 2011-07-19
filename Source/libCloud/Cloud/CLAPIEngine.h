@@ -12,6 +12,11 @@
 #import "CLWebItem.h"
 #import "CLAccount.h"
 
+// Upload options
+extern NSString *const CLAPIEngineUploadOptionPrivacyKey; // Value is CLAPIEnginePrivacyOptionPrivate or CLAPIEnginePrivacyOptionPublic
+
+extern NSString *const CLAPIEnginePrivacyOptionPrivate;
+extern NSString *const CLAPIEnginePrivacyOptionPublic;
 
 @interface CLAPIEngine : NSObject {
 	NSString *_email;
@@ -61,8 +66,10 @@
 - (NSString *)getAccountInformationWithUserInfo:(id)userInfo;
 - (NSString *)getItemInformation:(CLWebItem *)item userInfo:(id)userInfo;
 - (NSString *)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo;
-- (NSString *)bookmarkLinkWithURL:(NSURL *)url name:(NSString *)name userInfo:(id)userInfo;
+- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo;
 - (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo;
+- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo;
+- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo;
 - (NSString *)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo;
 - (NSString *)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo;
 - (NSString *)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo;

@@ -94,6 +94,18 @@
 	return [self JSONDataFromDictionary:dict];
 }
 
++ (NSData *)bookmarkWithURL:(NSURL *)URL name:(NSString *)name private:(BOOL)private
+{
+	if (URL == nil || name == nil)
+		return nil;
+	
+    NSString *privateString = private ? @"true" : @"false";
+    NSDictionary *item = [NSDictionary dictionaryWithObjectsAndKeys:[URL absoluteString], @"redirect_url",
+                          name, @"name", privateString, @"private", nil];
+	NSDictionary *dict = [NSDictionary dictionaryWithObject:item forKey:@"item"];
+	return [self JSONDataFromDictionary:dict];
+}
+
 + (NSData *)receiptWithBase64String:(NSString *)base64String
 {
     NSDictionary *receipt = [NSDictionary dictionaryWithObject:base64String
