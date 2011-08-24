@@ -45,14 +45,14 @@
 		4B1AB320130B69D100BD6A95 /* NSString+NPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB19E130B69CF00BD6A95 /* NSString+NPAdditions.m */; };
 		4B1AB321130B69D100BD6A95 /* NSString+NPMimeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB19F130B69CF00BD6A95 /* NSString+NPMimeType.h */; };
 		4B1AB322130B69D100BD6A95 /* NSString+NPMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A0130B69CF00BD6A95 /* NSString+NPMimeType.m */; };
-		4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */; };
+		4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB324130B69D100BD6A95 /* CLAPIEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A2130B69CF00BD6A95 /* CLAPIEngine.m */; };
-		4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */; };
+		4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A5130B69CF00BD6A95 /* CLAPITransaction.h */; };
 		4B1AB328130B69D100BD6A95 /* CLAPITransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A6130B69CF00BD6A95 /* CLAPITransaction.m */; };
-		4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A8130B69CF00BD6A95 /* CLAccount.h */; };
+		4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A8130B69CF00BD6A95 /* CLAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB32A130B69D100BD6A95 /* CLAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A9130B69CF00BD6A95 /* CLAccount.m */; };
-		4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */; };
+		4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB32C130B69D100BD6A95 /* CLWebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1AB130B69CF00BD6A95 /* CLWebItem.m */; };
 		4B1AB532130B6AEA00BD6A95 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB51F130B6AEA00BD6A95 /* JSON.h */; };
 		4B1AB533130B6AEA00BD6A95 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB520130B6AEA00BD6A95 /* NSObject+JSON.h */; };
@@ -73,8 +73,8 @@
 		4B1AB542130B6AEA00BD6A95 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB52F130B6AEA00BD6A95 /* SBJsonTokeniser.m */; };
 		4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB530130B6AEA00BD6A95 /* SBJsonWriter.h */; };
 		4B1AB544130B6AEA00BD6A95 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB531130B6AEA00BD6A95 /* SBJsonWriter.m */; };
-		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (); }; };
-		8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */; };
+		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CADDD3313715AFD00CBDDD1 /* CLAPIEngineConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */; };
 		8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDB51DD1310924E00FDF09B /* CLSocket.h */; };
 		8CDB51E01310924E00FDF09B /* CLSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDB51DE1310924E00FDF09B /* CLSocket.m */; };
@@ -420,9 +420,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B1AB192130B69B900BD6A95 /* Build configuration list for PBXNativeTarget "Cloud" */;
 			buildPhases = (
+				4B1AB182130B69B900BD6A95 /* Headers */,
 				4B1AB180130B69B900BD6A95 /* Sources */,
 				4B1AB181130B69B900BD6A95 /* Frameworks */,
-				4B1AB182130B69B900BD6A95 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -542,6 +542,7 @@
 				GCC_PREFIX_HEADER = "Cloud/Cloud-Prefix.pch";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/Cloud;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -558,6 +559,7 @@
 				GCC_PREFIX_HEADER = "Cloud/Cloud-Prefix.pch";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/Cloud;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

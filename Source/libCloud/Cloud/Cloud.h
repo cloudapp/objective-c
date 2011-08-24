@@ -6,9 +6,8 @@
 //  Copyright 2011 Linebreak. All rights reserved.
 //
 
-#import "CLAPIEngine.h"
-#import "CLAPITransaction.h"
-#import "CLAPIEngineDelegate.h"
-#import "CLAPIEngineConstants.h"
-#import "CLAccount.h"
-#import "CLWebItem.h"
+#import <Cloud/CLAPIEngine.h>
+#import <Cloud/CLAPIEngineDelegate.h>
+#import <Cloud/CLAPIEngineConstants.h>
+#import <Cloud/CLAccount.h>
+#import <Cloud/CLWebItem.h>
