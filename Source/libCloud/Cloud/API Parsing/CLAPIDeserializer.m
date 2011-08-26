@@ -130,6 +130,7 @@
         }
 	} else {
 		webItem.remoteURL = [self _URLFromDictionary:jsonDict forKey:@"remote_url"];
+		webItem.contentURL = [self _URLFromDictionary:jsonDict forKey:@"content_url"];
 	}
 	
 	webItem.URL       = [self _unicodeURLFromDictionary:jsonDict forKey:@"url"];
