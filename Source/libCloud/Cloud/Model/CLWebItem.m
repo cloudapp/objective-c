@@ -19,6 +19,8 @@ static NSString * const CLWebItemRemoteURLKey  = @"CLWebItemRemoteURLKey";
 static NSString * const CLWebItemHrefKey       = @"CLWebItemHrefKey";
 static NSString * const CLWebItemIconURLKey    = @"CLWebItemIconURLKey";
 static NSString * const CLWebItemIconKey       = @"CLWebItemIconKey";
+static NSString * const CLWebItemThumbURLKey   = @"CLWebItemThumbURLKey";
+static NSString * const CLWebItemThumbKey      = @"CLWebItemThumbKey";
 static NSString * const CLWebItemTrashedKey    = @"CLWebItemTrashedKey";
 static NSString * const CLWebItemPrivateKey    = @"CLWebItemPrivateKey";
 static NSString * const CLWebItemCreatedAtKey  = @"CLWebItemCreatedAtKey";
@@ -30,7 +32,7 @@ static NSString * const CLWebItemDeletedAtKey  = @"CLWebItemDeletedAtKey";
 
 @synthesize name = _name, type = _type, contentURL = _contentURL, mimeType = _mimeType,
             viewCount = _viewCount, remoteURL = _remoteURL,  href = _href, URL = _URL, iconURL = _iconURL,
-            icon = _icon, trashed = _trashed, private = _private, createdAt = _createdAt,
+            icon = _icon, thumbURL = _thumbURL, thumb = _thumb, trashed = _trashed, private = _private, createdAt = _createdAt,
             updatedAt = _updatedAt, deletedAt = _deletedAt;
 
 - (id)init
@@ -88,6 +90,8 @@ static NSString * const CLWebItemDeletedAtKey  = @"CLWebItemDeletedAtKey";
 	retItem.private    = self.private;
 	retItem.iconURL    = self.iconURL;
 	retItem.icon       = self.icon;
+	retItem.thumbURL   = self.thumbURL;
+	retItem.thumb      = self.thumb;
 	retItem.URL        = self.URL;
     
 	return retItem;
@@ -112,6 +116,8 @@ static NSString * const CLWebItemDeletedAtKey  = @"CLWebItemDeletedAtKey";
 			_private    = [decoder decodeBoolForKey:CLWebItemPrivateKey];
 			_iconURL    = [[decoder decodeObjectForKey:CLWebItemIconURLKey] retain];
 			_icon       = [[decoder decodeObjectForKey:CLWebItemIconKey] retain];
+			_thumbURL   = [[decoder decodeObjectForKey:CLWebItemThumbURLKey] retain];
+			_thumb      = [[decoder decodeObjectForKey:CLWebItemThumbKey] retain];
 			_createdAt  = [[decoder decodeObjectForKey:CLWebItemCreatedAtKey] retain];
 			_updatedAt  = [[decoder decodeObjectForKey:CLWebItemUpdatedAtKey] retain];
 			_deletedAt  = [[decoder decodeObjectForKey:CLWebItemDeletedAtKey] retain];
@@ -135,6 +141,8 @@ static NSString * const CLWebItemDeletedAtKey  = @"CLWebItemDeletedAtKey";
 		[encoder encodeBool:self.private forKey:CLWebItemPrivateKey];
 		[encoder encodeObject:self.icon forKey:CLWebItemIconKey];
 		[encoder encodeObject:self.iconURL forKey:CLWebItemIconURLKey];
+		[encoder encodeObject:self.thumb forKey:CLWebItemThumbKey];
+		[encoder encodeObject:self.thumbURL forKey:CLWebItemThumbURLKey];
 		[encoder encodeObject:self.createdAt forKey:CLWebItemCreatedAtKey];
 		[encoder encodeObject:self.updatedAt forKey:CLWebItemUpdatedAtKey];
 		[encoder encodeObject:self.deletedAt forKey:CLWebItemDeletedAtKey];
@@ -160,6 +168,10 @@ static NSString * const CLWebItemDeletedAtKey  = @"CLWebItemDeletedAtKey";
 	_iconURL = nil;
     [_icon release];
 	_icon = nil;
+    [_thumbURL release];
+    _thumbURL = nil;
+    [_thumb release];
+    _thumb = nil;
     [_URL release];
 	_URL = nil;
     [_createdAt release];

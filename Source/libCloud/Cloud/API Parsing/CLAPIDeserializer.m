@@ -135,6 +135,7 @@
 	webItem.URL       = [self _unicodeURLFromDictionary:jsonDict forKey:@"url"];
 	webItem.href      = [self _URLFromDictionary:jsonDict forKey:@"href"];
 	webItem.iconURL   = [self _URLFromDictionary:jsonDict forKey:@"icon"];
+	webItem.thumbURL  = [self _URLFromDictionary:jsonDict forKey:@"thumbnail_url"];
 	webItem.private   = [[self _normalizedObjectFromDictionary:jsonDict forKey:@"private"] boolValue];
 	webItem.createdAt = [self _dateAndTimeFromDictionary:jsonDict forKey:@"created_at"];
 	webItem.updatedAt = [self _dateAndTimeFromDictionary:jsonDict forKey:@"updated_at"];
