@@ -12,32 +12,25 @@
 @implementation CLAPITransaction
 
 @synthesize request = _request, connection = _connection, receivedData = _receivedData,
-            requestType = _requestType,  userInfo = _userInfo, identifier = _identifier,
-            response = _response, internalContext = _internalContext;
+requestType = _requestType,  userInfo = _userInfo, identifier = _identifier,
+response = _response, internalContext = _internalContext, numberOfTries = _numberOfTries;
 
-+ (id)transaction
-{
-	return [[[self class] alloc] init];
++ (id)transaction {
+    CLAPITransaction *transaction = [[[self class] alloc] init];
+    
+    if (transaction) {
+        transaction.numberOfTries = 1;
+    }
+    
+    return transaction;
 }
 
-- (id)init
-{
-	if ((self = [super init])) {
-		_receivedData = [[NSMutableData alloc] init];
-	}
-	return self;
-}
-
-- (void)dealloc
-{
-    _request = nil;
-	_response = nil;
-    _connection = nil;
-    _receivedData = nil;
-    _userInfo = nil;
-	_identifier = nil;
-	_internalContext = nil;
-	
+- (id)init {
+    if ((self = [super init])) {
+        _receivedData = [[NSMutableData alloc] init];
+    }
+    
+    return self;
 }
 
 @end

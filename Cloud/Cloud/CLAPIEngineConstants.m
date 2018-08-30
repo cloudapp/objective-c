@@ -13,3 +13,5 @@ NSString *const CLAPIEngineErrorDomain         = @"com.linebreak.CloudApp.Engine
 NSString *const CLAPIEngineErrorMessagesKey    = @"messages";
 NSString *const CLAPIEngineErrorRequestTypeKey = @"requestType";
 NSString *const CLAPIEngineErrorStatusCodeKey  = @"statusCode";
+NSString *const CLAPIEngineErrorInfoFilesizeInformationKey = @"CLAPIEngineErrorInfoFilesizeInformationKey";
+NSString *const CLAPIEngineErrorInfoUploadsRemainingInformationKey = @"CLAPIEngineErrorInfoUploadsRemainingInformationKey";

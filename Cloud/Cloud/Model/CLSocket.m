@@ -23,13 +23,13 @@ static NSString *const CLSocketChannelsKey = @"CLSocketChannelsKey";
 
 - (id)init
 {
-	if ((self = [super init])) {
-		_APIKey    = nil;
-		_appID     = NSNotFound;
-		_authURL   = nil;
-		_channels  = nil;
-	}
-	return self;
+    if ((self = [super init])) {
+        _APIKey    = nil;
+        _appID     = NSNotFound;
+        _authURL   = nil;
+        _channels  = nil;
+    }
+    return self;
 }
 
 #pragma mark -
@@ -37,13 +37,13 @@ static NSString *const CLSocketChannelsKey = @"CLSocketChannelsKey";
 
 - (id)copyWithZone:(NSZone *)zone
 {
-	CLSocket *theSocket = [[[self class] alloc] init];
-	theSocket.APIKey    = self.APIKey;
-	theSocket.appID     = self.appID;
-	theSocket.authURL   = self.authURL;
-	theSocket.channels  = self.channels;
-	
-	return theSocket;
+    CLSocket *theSocket = [[[self class] alloc] init];
+    theSocket.APIKey    = self.APIKey;
+    theSocket.appID     = self.appID;
+    theSocket.authURL   = self.authURL;
+    theSocket.channels  = self.channels;
+    
+    return theSocket;
 }
 
 #pragma mark -
@@ -51,35 +51,29 @@ static NSString *const CLSocketChannelsKey = @"CLSocketChannelsKey";
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-	if ((self = [super init])) {
-		if ([decoder allowsKeyedCoding]) {
-			_APIKey   = [decoder decodeObjectForKey:CLSocketAPIKeyKey];
-			_appID    = [decoder decodeIntegerForKey:CLSocketAppIDKey];
-			_authURL  = [decoder decodeObjectForKey:CLSocketAuthURLKey];
-			_channels = [decoder decodeObjectForKey:CLSocketChannelsKey];
-		}
-	}
-	return self;
+    if ((self = [super init])) {
+        if ([decoder allowsKeyedCoding]) {
+            _APIKey   = [decoder decodeObjectForKey:CLSocketAPIKeyKey];
+            _appID    = [decoder decodeIntegerForKey:CLSocketAppIDKey];
+            _authURL  = [decoder decodeObjectForKey:CLSocketAuthURLKey];
+            _channels = [decoder decodeObjectForKey:CLSocketChannelsKey];
+        }
+    }
+    return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-	if ([encoder allowsKeyedCoding]) {
-		[encoder encodeObject:self.APIKey forKey:CLSocketAPIKeyKey];
-		[encoder encodeInteger:self.appID forKey:CLSocketAppIDKey];
-		[encoder encodeObject:self.authURL forKey:CLSocketAuthURLKey];
-		[encoder encodeObject:self.channels forKey:CLSocketChannelsKey];
-	}
+    if ([encoder allowsKeyedCoding]) {
+        [encoder encodeObject:self.APIKey forKey:CLSocketAPIKeyKey];
+        [encoder encodeInteger:self.appID forKey:CLSocketAppIDKey];
+        [encoder encodeObject:self.authURL forKey:CLSocketAuthURLKey];
+        [encoder encodeObject:self.channels forKey:CLSocketChannelsKey];
+    }
 }
 
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc
-{
-    _APIKey = nil;
-    _authURL = nil;
-    _channels = nil;
-}
 
 @end

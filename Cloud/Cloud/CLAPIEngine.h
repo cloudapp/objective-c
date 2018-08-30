@@ -19,30 +19,30 @@ extern NSString *const CLAPIEnginePrivacyOptionPrivate;
 extern NSString *const CLAPIEnginePrivacyOptionPublic;
 
 @interface CLAPIEngine : NSObject {
-	NSString *_email;
-	NSString *_password;
+    NSString *_email;
+    NSString *_password;
     NSURL *_baseURL;
-	
-	
-	NSMutableSet *_transactions;
-	
-	BOOL _clearsCookies;
+    id <CLAPIEngineDelegate> __weak _delegate;
+    
+    NSMutableSet *_transactions;
+    
+    BOOL _clearsCookies;
 }
-@property (weak) id<CLAPIEngineDelegate> _delegate;
+
 @property (nonatomic, readwrite, copy) NSString *email;
 @property (nonatomic, readwrite, copy) NSString *password;
-@property (nonatomic, readwrite, assign) id<CLAPIEngineDelegate> delegate;
-@property (nonatomic, readwrite, retain) NSURL *baseURL;
-@property (nonatomic, readwrite, retain) NSMutableSet *transactions;
+@property (nonatomic, readwrite, weak) id<CLAPIEngineDelegate> delegate;
+@property (nonatomic, readwrite, strong) NSURL *baseURL;
+@property (nonatomic, readwrite, strong) NSMutableSet *transactions;
 
-// This property makes the engine clear the cookies before making a new connection.  
+// This property makes the engine clear the cookies before making a new connection.
 // This can be helpful when credentials are "stuck."
 @property (nonatomic, readwrite, assign) BOOL clearsCookies;
 
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 + (id)engine;
 + (id)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
-
++ (instancetype)sharedInstance;
 // Returns whether or not the email/password fields are complete.
 - (BOOL)isReady;
 
@@ -51,6 +51,7 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 
 // Cancel the connection with identifier
 - (void)cancelConnection:(NSString *)connectionIdentifier;
+- (void)cancelConnection:(NSString *)connectionIdentifier success:(BOOL *)success;
 
 // Cancel all connections
 - (void)cancelAllConnections;
@@ -59,6 +60,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 - (CLAPIRequestType)requestTypeForConnectionIdentifier:(NSString *)identifier;
 
 - (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo;
+- (NSString *)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo;
+
 - (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
 - (NSString *)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
 - (NSString *)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo;
@@ -70,6 +73,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 - (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo;
 - (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo;
 - (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo;
+- (NSString *)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk options:(NSDictionary *)options userInfo:(id)userInfo;
+
 - (NSString *)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo;
 - (NSString *)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo;
 - (NSString *)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo;
@@ -80,5 +85,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 
 - (NSString *)getStoreProductsWithUserInfo:(id)userInfo;
 - (NSString *)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo;
-
+- (NSString *)getAccountToken:(id)userInfo;
+- (NSString *)loadAccountStatisticsWithUserInfo:(id)userInfo;
+- (NSString *)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo;
+- (void)signUp;
 @end

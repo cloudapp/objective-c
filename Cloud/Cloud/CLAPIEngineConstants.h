@@ -10,33 +10,39 @@
 
 
 enum {
-	CLAPIRequestTypeAccountUpdate = 0,
-	CLAPIRequestTypeItemUpdatePrivacy,
-    CLAPIRequestTypeItemUpdateName,
-	CLAPIRequestTypeItemDeletion,
-    CLAPIRequestTypeItemRestoration,
-	CLAPIRequestTypeGetItemList,
-	CLAPIRequestTypeLinkBookmark,
-	CLAPIRequestTypeCreateAccount,
-	CLAPIRequestTypeGetAccountInformation,
-	CLAPIRequestTypeGetItemInformation,
-	CLAPIRequestTypeGetS3UploadCredentials,
-	CLAPIRequestTypeS3FileUpload,
+    CLAPIRequestTypeAccountUpdate = 0,
+    CLAPIRequestTypeItemUpdatePrivacy, //1
+    CLAPIRequestTypeItemUpdateName, //2
+    CLAPIRequestTypeItemDeletion,   //3
+    CLAPIRequestTypeItemRestoration, //4
+    CLAPIRequestTypeGetItemList,  //5
+    CLAPIRequestTypeLinkBookmark,  //6
+    CLAPIRequestTypeCreateAccount, //7
+    CLAPIRequestTypeGetAccountInformation,  //8
+    CLAPIRequestTypeGetItemInformation,  //9
+    CLAPIRequestTypeGetS3UploadCredentials, //10
+    CLAPIRequestTypeS3FileUpload, //11
+    CLAPIRequestTypeS3FileUploadStreamingUpload, //12
+    CLAPIRequestTypeS3FileUploadStreamingUploadFinalisation,
     CLAPIRequestTypeGetStoreProducts,
-    CLAPIRequestTypeStoreReceiptRedemption
+    CLAPIRequestTypeStoreReceiptRedemption,
+    CLAPIRequestTypeAccountStatisticsRetrieval,
+    CLAPIRequestTypeAccountToken,
+    
 };
 typedef NSInteger CLAPIRequestType;
 
 
 enum {
-	CLWebItemTypeImage = 0,
-	CLWebItemTypeBookmark,
-	CLWebItemTypeText,
-	CLWebItemTypeArchive,
-	CLWebItemTypeAudio,
-	CLWebItemTypeVideo,
-	CLWebItemTypeUnknown,
-	CLWebItemTypeNone
+    CLWebItemTypeImage = 0,
+    CLWebItemTypeBookmark,
+    CLWebItemTypeText,
+    CLWebItemTypeArchive,
+    CLWebItemTypeAudio,
+    CLWebItemTypeVideo,
+    CLWebItemTypeUnknown,
+    CLWebItemTypeNone,
+    CLWebItemTypeTrash
 };
 typedef NSInteger CLWebItemType;
 
@@ -46,6 +52,9 @@ extern NSString *const CLAPIEngineErrorDomain;
 extern NSString *const CLAPIEngineErrorMessagesKey;
 extern NSString *const CLAPIEngineErrorRequestTypeKey;
 extern NSString *const CLAPIEngineErrorStatusCodeKey;
+
+extern NSString *const CLAPIEngineErrorInfoFilesizeInformationKey;
+//extern NSString *const CLAPIEngineErrorInfoUploadsRemainingInformationKey;
 
 // Error codes
 enum {

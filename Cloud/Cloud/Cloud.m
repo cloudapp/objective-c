@@ -2,12 +2,12 @@
 //  Cloud.m
 //  Cloud
 //
-//  Created by Héctor Cuevas Morfín on 8/23/18.
+//  Created by Héctor Cuevas Morfín on 8/30/18.
 //  Copyright © 2018 CloudApp. All rights reserved.
 //
 
 #import "Cloud.h"
 
-@implementation Cloud : NSObject 
+@implementation Cloud
 
 @end

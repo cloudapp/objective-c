@@ -7,31 +7,28 @@
 //
 
 #import "NSString+NPMimeType.h"
-#if TARGET_OS_IPHONE
 #import <MobileCoreServices/MobileCoreServices.h>
-#endif
-
 
 @implementation NSString (NPMimeType)
 
 - (NSString *)mimeType
-{	
-	NSString *pathExtension = [self pathExtension];
-	if (pathExtension == nil || [pathExtension isEqualToString:@""])
-		return @"application/octet-stream";
-	
+{
+    NSString *pathExtension = [self pathExtension];
+    if (pathExtension == nil || [pathExtension isEqualToString:@""])
+        return @"application/octet-stream";
+    
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)pathExtension, NULL);
-    if (UTI == nil) 
-		return @"application/octet-stream";
-	
+    if (UTI == nil)
+        return @"application/octet-stream";
+    
     CFStringRef registeredType = UTTypeCopyPreferredTagWithClass(UTI, kUTTagClassMIMEType);
-	if (registeredType == nil) {
-		CFRelease(UTI);
-		return @"application/octet-stream";
-	}
-	
-	CFRelease(UTI);
-    return (__bridge NSString *)registeredType;
+    if (registeredType == nil) {
+        CFRelease(UTI);
+        return @"application/octet-stream";
+    }
+    
+    CFRelease(UTI);
+    return (__bridge_transfer NSString *)registeredType;
 }
 
 @end
