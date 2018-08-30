@@ -17,18 +17,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4BCB74A7130B6EF900C3A701 /* PBXContainerItemProxy */ = {
+		B1DEE648212F262200F5C0FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+			containerPortal = B1DEE644212F262200F5C0FF /* Cloud.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 4B1AB184130B69B900BD6A95;
-			remoteInfo = Cloud;
-		};
-		4BCB74AA130B6F0800C3A701 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4B1AB183130B69B900BD6A95;
+			remoteGlobalIDString = B1DEE57C212F22F600F5C0FF;
 			remoteInfo = Cloud;
 		};
 /* End PBXContainerItemProxy section */
@@ -48,7 +41,14 @@
 		4BCB7462130B6D5800C3A701 /* TestHarnessAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHarnessAppDelegate.m; sourceTree = "<group>"; };
 		4BCB7465130B6D5800C3A701 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4BCB7472130B6D7D00C3A701 /* libCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCloud.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Cloud-abtwsrtzrxyrskbxyjrwgmseiljc/Build/Products/Debug/libCloud.a"; sourceTree = "<group>"; };
-		4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cloud.xcodeproj; path = ../../Source/libCloud/Cloud.xcodeproj; sourceTree = "<group>"; };
+		B1DEE644212F262200F5C0FF /* Cloud.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cloud.xcodeproj; path = ../../../Cloud/Cloud.xcodeproj; sourceTree = "<group>"; };
+		B1DEE64A212F264900F5C0FF /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
+		B1DEE64B212F264900F5C0FF /* CLAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAccount.h; sourceTree = "<group>"; };
+		B1DEE64C212F264900F5C0FF /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
+		B1DEE64D212F264900F5C0FF /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebItem.h; sourceTree = "<group>"; };
+		B1DEE64E212F264900F5C0FF /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineDelegate.h; sourceTree = "<group>"; };
+		B1DEE64F212F264900F5C0FF /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
+		B1DEE650212F264900F5C0FF /* CLAPITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPITransaction.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 		4BCB7440130B6D5700C3A701 = {
 			isa = PBXGroup;
 			children = (
-				4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */,
+				B1DEE644212F262200F5C0FF /* Cloud.xcodeproj */,
 				4BCB7455130B6D5800C3A701 /* TestHarness */,
 				4BCB744E130B6D5800C3A701 /* Frameworks */,
 				4BCB744C130B6D5800C3A701 /* Products */,
@@ -105,6 +105,13 @@
 		4BCB7455130B6D5800C3A701 /* TestHarness */ = {
 			isa = PBXGroup;
 			children = (
+				B1DEE64B212F264900F5C0FF /* CLAccount.h */,
+				B1DEE64A212F264900F5C0FF /* CLAPIEngine.h */,
+				B1DEE64C212F264900F5C0FF /* CLAPIEngineConstants.h */,
+				B1DEE64E212F264900F5C0FF /* CLAPIEngineDelegate.h */,
+				B1DEE650212F264900F5C0FF /* CLAPITransaction.h */,
+				B1DEE64F212F264900F5C0FF /* Cloud.h */,
+				B1DEE64D212F264900F5C0FF /* CLWebItem.h */,
 				4BCB7461130B6D5800C3A701 /* TestHarnessAppDelegate.h */,
 				4BCB7462130B6D5800C3A701 /* TestHarnessAppDelegate.m */,
 				4BCB7464130B6D5800C3A701 /* MainMenu.xib */,
@@ -125,10 +132,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4BCB74A1130B6EF900C3A701 /* Products */ = {
+		B1DEE645212F262200F5C0FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4BCB74A8130B6EF900C3A701 /* libCloud.a */,
+				B1DEE649212F262200F5C0FF /* libCloud.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,7 +154,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4BCB74AB130B6F0800C3A701 /* PBXTargetDependency */,
 			);
 			name = TestHarness;
 			productName = TestHarness;
@@ -174,8 +180,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4BCB74A1130B6EF900C3A701 /* Products */;
-					ProjectRef = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+					ProductGroup = B1DEE645212F262200F5C0FF /* Products */;
+					ProjectRef = B1DEE644212F262200F5C0FF /* Cloud.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -186,11 +192,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4BCB74A8130B6EF900C3A701 /* libCloud.a */ = {
+		B1DEE649212F262200F5C0FF /* libCloud.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCloud.a;
-			remoteRef = 4BCB74A7130B6EF900C3A701 /* PBXContainerItemProxy */;
+			remoteRef = B1DEE648212F262200F5C0FF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -219,14 +225,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4BCB74AB130B6F0800C3A701 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Cloud;
-			targetProxy = 4BCB74AA130B6F0800C3A701 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4BCB7458130B6D5800C3A701 /* InfoPlist.strings */ = {

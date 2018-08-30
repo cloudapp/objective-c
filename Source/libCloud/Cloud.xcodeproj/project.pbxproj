@@ -45,14 +45,14 @@
 		4B1AB320130B69D100BD6A95 /* NSString+NPAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB19E130B69CF00BD6A95 /* NSString+NPAdditions.m */; };
 		4B1AB321130B69D100BD6A95 /* NSString+NPMimeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB19F130B69CF00BD6A95 /* NSString+NPMimeType.h */; };
 		4B1AB322130B69D100BD6A95 /* NSString+NPMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A0130B69CF00BD6A95 /* NSString+NPMimeType.m */; };
-		4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */; };
+		4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A1130B69CF00BD6A95 /* CLAPIEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB324130B69D100BD6A95 /* CLAPIEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A2130B69CF00BD6A95 /* CLAPIEngine.m */; };
-		4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */; };
-		4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A5130B69CF00BD6A95 /* CLAPITransaction.h */; };
+		4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A4130B69CF00BD6A95 /* CLAPIEngineDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A5130B69CF00BD6A95 /* CLAPITransaction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB328130B69D100BD6A95 /* CLAPITransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A6130B69CF00BD6A95 /* CLAPITransaction.m */; };
-		4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A8130B69CF00BD6A95 /* CLAccount.h */; };
+		4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1A8130B69CF00BD6A95 /* CLAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB32A130B69D100BD6A95 /* CLAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1A9130B69CF00BD6A95 /* CLAccount.m */; };
-		4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */; };
+		4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB1AA130B69CF00BD6A95 /* CLWebItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B1AB32C130B69D100BD6A95 /* CLWebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB1AB130B69CF00BD6A95 /* CLWebItem.m */; };
 		4B1AB532130B6AEA00BD6A95 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB51F130B6AEA00BD6A95 /* JSON.h */; };
 		4B1AB533130B6AEA00BD6A95 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB520130B6AEA00BD6A95 /* NSObject+JSON.h */; };
@@ -73,8 +73,8 @@
 		4B1AB542130B6AEA00BD6A95 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB52F130B6AEA00BD6A95 /* SBJsonTokeniser.m */; };
 		4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB530130B6AEA00BD6A95 /* SBJsonWriter.h */; };
 		4B1AB544130B6AEA00BD6A95 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1AB531130B6AEA00BD6A95 /* SBJsonWriter.m */; };
-		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (); }; };
-		8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */; };
+		4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B1AB553130B6BE200BD6A95 /* Cloud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CADDD3013715AFD00CBDDD1 /* CLAPIEngineConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CADDD3313715AFD00CBDDD1 /* CLAPIEngineConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CADDD3113715AFD00CBDDD1 /* CLAPIEngineConstants.m */; };
 		8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDB51DD1310924E00FDF09B /* CLSocket.h */; };
 		8CDB51E01310924E00FDF09B /* CLSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDB51DE1310924E00FDF09B /* CLSocket.m */; };
@@ -367,16 +367,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B1AB554130B6BE200BD6A95 /* Cloud.h in Headers */,
+				4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */,
+				4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */,
+				8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */,
+				4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */,
+				4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */,
+				4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */,
 				4B1AB319130B69D100BD6A95 /* CLAPIDeserializer.h in Headers */,
 				4B1AB31B130B69D100BD6A95 /* CLAPISerializer.h in Headers */,
 				4B1AB31D130B69D100BD6A95 /* NSMutableURLRequest+NPPOSTBody.h in Headers */,
 				4B1AB31F130B69D100BD6A95 /* NSString+NPAdditions.h in Headers */,
 				4B1AB321130B69D100BD6A95 /* NSString+NPMimeType.h in Headers */,
-				4B1AB323130B69D100BD6A95 /* CLAPIEngine.h in Headers */,
-				4B1AB326130B69D100BD6A95 /* CLAPIEngineDelegate.h in Headers */,
-				4B1AB327130B69D100BD6A95 /* CLAPITransaction.h in Headers */,
-				4B1AB329130B69D100BD6A95 /* CLAccount.h in Headers */,
-				4B1AB32B130B69D100BD6A95 /* CLWebItem.h in Headers */,
 				4B1AB532130B6AEA00BD6A95 /* JSON.h in Headers */,
 				4B1AB533130B6AEA00BD6A95 /* NSObject+JSON.h in Headers */,
 				4B1AB535130B6AEA00BD6A95 /* SBJsonParser.h in Headers */,
@@ -388,7 +389,6 @@
 				4B1AB541130B6AEA00BD6A95 /* SBJsonTokeniser.h in Headers */,
 				4B1AB543130B6AEA00BD6A95 /* SBJsonWriter.h in Headers */,
 				8CDB51DF1310924E00FDF09B /* CLSocket.h in Headers */,
-				8CADDD3213715AFD00CBDDD1 /* CLAPIEngineConstants.h in Headers */,
 				4B08ABFB1391F7E600325181 /* adapter.h in Headers */,
 				4B08ABFD1391F7E600325181 /* nameprep.h in Headers */,
 				4B08ABFF1391F7E600325181 /* puny.h in Headers */,

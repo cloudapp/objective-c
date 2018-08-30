@@ -7,7 +7,7 @@
 //
 
 #import "TestHarnessAppDelegate.h"
-#import <Cloud.h>
+#import "Cloud.h"
 
 @interface TestHarnessAppDelegate () <CLAPIEngineDelegate>
 
@@ -18,20 +18,24 @@
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    
 	CLAPIEngine *engine = [CLAPIEngine engineWithDelegate:self];
-	engine.email = @"user@email.com";
-	engine.password = @"password";
+	engine.email = @"poncho_nov@hotmail.com";
+	engine.password = @"Niponsoka1";
 	
+    
+    
 	/*
 	 --------Upload File--------
      NSString *fileLocation = [@"~/Desktop/SomeFile.txt" stringByExpandingTildeInPath];
      [engine uploadFileWithName:[fileLocation lastPathComponent] fileData:[NSData dataWithContentsOfFile:fileLocation] userInfo:@"Uploads rock!"];
 	 */
 	
-	/*
-	 --------Get Recent Items--------
+	
+	// --------Get Recent Items--------
      [engine getItemListStartingAtPage:1 itemsPerPage:5 userInfo:nil];
-	 */
+	 
 }
 
 - (void)requestDidFailWithError:(NSError *)error connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo {
