@@ -17,18 +17,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4BCB74A7130B6EF900C3A701 /* PBXContainerItemProxy */ = {
+		B16B5DCD2138560C002FFFCA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+			containerPortal = B16B5DC92138560C002FFFCA /* Cloud.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 4B1AB184130B69B900BD6A95;
-			remoteInfo = Cloud;
-		};
-		4BCB74AA130B6F0800C3A701 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4B1AB183130B69B900BD6A95;
 			remoteInfo = Cloud;
 		};
 /* End PBXContainerItemProxy section */
@@ -48,7 +41,14 @@
 		4BCB7462130B6D5800C3A701 /* TestHarnessAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHarnessAppDelegate.m; sourceTree = "<group>"; };
 		4BCB7465130B6D5800C3A701 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		4BCB7472130B6D7D00C3A701 /* libCloud.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCloud.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/Cloud-abtwsrtzrxyrskbxyjrwgmseiljc/Build/Products/Debug/libCloud.a"; sourceTree = "<group>"; };
-		4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cloud.xcodeproj; path = ../../Source/libCloud/Cloud.xcodeproj; sourceTree = "<group>"; };
+		B16B5DC92138560C002FFFCA /* Cloud.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cloud.xcodeproj; path = ../Source/libCloud/Cloud.xcodeproj; sourceTree = "<group>"; };
+		B16B5DD021385630002FFFCA /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineDelegate.h; sourceTree = "<group>"; };
+		B16B5DD121385630002FFFCA /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebItem.h; sourceTree = "<group>"; };
+		B16B5DD221385630002FFFCA /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
+		B16B5DD321385630002FFFCA /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
+		B16B5DD421385630002FFFCA /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
+		B16B5DD521385630002FFFCA /* CLAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAccount.h; sourceTree = "<group>"; };
+		B16B5DD621385671002FFFCA /* CLAPITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPITransaction.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,8 @@
 		4BCB7440130B6D5700C3A701 = {
 			isa = PBXGroup;
 			children = (
-				4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */,
+				B16B5DCF21385630002FFFCA /* include */,
+				B16B5DC92138560C002FFFCA /* Cloud.xcodeproj */,
 				4BCB7455130B6D5800C3A701 /* TestHarness */,
 				4BCB744E130B6D5800C3A701 /* Frameworks */,
 				4BCB744C130B6D5800C3A701 /* Products */,
@@ -125,12 +126,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4BCB74A1130B6EF900C3A701 /* Products */ = {
+		B16B5DCA2138560C002FFFCA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4BCB74A8130B6EF900C3A701 /* libCloud.a */,
+				B16B5DCE2138560C002FFFCA /* libCloud.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B16B5DCF21385630002FFFCA /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B16B5DD021385630002FFFCA /* CLAPIEngineDelegate.h */,
+				B16B5DD121385630002FFFCA /* CLWebItem.h */,
+				B16B5DD221385630002FFFCA /* CLAPIEngineConstants.h */,
+				B16B5DD321385630002FFFCA /* Cloud.h */,
+				B16B5DD421385630002FFFCA /* CLAPIEngine.h */,
+				B16B5DD521385630002FFFCA /* CLAccount.h */,
+				B16B5DD621385671002FFFCA /* CLAPITransaction.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +162,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4BCB74AB130B6F0800C3A701 /* PBXTargetDependency */,
 			);
 			name = TestHarness;
 			productName = TestHarness;
@@ -174,8 +188,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4BCB74A1130B6EF900C3A701 /* Products */;
-					ProjectRef = 4BCB74A0130B6EF900C3A701 /* Cloud.xcodeproj */;
+					ProductGroup = B16B5DCA2138560C002FFFCA /* Products */;
+					ProjectRef = B16B5DC92138560C002FFFCA /* Cloud.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -186,11 +200,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4BCB74A8130B6EF900C3A701 /* libCloud.a */ = {
+		B16B5DCE2138560C002FFFCA /* libCloud.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCloud.a;
-			remoteRef = 4BCB74A7130B6EF900C3A701 /* PBXContainerItemProxy */;
+			remoteRef = B16B5DCD2138560C002FFFCA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -219,14 +233,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4BCB74AB130B6F0800C3A701 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Cloud;
-			targetProxy = 4BCB74AA130B6F0800C3A701 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4BCB7458130B6D5800C3A701 /* InfoPlist.strings */ = {

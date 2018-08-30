@@ -7,7 +7,7 @@
 //
 
 #import "TestHarnessAppDelegate.h"
-#import <Cloud.h>
+#import "Cloud.h"
 
 @interface TestHarnessAppDelegate () <CLAPIEngineDelegate>
 
@@ -28,10 +28,10 @@
      [engine uploadFileWithName:[fileLocation lastPathComponent] fileData:[NSData dataWithContentsOfFile:fileLocation] userInfo:@"Uploads rock!"];
 	 */
 	
-	/*
-	 --------Get Recent Items--------
+	
+	 //--------Get Recent Items--------
      [engine getItemListStartingAtPage:1 itemsPerPage:5 userInfo:nil];
-	 */
+	 
 }
 
 - (void)requestDidFailWithError:(NSError *)error connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo {
