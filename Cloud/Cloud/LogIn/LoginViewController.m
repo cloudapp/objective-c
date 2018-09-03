@@ -11,6 +11,8 @@
 #import "UIColor+AdditionalColors.h"
 #import "CLApiEngine.h"
 #import "LoginViewController.h"
+#import "ExternalAuthViewController.h"
+
 //#import "SignUpViewController.h"
 //
 //#import "CloudAppTitleLabel.h"
@@ -75,7 +77,7 @@
     _googleSigInButton.layer.borderColor = [[UIColor colorWithRed:0.36 green:0.52 blue:0.90 alpha:1.00] CGColor];
     [_googleSigInButton setTitleColor:[UIColor colorWithRed:0.36 green:0.52 blue:0.90 alpha:1.00] forState:UIControlStateNormal];
     _googleSigInButton.layer.cornerRadius = 32;
-    [_googleSigInButton setImage:[UIImage imageNamed:@"googleLogo"] forState:UIControlStateNormal];
+    //[_googleSigInButton setImage:[UIImage imageNamed:@"googleLogo"] forState:UIControlStateNormal];
     UIEdgeInsets inset = UIEdgeInsetsMake(0, 20, 0, 40);
     [_googleSigInButton setImageEdgeInsets:inset];
     [_googleSigInButton addTarget:self action:@selector(sigInWithGoogle) forControlEvents:UIControlEventTouchUpInside];
@@ -83,7 +85,7 @@
     [NSLayoutConstraint activateConstraints: @[
                                                [_googleSigInButton.leadingAnchor constraintEqualToAnchor:_mainContentView.leadingAnchor constant:42],
                                                 [_googleSigInButton.trailingAnchor constraintEqualToAnchor:_mainContentView.trailingAnchor constant:-42],
-                                               [_googleSigInButton.topAnchor constraintEqualToAnchor:_mainContentView.topAnchor constant:234],
+                                               [_googleSigInButton.topAnchor constraintEqualToAnchor:_mainContentView.topAnchor constant:434],
                                                [_googleSigInButton.heightAnchor constraintEqualToConstant:64]
                                                ]];
     
@@ -117,12 +119,17 @@
     
     [_mainContentView addSubview:_signupButton];
     
-    [self setAppearanceForState:LoginViewControllerStateLogin animated:NO completionHandler:nil];
+    [self setAppearanceForState:LoginViewControllerStateLogin animated:YES completionHandler:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(passwordTextFieldDidReturn) name:LoginMenuEmailPasswordViewPasswordFieldDidReturn object:_emailPasswordView];
 }
 - (void)sigInWithGoogle {
    // [[GIDSignIn sharedInstance] signIn];
+    ExternalAuthViewController *externalVC = [[ExternalAuthViewController alloc] initWithNibName:nil bundle:nil];
+    [self presentViewController:externalVC animated:YES completion:^{
+       
+    }];
+    
 }
 - (LoginViewControllerState)state {
     return _state;

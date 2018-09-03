@@ -35,6 +35,7 @@
 		B16B625021389E57002FFFCA /* puny.c in Sources */ = {isa = PBXBuildFile; fileRef = B16B623921389E57002FFFCA /* puny.c */; };
 		B16B625121389E57002FFFCA /* toxxx.c in Sources */ = {isa = PBXBuildFile; fileRef = B16B624921389E57002FFFCA /* toxxx.c */; };
 		B16B625221389E57002FFFCA /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = B16B624C21389E57002FFFCA /* util.c */; };
+		B16B625D2138A39B002FFFCA /* ExternalAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B625C2138A39B002FFFCA /* ExternalAuthViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +124,8 @@
 		B16B624B21389E57002FFFCA /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		B16B624C21389E57002FFFCA /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
 		B16B624D21389E57002FFFCA /* race.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = race.h; sourceTree = "<group>"; };
+		B16B625B2138A39B002FFFCA /* ExternalAuthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExternalAuthViewController.h; sourceTree = "<group>"; };
+		B16B625C2138A39B002FFFCA /* ExternalAuthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExternalAuthViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				B16B621221389E05002FFFCA /* LoginViewController.m */,
 				B16B620B21389E05002FFFCA /* UIColor+AdditionalColors.h */,
 				B16B620F21389E05002FFFCA /* UIColor+AdditionalColors.m */,
+				B16B625B2138A39B002FFFCA /* ExternalAuthViewController.h */,
+				B16B625C2138A39B002FFFCA /* ExternalAuthViewController.m */,
 			);
 			path = LogIn;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				B16B61FA21389DCF002FFFCA /* CLAPIEngine.m in Sources */,
 				B16B61F921389DCF002FFFCA /* CLAPIEngineConstants.m in Sources */,
 				B16B621F21389E15002FFFCA /* CLSocket.m in Sources */,
+				B16B625D2138A39B002FFFCA /* ExternalAuthViewController.m in Sources */,
 				B16B621E21389E15002FFFCA /* CLWebItem.m in Sources */,
 				B16B620821389DF6002FFFCA /* NSMutableURLRequest+NPPOSTBody.m in Sources */,
 				B16B622F21389E3D002FFFCA /* NSURL+IFUnicodeURL.m in Sources */,
