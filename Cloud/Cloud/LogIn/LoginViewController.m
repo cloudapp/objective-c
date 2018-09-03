@@ -19,7 +19,7 @@
 //#import "BezeledDarkGrayButton.h"
 //#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface LoginViewController (){//}<GIDSignInUIDelegate>{
+@interface LoginViewController ()<ExternalAuthViewControllerDelegate, CLAPIEngineInternalDelegate>{//}<GIDSignInUIDelegate>{
     UIView *_mainContentView;
     UIImageView *_cloudLogoImageView;
     LoginMenuEmailPasswordView *_emailPasswordView;
@@ -126,6 +126,7 @@
 - (void)sigInWithGoogle {
    // [[GIDSignIn sharedInstance] signIn];
     ExternalAuthViewController *externalVC = [[ExternalAuthViewController alloc] initWithNibName:nil bundle:nil];
+    externalVC.delegate = self;
     [self presentViewController:externalVC animated:YES completion:^{
        
     }];
@@ -286,6 +287,11 @@
 
     if (self.emailPasswordView.emailFieldText.length > 0 && self.emailPasswordView.passwordFieldText.length > 0) {
         //[self.delegate loginViewController:self didFinishWithEmail:self.emailPasswordView.emailFieldText andPassword:self.emailPasswordView.passwordFieldText];
+        [CLAPIEngine sharedInstance].internaldelegate = self;
+        [CLAPIEngine sharedInstance].email = self.emailPasswordView.emailFieldText;
+        [CLAPIEngine sharedInstance].password = self.emailPasswordView.passwordFieldText;
+        
+        [[CLAPIEngine sharedInstance] getAccountToken:@"getAccountToken"];
     } else {
         [self performSelector:@selector(flashLogo) withObject:nil afterDelay:0.5];
     }
@@ -368,5 +374,15 @@
 //-(void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
 //    [self dismissViewControllerAnimated:YES completion:nil];
 //}
+
+-(void)didLoginWithToken:(NSString *)token {
+    [CLAPIEngine sharedInstance].internaldelegate = self;
+    [[CLAPIEngine sharedInstance] getJWTfromToken:token and:nil];
+}
+
+-(void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier {
+    NSLog(@"token getted: %@", tokenString);
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

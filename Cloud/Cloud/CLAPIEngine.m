@@ -269,6 +269,36 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
+- (NSString *)getJWTfromToken:(NSString*)accessToken and:(id)userInfo{
+    
+    CLAPITransaction *transaction = [CLAPITransaction transaction];
+    transaction.numberOfTries += 1; // try two times before error
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://m6ng7x0jug.execute-api.us-east-1.amazonaws.com/production/graphql"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"/" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *dict = @{
+                           @"query": [NSString stringWithFormat:@"\n# Welcome to GraphiQL\n#\n# GraphiQL is an in-browser tool for writing, validating, and\n# testing GraphQL queries.\n#\n# Type queries into this side of the screen, and you will see intelligent\n# typeaheads aware of the current GraphQL type schema and live syntax and\n# validation errors highlighted within the text.\n#\n# GraphQL queries typically start with a \"{\" character. Lines that starts\n# with a # are ignored.\n#\n# An example GraphQL query might look like:\n#\n#     {\n#       field(arg: \"value\") {\n#         subField\n#       }\n#     }\n#\n# Keyboard shortcuts:\n#\n#       Run Query:  Ctrl-Enter (or press the play button above)\n#\n#   Auto Complete:  Ctrl-Space (or just start typing)\n#\n# # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n# Default endpoint is an instance of https://www.graph.cool/\n# # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\nmutation { \n  exchangeJwt(token: \"%@\") { __typename \n    payload\n  }\n}\n", accessToken]
+                           };
+    
+    NSData *bodyData = [CLAPISerializer JSONDataFromDictionary:dict];
+    
+    [request setHTTPBody:bodyData];
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    
+    transaction.request     = request;
+    transaction.identifier  = [NSString stringWithFormat:@"%@",[NSDate dateWithTimeIntervalSince1970:NSTimeIntervalSince1970]];
+    transaction.requestType = CLAPIRequestTypeAccountToken;
+    transaction.userInfo    = userInfo;
+    
+    
+    return [self _createAndStartConnectionForTransaction:transaction];
+}
+
+
+
 
 - (NSString *)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo {
     
@@ -1082,12 +1112,21 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         case CLAPIRequestTypeAccountToken: {
             NSDictionary *tokenDict = [CLAPIDeserializer dictionaryFromJSONData:transaction.receivedData];
             
-            NSString *token = [tokenDict objectForKey:@"jwt"];
-            NSLog(@"%@",token);
+            NSString *token;
+            if ([tokenDict objectForKey:@"jwt"]) {
+            token = [tokenDict objectForKey:@"jwt"];
+            } else {
+                token = [[[tokenDict objectForKey:@"data"] objectForKey:@"exchangeJwt"]objectForKey:@"payload"];
+            }
+            NSLog(@"current token %@",token);
             [[NSUserDefaults standardUserDefaults] setValue:token forKey:@"tokenCloudApp"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if ([self.delegate respondsToSelector:@selector(tokenWith:and:)]) {
                 [self.delegate tokenWith:token and:transaction.identifier];
+            }
+            
+            if ([self.internaldelegate respondsToSelector:@selector(tokenWith:and:)]) {
+                [self.internaldelegate tokenWith:token and:transaction.identifier];
             }
             
             break;

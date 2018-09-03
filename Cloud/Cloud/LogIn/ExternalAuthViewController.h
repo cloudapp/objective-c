@@ -10,8 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExternalAuthViewController : UIViewController
+@protocol ExternalAuthViewControllerDelegate <NSObject>
 
+@optional
+- (void)didLoginWithToken:(NSString*)token;
+- (void)loginCanceled;
+
+@end
+
+@interface ExternalAuthViewController : UIViewController
+@property (weak) id <ExternalAuthViewControllerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

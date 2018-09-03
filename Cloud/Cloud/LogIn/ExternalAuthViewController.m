@@ -9,6 +9,7 @@
 #import "ExternalAuthViewController.h"
 @import WebKit;
 
+
 @interface ExternalAuthViewController () <WKUIDelegate, WKNavigationDelegate>
 @property (nonatomic, strong) WKWebView *webView;
 @end
@@ -23,13 +24,14 @@
     _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     [_webView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:_webView];
+    
+    UINavigationBar *nav = [self addNavigationBar];
     [NSLayoutConstraint activateConstraints:@[
                                               [_webView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-                                              [_webView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+                                              [_webView.topAnchor constraintEqualToAnchor:nav.bottomAnchor],
                                               [_webView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
                                               [_webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
                                               ]];
-    
     
     
     NSURL *loadURL = [NSURL URLWithString:@"https://api.getcloudapp.com/auth/google_api_login"];
@@ -40,10 +42,35 @@
     [_webView loadRequest:request];
 }
 
+- (UINavigationBar*)addNavigationBar {
+    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, 100)];
+    //[UINavigationBar appearance].barTintColor = [UIColor lightGrayColor];
+    //[UINavigationBar appearance].barTintColor = [UIColor whiteColor];
+    myNav.barTintColor = [UIColor whiteColor];
+    [self.view addSubview:myNav];
+    
+    
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:nil];
+    
+    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self action:nil];
+    
+    
+    UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@"Google login for CloudApp"];
+    navigItem.rightBarButtonItem = doneItem;
+    navigItem.leftBarButtonItem = cancelItem;
+    myNav.items = [NSArray arrayWithObjects: navigItem,nil];
+    
+    [UIBarButtonItem appearance].tintColor = [UIColor blueColor];
+    
+    return  myNav;
+}
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-    NSURLComponents *components = [NSURLComponents componentsWithURL:navigationResponse.response.URL resolvingAgainstBaseURL:YES];
-    
     if ([navigationResponse.response.MIMEType isEqualToString:@"application/vnd.collection+json"]) {
         [_webView setHidden:YES];
         decisionHandler(WKNavigationResponsePolicyAllow);
@@ -66,7 +93,12 @@
             [items enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([[obj objectForKey:@"name"] isEqualToString:@"token"]) {
                     NSLog(@"Toke:== %@", [obj objectForKey:@"value"]);
+                    NSString *token = [obj objectForKey:@"value"];
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(didLoginWithToken:)]) {
+                        [self.delegate didLoginWithToken:token];
+                    }
                 }
+                [self dismissViewControllerAnimated:YES completion:nil];
             }];
             
         }

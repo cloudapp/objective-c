@@ -43,3 +43,10 @@
 - (void)storeReceiptRedemptionSucceeded:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
 @end
+
+@protocol CLAPIEngineInternalDelegate <NSObject>
+
+
+@optional
+- (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
+@end

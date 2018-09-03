@@ -23,7 +23,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
     NSString *_password;
     NSURL *_baseURL;
     id <CLAPIEngineDelegate> __weak _delegate;
-    
+    id <CLAPIEngineInternalDelegate> __weak _iternaldelegate;
+
     NSMutableSet *_transactions;
     
     BOOL _clearsCookies;
@@ -32,6 +33,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 @property (nonatomic, readwrite, copy) NSString *email;
 @property (nonatomic, readwrite, copy) NSString *password;
 @property (nonatomic, readwrite, weak) id<CLAPIEngineDelegate> delegate;
+@property (nonatomic, readwrite, weak) id<CLAPIEngineInternalDelegate> internaldelegate;
+
 @property (nonatomic, readwrite, strong) NSURL *baseURL;
 @property (nonatomic, readwrite, strong) NSMutableSet *transactions;
 
@@ -88,5 +91,6 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 - (NSString *)getAccountToken:(id)userInfo;
 - (NSString *)loadAccountStatisticsWithUserInfo:(id)userInfo;
 - (NSString *)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo;
+- (NSString *)getJWTfromToken:(NSString*)accessToken and:(id)userInfo;
 - (void)signUp;
 @end
