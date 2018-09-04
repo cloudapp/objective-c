@@ -43,25 +43,28 @@
 }
 
 - (UINavigationBar*)addNavigationBar {
-    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, 100)];
+    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectZero];
     //[UINavigationBar appearance].barTintColor = [UIColor lightGrayColor];
     //[UINavigationBar appearance].barTintColor = [UIColor whiteColor];
+    [myNav setTranslatesAutoresizingMaskIntoConstraints:NO];
     myNav.barTintColor = [UIColor whiteColor];
     [self.view addSubview:myNav];
     
     
+    [NSLayoutConstraint activateConstraints:@[
+                                              [myNav.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+                                              [myNav.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+                                              [myNav.topAnchor constraintEqualToAnchor:self.view.layoutMarginsGuide.topAnchor]
+                                              ]];
+    
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
-                                                                  action:nil];
-    
-    UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                 style:UIBarButtonItemStyleDone
-                                                                target:self action:nil];
+                                                                  action:@selector(closeViewController)];
     
     
-    UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@"Google login for CloudApp"];
-    navigItem.rightBarButtonItem = doneItem;
+    UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@"Login for CloudApp"];
+    // navigItem.rightBarButtonItem = doneItem;
     navigItem.leftBarButtonItem = cancelItem;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
     
@@ -69,6 +72,11 @@
     
     return  myNav;
 }
+
+- (void)closeViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     if ([navigationResponse.response.MIMEType isEqualToString:@"application/vnd.collection+json"]) {

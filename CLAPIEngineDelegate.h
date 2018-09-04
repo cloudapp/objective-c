@@ -32,7 +32,7 @@
 
 - (void)itemInformationRetrievalSucceeded:(CLWebItem *)item connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)accountInformationRetrievalSucceeded:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
-- (void)itemListRetrievalSucceeded:(NSArray *)items connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
+- (void)itemListRetrievalSucceeded:(NSArray<CLWebItem *> *)items connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)accountStatisticsRetrievalSucceeded:(NSDictionary *)statistics connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 
 - (void)accountCreationSucceeded:(CLAccount *)newAccount connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;

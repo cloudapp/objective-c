@@ -52,12 +52,27 @@ NSString *LoginMenuEmailPasswordViewPasswordFieldDidReturn = @"LoginMenuEmailPas
         _emailTextField.clearButtonMode = _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _emailTextField.font = _passwordTextField.font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
         _emailTextField.textColor = _passwordTextField.textColor = [UIColor colorWithRed:92/255.0f green:97/255.0f blue:103/255.0f alpha:1.0];
-        
         [self addSubview:_emailTextField];
         [self addSubview:_passwordTextField];
+        
+        [self setupViews];
     }
     
     return self;
+}
+- (void)setupViews {
+    
+    [_emailTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [_passwordTextField setBorderStyle:UITextBorderStyleRoundedRect];
+//    _emailTextField.layer.borderColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.3] .CGColor;
+//    _emailTextField.layer.borderWidth = 1;
+//    _emailTextField.layer.cornerRadius = 4;
+//    [_emailTextField.layer setMaskedCorners:(kCALayerMinXMinYCorner|kCALayerMaxXMinYCorner)];
+//
+//    _passwordTextField.layer.borderColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.3] .CGColor;
+//    _passwordTextField.layer.borderWidth = 1;
+//    _passwordTextField.layer.cornerRadius = 4;
+//    [_passwordTextField.layer setMaskedCorners:(kCALayerMaxXMaxYCorner|kCALayerMinXMaxYCorner)];
 }
 
 #pragma mark - Getters and Setters

@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, CLAPIEngineDelegate {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        CLAPIEngine.sharedInstance()?.delegate = self;
+
        // engine.getAccountToken("GetTokenAccount")
         
         //engine.getItemListStarting(atPage: 1, itemsPerPage: 5, userInfo: nil)
@@ -21,7 +22,6 @@ class ViewController: UIViewController, CLAPIEngineDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        CLAPIEngine.sharedInstance()?.signUp()
 
     }
 
@@ -30,6 +30,27 @@ class ViewController: UIViewController, CLAPIEngineDelegate {
             print(item)
         }
     }
+    
+    @IBAction func openLoginView() {
+        CLAPIEngine.sharedInstance()?.signUp()
 
+    }
+    
+    @IBAction func getDrops() {
+        //CLAPIEngine.sharedInstance()?.getItemListStarting(atPage: 1, itemsPerPage: 10, userInfo: nil)
+        CLAPIEngine.sharedInstance()?.getItemListStarting(atPage: 1, ofType: CLWebItemTypeVideo, itemsPerPage: 10, showOnlyItemsInTrash: false, userInfo: nil)
+    }
+    
+}
+
+extension ViewController: CLAPIEngineDelegate {
+    func itemListRetrievalSucceeded(_ items: [CLWebItem]!, connectionIdentifier: String!, userInfo: Any!) {
+        
+        for item in items {
+            print(item.name)
+        }
+    }
+    
+    
 }
 
