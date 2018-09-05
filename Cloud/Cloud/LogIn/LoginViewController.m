@@ -327,11 +327,11 @@
 
     if (self.emailPasswordView.emailFieldText.length > 0 && self.emailPasswordView.passwordFieldText.length > 0) {
         //[self.delegate loginViewController:self didFinishWithEmail:self.emailPasswordView.emailFieldText andPassword:self.emailPasswordView.passwordFieldText];
-        [CLAPIEngine sharedInstance].internaldelegate = self;
-        [CLAPIEngine sharedInstance].email = self.emailPasswordView.emailFieldText;
-        [CLAPIEngine sharedInstance].password = self.emailPasswordView.passwordFieldText;
+        [CLAPIEngine shared].internaldelegate = self;
+        [CLAPIEngine shared].email = self.emailPasswordView.emailFieldText;
+        [CLAPIEngine shared].password = self.emailPasswordView.passwordFieldText;
         
-        [[CLAPIEngine sharedInstance] getAccountToken:@"getAccountToken"];
+        [[CLAPIEngine shared] getAccountToken:@"getAccountToken"];
     } else {
         [self performSelector:@selector(flashLogo) withObject:nil afterDelay:0.5];
     }
@@ -417,8 +417,8 @@
 
 -(void)didLoginWithToken:(NSString *)token {
     [_googleSigInButton setEnabled:false];
-    [CLAPIEngine sharedInstance].internaldelegate = self;
-    [[CLAPIEngine sharedInstance] getJWTfromToken:token and:nil];
+    [CLAPIEngine shared].internaldelegate = self;
+    [[CLAPIEngine shared] getJWTfromToken:token and:nil];
 }
 
 -(void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier {

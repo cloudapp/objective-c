@@ -44,12 +44,9 @@ class ViewController: UIViewController {
 
 extension ViewController: CLAPIEngineDelegate {
     func itemListRetrievalSucceeded(_ items: [CLWebItem]!, connectionIdentifier: String!, userInfo: Any!) {
-        
         for item in items {
             print(item.name)
         }
     }
-    
-    
 }
 

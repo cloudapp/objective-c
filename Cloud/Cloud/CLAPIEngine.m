@@ -35,7 +35,7 @@ NSString *const CLAPIEnginePrivacyOptionPublic = @"public";
 
 - (NSURL *)_URLWithPath:(NSString *)path;
 
-- (NSString *)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction;
+- (void)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction;
 - (CLAPITransaction *)_transactionForConnection:(NSURLConnection *)connection;
 - (CLAPITransaction *)_transactionForConnectionIdentifier:(NSString *)connectionIdentifier;
 
@@ -62,7 +62,7 @@ transactions = _transactions;
     return [self initWithDelegate:nil];
 }
 
-+ (instancetype)sharedInstance
++ (instancetype)shared
 {
     static CLAPIEngine *sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -72,6 +72,7 @@ transactions = _transactions;
     });
     return sharedInstance;
 }
+
 
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate
 {
@@ -106,10 +107,10 @@ transactions = _transactions;
 
 #pragma mark - Actions
 
-- (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo
+- (void)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo
 {
     if (accountEmail == nil || accountPassword == nil)
-        return nil;
+        return ;
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _httpsURLWithPath:@"/register"]];
@@ -121,7 +122,7 @@ transactions = _transactions;
                                                 password:accountPassword
                                              acceptTerms:acceptTerms];
     if (bodyData == nil)
-        return nil;
+        return ;
     
     [request setHTTPBody:bodyData];
     
@@ -130,13 +131,13 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeCreateAccount;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo
+- (void)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo
 {
     if (webItem == nil || webItem.href == nil)
-        return nil;
+        return ;
     [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:webItem.href];
@@ -146,7 +147,7 @@ transactions = _transactions;
     
     NSData *bodyData = [CLAPISerializer itemWithName:newName];
     if (bodyData == nil)
-        return nil;
+        return ;
     
     [request setHTTPBody:bodyData];
     
@@ -155,10 +156,10 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeItemUpdateName;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo
+- (void)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo
 {
     [self isUserLoggedIn];
     CLWebItem *webItem = [CLWebItem webItem];
@@ -167,11 +168,11 @@ transactions = _transactions;
     return [self changeNameOfItem:webItem toName:newName userInfo:userInfo];
 }
 
-- (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
+- (void)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
 {
     [self isUserLoggedIn];
     if (webItem == nil || webItem.href == nil)
-        return nil;
+        return;
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
@@ -181,7 +182,7 @@ transactions = _transactions;
     
     NSData *bodyData = [CLAPISerializer itemWithPrivate:isPrivate];
     if (bodyData == nil)
-        return nil;
+        return;
     
     [request setHTTPBody:bodyData];
     
@@ -193,7 +194,7 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
+- (void)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
 {
     [self isUserLoggedIn];
     CLWebItem *webItem = [CLWebItem webItem];
@@ -202,7 +203,7 @@ transactions = _transactions;
     return [self changePrivacyOfItem:webItem toPrivate:isPrivate userInfo:userInfo];
 }
 
-- (NSString *)getAccountInformationWithUserInfo:(id)userInfo
+- (void)getAccountInformationWithUserInfo:(id)userInfo
 {
     [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
@@ -221,10 +222,10 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)getAccountToken:(id)userInfo
+- (void)getAccountToken:(id)userInfo
 {
     if (![self isReady])
-        return nil;
+        return ;
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     transaction.numberOfTries += 1; // try two times before error
@@ -251,7 +252,7 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo{
+- (void)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo{
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     transaction.numberOfTries += 1; // try two times before error
@@ -272,7 +273,7 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)getJWTfromToken:(NSString*)accessToken and:(id)userInfo{
+- (void)getJWTfromToken:(NSString*)accessToken and:(id)userInfo{
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     transaction.numberOfTries += 1; // try two times before error
@@ -303,7 +304,7 @@ transactions = _transactions;
 
 
 
-- (NSString *)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo {
+- (void)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo {
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _URLWithPath:@"/account"]];
@@ -316,7 +317,7 @@ transactions = _transactions;
                                                                  }];
     
     if (bodyData == nil) {
-        return nil;
+        return;
     }
     
     [request setHTTPBody:bodyData];
@@ -329,15 +330,15 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo
+- (void)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo
 {
     return [self bookmarkLinkWithURL:URL name:name options:nil userInfo:userInfo];
 }
 
-- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo
+- (void)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo
 {
     if ([[URL absoluteString] length] == 0)
-        return nil;
+        return;
     
     if ([name length] == 0)
         name = [URL absoluteString];
@@ -365,7 +366,7 @@ transactions = _transactions;
     }
     
     if (bodyData == nil)
-        return nil;
+        return;
     
     [request setHTTPBody:bodyData];
     
@@ -374,13 +375,13 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeLinkBookmark;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo
+- (void)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo
 {
     if (webItem == nil || webItem.href == nil)
-        return nil;
+        return ;
     [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
@@ -390,7 +391,7 @@ transactions = _transactions;
     
     NSData *bodyData = [CLAPISerializer itemForRestore];
     if (bodyData == nil)
-        return nil;
+        return;
     
     [request setHTTPBody:bodyData];
     
@@ -399,10 +400,10 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeItemRestoration;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo
+- (void)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo
 {
     [self isUserLoggedIn];
     CLWebItem *tempItem = [CLWebItem webItem];
@@ -411,10 +412,10 @@ transactions = _transactions;
     return [self restoreItem:tempItem userInfo:userInfo];
 }
 
-- (NSString *)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo
+- (void)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo
 {
     if ( webItem == nil || webItem.href == nil)
-        return nil;
+        return;
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
@@ -426,21 +427,21 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeItemDeletion;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+     [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo
+- (void)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo
 {
     CLWebItem *tempItem = [CLWebItem webItem];
     tempItem.URL = itemURL;
     
-    return [self getItemInformation:tempItem userInfo:userInfo];
+    //return [self getItemInformation:tempItem userInfo:userInfo];
 }
 
-- (NSString *)getItemInformation:(CLWebItem *)webItem userInfo:(id)userInfo
+- (void)getItemInformation:(CLWebItem *)webItem userInfo:(id)userInfo
 {
     if (webItem == nil || webItem.URL == nil)
-        return nil;
+        return;
     [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.URL];
@@ -452,10 +453,10 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeGetItemInformation;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo
+- (void)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo
 {
     CLWebItem *tempItem = [CLWebItem webItem];
     tempItem.href = href;
@@ -463,28 +464,28 @@ transactions = _transactions;
     return [self deleteItem:tempItem userInfo:userInfo];
 }
 
-- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo
 {
-    return [self getItemListStartingAtPage:pageNumStartingAtOne
+     [self getItemListStartingAtPage:pageNumStartingAtOne
                                     ofType:CLWebItemTypeNone
                               itemsPerPage:perPage
                       showOnlyItemsInTrash:NO
                                   userInfo:userInfo];
 }
 
-- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo
 {
-    return [self getItemListStartingAtPage:pageNumStartingAtOne
+     [self getItemListStartingAtPage:pageNumStartingAtOne
                                     ofType:type
                               itemsPerPage:perPage
                       showOnlyItemsInTrash:NO
                                   userInfo:userInfo];
 }
 
-- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo
 {
     if (!([self isUserLoggedIn])) {
-        return @"";
+        return;
     }
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     transaction.numberOfTries += 2; // try three times before error
@@ -510,23 +511,23 @@ transactions = _transactions;
     transaction.requestType = CLAPIRequestTypeGetItemList;
     transaction.userInfo    = userInfo;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo
+- (void)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo
 {
-    return [self uploadFileWithName:fileName fileData:fileData options:nil userInfo:userInfo];
+     [self uploadFileWithName:fileName fileData:fileData options:nil userInfo:userInfo];
 }
 
-- (NSString *)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk options:(NSDictionary *)options userInfo:(id)userInfo {
-    return [self uploadFileWithName:fileName atPathOnDisk:pathOnDisk fileData:nil options:options userInfo:userInfo];
+- (void)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk options:(NSDictionary *)options userInfo:(id)userInfo {
+     [self uploadFileWithName:fileName atPathOnDisk:pathOnDisk fileData:nil options:options userInfo:userInfo];
 }
 
-- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo {
-    return [self uploadFileWithName:fileName atPathOnDisk:nil fileData:fileData options:options userInfo:userInfo];
+- (void)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo {
+     [self uploadFileWithName:fileName atPathOnDisk:nil fileData:fileData options:options userInfo:userInfo];
 }
 
-- (NSString *)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo {
+- (void)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo {
     
     NSURL *apiURL = [self _URLWithPath:@"/items/new"];
     if ([options.allKeys containsObject:CLAPIEngineUploadOptionPrivacyKey]) {
@@ -542,7 +543,7 @@ transactions = _transactions;
     
     // Make sure that the API URL is still valid after the editing
     if (apiURL == nil)
-        return nil;
+        return ;
     
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
@@ -569,12 +570,12 @@ transactions = _transactions;
     
     transaction.internalContext = internalContextDictionary;
     
-    return [self _createAndStartConnectionForTransaction:transaction];
+    [self _createAndStartConnectionForTransaction:transaction];
 }
 
 #pragma mark -x
 
-- (NSString *)getStoreProductsWithUserInfo:(id)userInfo {
+- (void)getStoreProductsWithUserInfo:(id)userInfo {
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _URLWithPath:@"/purchases"]];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -588,7 +589,7 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo
+- (void)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo
 {
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
@@ -607,7 +608,7 @@ transactions = _transactions;
     return [self _createAndStartConnectionForTransaction:transaction];
 }
 
-- (NSString *)loadAccountStatisticsWithUserInfo:(id)userInfo {
+- (void)loadAccountStatisticsWithUserInfo:(id)userInfo {
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _URLWithPath:@"/account/stats"]];
@@ -949,6 +950,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
             
         case CLAPIRequestTypeS3FileUploadStreamingUploadFinalisation: {
             CLWebItem *resultItem = [CLAPIDeserializer webItemWithJSONDictionaryData:transaction.receivedData];
+            if ([self.delegate respondsToSelector:@selector(fileUploadDidSucceedWithResultingItem:connectionIdentifier:userInfo:)])
             [self.delegate fileUploadDidSucceedWithResultingItem:resultItem connectionIdentifier:transaction.identifier userInfo:transaction.userInfo];
             
             break;
@@ -1146,10 +1148,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
 #pragma mark -
 #pragma mark Private Methods
 
-- (NSString *)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction {
+- (void)_createAndStartConnectionForTransaction:(CLAPITransaction *)transaction {
     if (transaction.numberOfTries <= 0) {
         [NSException raise:NSInternalInconsistencyException format:@"transaction was called more than is possible"];
-        return nil;
+        return ;
     }
     
     if (self.clearsCookies) {
@@ -1171,7 +1173,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     
     [connection start];
     
-    return transaction.identifier;
+    //return transaction.identifier;
 }
 
 - (CLAPITransaction *)_transactionForConnection:(NSURLConnection *)connection {

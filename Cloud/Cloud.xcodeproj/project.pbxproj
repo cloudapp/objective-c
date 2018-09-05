@@ -52,6 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B14BC8BB21403A9C00E9FCCC /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
 		B16B61E121389DA1002FFFCA /* libCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCloud.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16B61E421389DA1002FFFCA /* Cloud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
 		B16B61E521389DA1002FFFCA /* Cloud.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cloud.m; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		B16B61F321389DCF002FFFCA /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
 		B16B61F421389DCF002FFFCA /* CLAPITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPITransaction.h; sourceTree = "<group>"; };
 		B16B61F521389DCF002FFFCA /* CLAPITransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLAPITransaction.m; sourceTree = "<group>"; };
-		B16B61F621389DCF002FFFCA /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
 		B16B61F721389DCF002FFFCA /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineDelegate.h; sourceTree = "<group>"; };
 		B16B61F821389DCF002FFFCA /* Cloud-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cloud-Prefix.pch"; sourceTree = "<group>"; };
 		B16B61FC21389DEC002FFFCA /* CLAPIDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIDeserializer.h; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				B16B61ED21389DBA002FFFCA /* API Parsing */,
 				B16B61E421389DA1002FFFCA /* Cloud.h */,
 				B16B61E521389DA1002FFFCA /* Cloud.m */,
-				B16B61F621389DCF002FFFCA /* CLAPIEngine.h */,
+				B14BC8BB21403A9C00E9FCCC /* CLAPIEngine.h */,
 				B16B61F221389DCF002FFFCA /* CLAPIEngine.m */,
 				B16B61F321389DCF002FFFCA /* CLAPIEngineConstants.h */,
 				B16B61F121389DCF002FFFCA /* CLAPIEngineConstants.m */,
