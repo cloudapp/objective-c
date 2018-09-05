@@ -1,4 +1,4 @@
-# objective-c
+# objective-c (iOS)
 CloudApp's first-party Objective-C API wrapper
 
 ### Configuration
