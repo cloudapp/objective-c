@@ -92,5 +92,6 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 - (NSString *)loadAccountStatisticsWithUserInfo:(id)userInfo;
 - (NSString *)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo;
 - (NSString *)getJWTfromToken:(NSString*)accessToken and:(id)userInfo;
-- (void)signUp;
+- (void)logIn;
+- (void)logOut;
 @end

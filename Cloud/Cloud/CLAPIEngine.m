@@ -137,7 +137,7 @@ transactions = _transactions;
 {
     if (webItem == nil || webItem.href == nil)
         return nil;
-    
+    [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request  = [NSMutableURLRequest requestWithURL:webItem.href];
     [request setHTTPMethod:@"PUT"];
@@ -160,6 +160,7 @@ transactions = _transactions;
 
 - (NSString *)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo
 {
+    [self isUserLoggedIn];
     CLWebItem *webItem = [CLWebItem webItem];
     webItem.href = href;
     
@@ -168,6 +169,7 @@ transactions = _transactions;
 
 - (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
 {
+    [self isUserLoggedIn];
     if (webItem == nil || webItem.href == nil)
         return nil;
     
@@ -193,6 +195,7 @@ transactions = _transactions;
 
 - (NSString *)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo
 {
+    [self isUserLoggedIn];
     CLWebItem *webItem = [CLWebItem webItem];
     webItem.href = href;
     
@@ -201,7 +204,7 @@ transactions = _transactions;
 
 - (NSString *)getAccountInformationWithUserInfo:(id)userInfo
 {
-    
+    [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     transaction.numberOfTries += 1; // try two times before error
     
@@ -340,7 +343,7 @@ transactions = _transactions;
         name = [URL absoluteString];
     
     CLAPITransaction *transaction = [CLAPITransaction transaction];
-    
+    [self isUserLoggedIn];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self _URLWithPath:@"/items"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -378,7 +381,7 @@ transactions = _transactions;
 {
     if (webItem == nil || webItem.href == nil)
         return nil;
-    
+    [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.href];
     [request setHTTPMethod:@"PUT"];
@@ -401,6 +404,7 @@ transactions = _transactions;
 
 - (NSString *)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo
 {
+    [self isUserLoggedIn];
     CLWebItem *tempItem = [CLWebItem webItem];
     tempItem.href = href;
     
@@ -437,7 +441,7 @@ transactions = _transactions;
 {
     if (webItem == nil || webItem.URL == nil)
         return nil;
-    
+    [self isUserLoggedIn];
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:webItem.URL];
     [request setHTTPMethod:@"GET"];
@@ -479,7 +483,9 @@ transactions = _transactions;
 
 - (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo
 {
-    
+    if (!([self isUserLoggedIn])) {
+        return @"";
+    }
     CLAPITransaction *transaction = [CLAPITransaction transaction];
     transaction.numberOfTries += 2; // try three times before error
     
@@ -1202,7 +1208,7 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     
 }
 
--(void)signUp {
+-(void)logIn {
     UIViewController *rootViewController = [[UIApplication.sharedApplication.delegate window] rootViewController];
     
     LoginViewController *controller = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
@@ -1210,6 +1216,24 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
     [rootViewController presentViewController:controller animated:YES completion:^{
         
     }];
+}
+-(void)logOut {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"tokenCloudApp"];
+    if ([self.delegate respondsToSelector:@selector(didLogOut)]) {
+        [self.delegate didLogOut];
+    }
+}
+
+- (BOOL)isUserLoggedIn {
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"tokenCloudApp"];
+    
+    if (!(token.length > 0)) {
+        NSLog(@"user logged out, please login first.");
+        return NO;
+    } else {
+        return YES;
+    }
+
 }
 
 @end

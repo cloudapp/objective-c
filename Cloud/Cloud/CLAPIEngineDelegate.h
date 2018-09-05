@@ -42,10 +42,13 @@
 - (void)storeProductInformationRetrievalSucceeded:(NSArray *)productIdentifiers connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)storeReceiptRedemptionSucceeded:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
+-(void)didLogOut;
+
 @end
 
 @protocol CLAPIEngineInternalDelegate <NSObject>
 
 @optional
 - (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
+
 @end

@@ -32,8 +32,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func openLoginView() {
-        CLAPIEngine.sharedInstance()?.signUp()
-
+        CLAPIEngine.sharedInstance()?.logIn()
     }
     
     @IBAction func getDrops() {
