@@ -1,6 +1,7 @@
 # objective-c (iOS)
 CloudApp's first-party Objective-C API wrapper
 
+Using in Swift 4
 ### Configuration
 To be able to use in the current ViewController the delegates import `CLAPIEngineDelegate` and then before anything else.
 ```swift
