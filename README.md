@@ -45,3 +45,43 @@ Here we have an example to upload one drop getted from the ```UIImagePickerContr
         self.dismiss(animated: true, completion: nil)
     }
 ```
+
+
+### Functions you can use
+
+``` objective-c
+- (CLAPIRequestType)requestTypeForConnectionIdentifier:(NSString *)identifier;
+
+- (void)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo;
+- (void)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo;
+
+- (void)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
+- (void)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
+- (void)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo;
+- (void)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo;
+- (void)getAccountInformationWithUserInfo:(id)userInfo;
+- (void)getItemInformation:(CLWebItem *)item userInfo:(id)userInfo;
+- (void)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo;
+- (void)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo;
+- (void)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo;
+- (void)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo;
+- (void)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo;
+- (void)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk options:(NSDictionary<NSString*,NSString*>*)options userInfo:(id)userInfo;
+
+- (void)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo;
+- (void)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo;
+- (void)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo;
+- (void)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo;
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo;
+
+- (void)getStoreProductsWithUserInfo:(id)userInfo;
+- (void)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo;
+- (void)getAccountToken:(id)userInfo;
+- (void)loadAccountStatisticsWithUserInfo:(id)userInfo;
+- (void)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo;
+- (void)getJWTfromToken:(NSString*)accessToken and:(id)userInfo;
+- (void)logIn;
+- (void)logOut;
+```
