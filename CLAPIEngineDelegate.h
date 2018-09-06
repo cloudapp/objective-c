@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
+
 @class CLWebItem, CLAPITransaction, CLAccount;
 
 
 @protocol CLAPIEngineDelegate <NSObject>
 
-@optional
 
+@optional
 - (void)requestDidSucceedWithConnectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)requestDidFailWithError:(NSError *)error connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)requestDidRetryAfterFailureWithError:(NSError *)error connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
@@ -40,4 +42,13 @@
 - (void)storeProductInformationRetrievalSucceeded:(NSArray *)productIdentifiers connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)storeReceiptRedemptionSucceeded:(CLAccount *)account connectionIdentifier:(NSString *)connectionIdentifier userInfo:(id)userInfo;
 - (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
+-(void)didLogOut;
+
+@end
+
+@protocol CLAPIEngineInternalDelegate <NSObject>
+
+@optional
+- (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
+- (void)didLoginFailWithError:(NSError*)error;
 @end

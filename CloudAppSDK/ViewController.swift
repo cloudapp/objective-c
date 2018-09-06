@@ -13,12 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CLAPIEngine.sharedInstance()?.delegate = self;
+        CLAPIEngine.shared().delegate = self;
 
        // engine.getAccountToken("GetTokenAccount")
         
         //engine.getItemListStarting(atPage: 1, itemsPerPage: 5, userInfo: nil)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,12 +31,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func openLoginView() {
-        CLAPIEngine.sharedInstance()?.logIn()
+        CLAPIEngine.shared().logIn()
     }
     
     @IBAction func getDrops() {
         //CLAPIEngine.sharedInstance()?.getItemListStarting(atPage: 1, itemsPerPage: 10, userInfo: nil)
-        CLAPIEngine.sharedInstance()?.getItemListStarting(atPage: 1, ofType: CLWebItemTypeVideo, itemsPerPage: 10, showOnlyItemsInTrash: false, userInfo: nil)
+        CLAPIEngine.shared().getItemListStarting(atPage: 1, ofType: CLWebItemTypeVideo, itemsPerPage: 10, showOnlyItemsInTrash: false, userInfo: nil)
     }
     
 }

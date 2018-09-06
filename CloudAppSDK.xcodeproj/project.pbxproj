@@ -35,13 +35,13 @@
 		B16B617B21386146002FFFCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B16B618121386158002FFFCA /* CloudAppSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CloudAppSDK-Bridging-Header.h"; sourceTree = "<group>"; };
 		B16B619C213872FC002FFFCA /* CLAPIEngineConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineConstants.h; sourceTree = "<group>"; };
-		B16B619D213872FC002FFFCA /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineDelegate.h; sourceTree = "<group>"; };
 		B16B619E213872FC002FFFCA /* CLAPITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPITransaction.h; sourceTree = "<group>"; };
 		B16B61A0213872FD002FFFCA /* CLAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAccount.h; sourceTree = "<group>"; };
 		B16B61A1213872FD002FFFCA /* CLWebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWebItem.h; sourceTree = "<group>"; };
 		B16B61A2213872FD002FFFCA /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
-		B16B61A621387F72002FFFCA /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
 		B16B625421389EDA002FFFCA /* Cloud.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cloud.xcodeproj; path = Cloud/Cloud.xcodeproj; sourceTree = "<group>"; };
+		B17B42172141B262004BBDBA /* CLAPIEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngine.h; sourceTree = "<group>"; };
+		B17B42192141B296004BBDBA /* CLAPIEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLAPIEngineDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +61,9 @@
 			children = (
 				B16B625421389EDA002FFFCA /* Cloud.xcodeproj */,
 				B16B61A0213872FD002FFFCA /* CLAccount.h */,
-				B16B61A621387F72002FFFCA /* CLAPIEngine.h */,
+				B17B42172141B262004BBDBA /* CLAPIEngine.h */,
 				B16B619C213872FC002FFFCA /* CLAPIEngineConstants.h */,
-				B16B619D213872FC002FFFCA /* CLAPIEngineDelegate.h */,
+				B17B42192141B296004BBDBA /* CLAPIEngineDelegate.h */,
 				B16B619E213872FC002FFFCA /* CLAPITransaction.h */,
 				B16B61A2213872FD002FFFCA /* Cloud.h */,
 				B16B61A1213872FD002FFFCA /* CLWebItem.h */,

@@ -827,6 +827,10 @@ totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
         NSError *error = [NSError errorWithDomain:CLAPIEngineErrorDomain
                                              code:CLAPIEngineErrorUnknown
                                          userInfo:userInfo];
+        
+        if ([self.internaldelegate respondsToSelector:@selector(didLoginFailWithError:)]) {
+            [self.internaldelegate didLoginFailWithError:error];
+        }
         [self connection:connection didFailWithError:error];
         return;
     }

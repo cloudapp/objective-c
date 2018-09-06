@@ -30,7 +30,7 @@
 @property (nonatomic, readwrite, strong) id userInfo;
 @property (nonatomic, readwrite, strong) id internalContext;
 @property (nonatomic, readwrite, assign) NSInteger numberOfTries;
-
+ 
 + (id)transaction;
 
 @end

@@ -23,7 +23,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
     NSString *_password;
     NSURL *_baseURL;
     id <CLAPIEngineDelegate> __weak _delegate;
-    
+    id <CLAPIEngineInternalDelegate> __weak _iternaldelegate;
+
     NSMutableSet *_transactions;
     
     BOOL _clearsCookies;
@@ -32,6 +33,8 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 @property (nonatomic, readwrite, copy) NSString *email;
 @property (nonatomic, readwrite, copy) NSString *password;
 @property (nonatomic, readwrite, weak) id<CLAPIEngineDelegate> delegate;
+@property (nonatomic, readwrite, weak) id<CLAPIEngineInternalDelegate> internaldelegate;
+
 @property (nonatomic, readwrite, strong) NSURL *baseURL;
 @property (nonatomic, readwrite, strong) NSMutableSet *transactions;
 
@@ -42,7 +45,7 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 - (id)initWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
 + (id)engine;
 + (id)engineWithDelegate:(id<CLAPIEngineDelegate>)aDelegate;
-+ (instancetype)sharedInstance;
++ (instancetype _Nonnull)shared;
 // Returns whether or not the email/password fields are complete.
 - (BOOL)isReady;
 
@@ -59,34 +62,36 @@ extern NSString *const CLAPIEnginePrivacyOptionPublic;
 - (id)userInfoForConnectionIdentifier:(NSString *)identifier;
 - (CLAPIRequestType)requestTypeForConnectionIdentifier:(NSString *)identifier;
 
-- (NSString *)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo;
-- (NSString *)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo;
+- (void)createAccountWithEmail:(NSString *)accountEmail password:(NSString *)accountPassword acceptTerms:(BOOL)acceptTerms userInfo:(id)userInfo;
+- (void)changeDefaultSecurityOfAccountToUsePrivacy:(BOOL)privacy userInfo:(id)userInfo;
 
-- (NSString *)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
-- (NSString *)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
-- (NSString *)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo;
-- (NSString *)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo;
-- (NSString *)getAccountInformationWithUserInfo:(id)userInfo;
-- (NSString *)getItemInformation:(CLWebItem *)item userInfo:(id)userInfo;
-- (NSString *)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo;
-- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo;
-- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo;
-- (NSString *)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo;
-- (NSString *)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo;
-- (NSString *)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk options:(NSDictionary *)options userInfo:(id)userInfo;
+- (void)changePrivacyOfItem:(CLWebItem *)webItem toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
+- (void)changePrivacyOfItemAtHref:(NSURL *)href toPrivate:(BOOL)isPrivate userInfo:(id)userInfo;
+- (void)changeNameOfItem:(CLWebItem *)webItem toName:(NSString *)newName userInfo:(id)userInfo;
+- (void)changeNameOfItemAtHref:(NSURL *)href toName:(NSString *)newName userInfo:(id)userInfo;
+- (void)getAccountInformationWithUserInfo:(id)userInfo;
+- (void)getItemInformation:(CLWebItem *)item userInfo:(id)userInfo;
+- (void)getItemInformationAtURL:(NSURL *)itemURL userInfo:(id)userInfo;
+- (void)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name userInfo:(id)userInfo;
+- (void)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData userInfo:(id)userInfo;
+- (void)bookmarkLinkWithURL:(NSURL *)URL name:(NSString *)name options:(NSDictionary *)options userInfo:(id)userInfo;
+- (void)uploadFileWithName:(NSString *)fileName fileData:(NSData *)fileData options:(NSDictionary *)options userInfo:(id)userInfo;
+- (void)uploadFileWithName:(NSString *)fileName atPathOnDisk:(NSString *)pathOnDisk options:(NSDictionary<NSString*,NSString*>*)options userInfo:(id)userInfo;
 
-- (NSString *)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo;
-- (NSString *)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo;
-- (NSString *)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo;
-- (NSString *)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo;
-- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
-- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
-- (NSString *)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo;
+- (void)deleteItem:(CLWebItem *)webItem userInfo:(id)userInfo;
+- (void)deleteItemAtHref:(NSURL *)href userInfo:(id)userInfo;
+- (void)restoreItem:(CLWebItem *)webItem userInfo:(id)userInfo;
+- (void)restoreItemAtHref:(NSURL *)href userInfo:(id)userInfo;
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage userInfo:(id)userInfo;
+- (void)getItemListStartingAtPage:(NSInteger)pageNumStartingAtOne ofType:(CLWebItemType)type itemsPerPage:(NSInteger)perPage showOnlyItemsInTrash:(BOOL)showOnlyItemsInTrash userInfo:(id)userInfo;
 
-- (NSString *)getStoreProductsWithUserInfo:(id)userInfo;
-- (NSString *)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo;
-- (NSString *)getAccountToken:(id)userInfo;
-- (NSString *)loadAccountStatisticsWithUserInfo:(id)userInfo;
-- (NSString *)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo;
+- (void)getStoreProductsWithUserInfo:(id)userInfo;
+- (void)redeemStoreReceipt:(NSString *)base64Receipt userInfo:(id)userInfo;
+- (void)getAccountToken:(id)userInfo;
+- (void)loadAccountStatisticsWithUserInfo:(id)userInfo;
+- (void)getAccountTokenFromGoogleAuth:(NSString*)accessToken and:(id)userInfo;
+- (void)getJWTfromToken:(NSString*)accessToken and:(id)userInfo;
 - (void)logIn;
+- (void)logOut;
 @end

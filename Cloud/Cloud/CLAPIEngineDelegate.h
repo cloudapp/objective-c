@@ -50,5 +50,5 @@
 
 @optional
 - (void)tokenWith:(NSString *)tokenString and:(NSString *)connectionIdentifier;
-
+- (void)didLoginFailWithError:(NSError*)error;
 @end
